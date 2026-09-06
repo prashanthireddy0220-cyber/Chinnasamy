@@ -24,6 +24,49 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
   const [connecting, setConnecting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [established, setEstablished] = useState(false);
+  const [containerDimensions, setContainerDimensions] = useState({ width: 800, height: 500 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setContainerDimensions({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight
+        });
+      }
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  const getNodeCoords = (angle: number, index: number) => {
+    const rad = (angle * Math.PI) / 180;
+    const w = containerDimensions.width;
+    const isSmallMobile = w < 440;
+    const isMobile = w < 640;
+
+    let rx: number;
+    let ry: number;
+
+    if (isSmallMobile) {
+      rx = index % 2 === 0 ? w * 0.28 : w * 0.38;
+      ry = index % 2 === 0 ? 145 : 185;
+    } else if (isMobile) {
+      rx = index % 2 === 0 ? w * 0.30 : w * 0.38;
+      ry = index % 2 === 0 ? 160 : 200;
+    } else {
+      // Desktop: ample radius so node labels NEVER overlap with the central avatar photo
+      rx = index % 2 === 0 ? 215 : 260;
+      ry = index % 2 === 0 ? 185 : 225;
+    }
+
+    const x = Math.cos(rad) * rx;
+    const y = Math.sin(rad) * ry;
+
+    return { x, y };
+  };
 
   const handleConnect = () => {
     if (connecting || established) return;
@@ -67,7 +110,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0284c70a_1px,transparent_1px),linear-gradient(to_bottom,#0284c70a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#00f0ff0a_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff0a_1px,transparent_1px)] bg-[size:3rem_3rem]" />
 
       {/* Main Node Diagram Area */}
-      <div className="relative w-full max-w-4xl h-[480px] md:h-[540px] flex items-center justify-center">
+      <div ref={containerRef} className="relative w-full max-w-4xl h-[480px] md:h-[540px] flex items-center justify-center min-w-0">
 
         {/* Pulsing Shockwave Rings */}
         <div className={`absolute w-72 h-72 rounded-full border border-cyan-500/20 transition-all duration-700 ${connecting || established ? 'scale-150 border-cyan-400/60 animate-ping' : 'animate-pulse'}`} />
@@ -76,25 +119,25 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
 
         {/* SVG Connecting Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none">
-          {RESEARCH_NODES.map((node) => {
-            const rad = (node.angle * Math.PI) / 180;
-            const x2 = 50 + Math.cos(rad) * 35;
-            const y2 = 50 + Math.sin(rad) * 35;
+          {RESEARCH_NODES.map((node, index) => {
+            const coords = getNodeCoords(node.angle, index);
+            const x2Percent = 50 + (coords.x / containerDimensions.width) * 100;
+            const y2Percent = 50 + (coords.y / containerDimensions.height) * 100;
 
             return (
               <g key={node.id}>
                 <line
                   x1="50%"
                   y1="50%"
-                  x2={`${x2}%`}
-                  y2={`${y2}%`}
+                  x2={`${x2Percent}%`}
+                  y2={`${y2Percent}%`}
                   stroke={connecting || established ? "#00f0ff" : "rgba(56, 189, 248, 0.25)"}
                   strokeWidth={connecting || established ? "2.5" : "1"}
                   strokeDasharray={connecting ? "6,6" : "none"}
                   className="transition-all duration-500"
                 />
                 {connecting && (
-                  <circle cx={`${x2}%`} cy={`${y2}%`} r="3" fill="#00f0ff">
+                  <circle cx={`${x2Percent}%`} cy={`${y2Percent}%`} r="3" fill="#00f0ff">
                     <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite" />
                   </circle>
                 )}
@@ -104,10 +147,8 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
         </svg>
 
         {/* Outer Research Nodes */}
-        {RESEARCH_NODES.map((node) => {
-          const rad = (node.angle * Math.PI) / 180;
-          const xOffset = Math.cos(rad) * 160;
-          const yOffset = Math.sin(rad) * 160;
+        {RESEARCH_NODES.map((node, index) => {
+          const coords = getNodeCoords(node.angle, index);
 
           return (
             <motion.div
@@ -116,11 +157,11 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
               animate={{
                 scale: connecting || established ? 1.1 : 1,
                 opacity: 1,
-                x: xOffset,
-                y: yOffset
+                x: coords.x,
+                y: coords.y
               }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`group absolute flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border text-xs font-mono transition-all duration-300 cursor-pointer ${
+              className={`group absolute z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border text-xs font-mono transition-all duration-300 cursor-pointer ${
                 connecting || established
                   ? 'bg-cyan-600 dark:bg-cyan-950/80 border-cyan-400 text-white dark:text-cyan-300 shadow-md dark:shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'bg-white/90 dark:bg-slate-900/80 border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-300 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 hover:scale-110 shadow-sm'
