@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
           {/* Col 1: Bio */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-7 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-md shadow-cyan-500/20">
                 <div className="w-full h-full rounded-[10px] bg-slate-900 dark:bg-[#050811] flex items-center justify-center font-bold text-xs text-cyan-400 font-mono">
@@ -41,25 +41,8 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="font-mono text-xs text-slate-900 dark:text-slate-200 font-bold uppercase tracking-widest">
-              NAVIGATION
-            </h4>
-
-            <ul className="space-y-2 font-mono text-xs">
-              <li><a href="#about" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">About Identity</a></li>
-              <li><a href="#research" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Research Constellation</a></li>
-              <li><a href="#journey" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Academic Journey</a></li>
-              <li><a href="#publications" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Publications Command Center</a></li>
-              <li><a href="#patents" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Patents & Innovation</a></li>
-              <li><a href="#supervision" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Research Supervision</a></li>
-              <li><a href="#contact" className="hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors">Contact / Collaboration</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Research Profiles & Socials */}
-          <div className="md:col-span-4 space-y-3">
+          {/* Col 2: Research Profiles & Socials */}
+          <div className="md:col-span-5 space-y-3">
             <h4 className="font-mono text-xs text-slate-900 dark:text-slate-200 font-bold uppercase tracking-widest">
               RESEARCH PROFILES
             </h4>
