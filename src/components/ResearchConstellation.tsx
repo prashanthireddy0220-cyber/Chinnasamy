@@ -85,6 +85,51 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
 
 export const ResearchConstellation: React.FC = () => {
   const [activeNodeId, setActiveNodeId] = useState<string>('ai');
+  const [containerDimensions, setContainerDimensions] = useState({ width: 600, height: 480 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setContainerDimensions({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight
+        });
+      }
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  const getNodeCoords = (angle: number, index: number) => {
+    const rad = (angle * Math.PI) / 180;
+    const w = containerDimensions.width;
+    const isSmallMobile = w < 380;
+    const isMobile = w < 640;
+
+    let rx: number;
+    let ry: number;
+
+    if (isSmallMobile) {
+      // 320px - 380px screens: narrow space, use alternating inner/outer radii
+      rx = index % 2 === 0 ? w * 0.23 : w * 0.31;
+      ry = index % 2 === 0 ? 145 : 185;
+    } else if (isMobile) {
+      // 381px - 639px screens
+      rx = index % 2 === 0 ? w * 0.27 : w * 0.34;
+      ry = index % 2 === 0 ? 150 : 185;
+    } else {
+      // Desktop (640px+)
+      rx = 175;
+      ry = 150;
+    }
+
+    const x = Math.cos(rad) * rx;
+    const y = Math.sin(rad) * ry;
+
+    return { x, y };
+  };
 
   const activeNode = CONSTELLATION_NODES.find(n => n.id === activeNodeId) || CONSTELLATION_NODES[0];
 
@@ -116,29 +161,32 @@ export const ResearchConstellation: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
           {/* Left Column: Visual Interactive Constellation Canvas */}
-          <div className="lg:col-span-7 relative w-full h-[420px] sm:h-[480px] flex items-center justify-center bg-white/70 dark:bg-slate-950/40 rounded-3xl border border-cyan-400/30 dark:border-cyan-500/20 p-4 shadow-xl overflow-hidden">
+          <div
+            ref={containerRef}
+            className="lg:col-span-7 relative w-full h-[480px] min-[400px]:h-[520px] sm:h-[500px] flex items-center justify-center bg-white/70 dark:bg-slate-950/40 rounded-3xl border border-cyan-400/30 dark:border-cyan-500/20 p-2 sm:p-4 shadow-xl overflow-hidden min-w-0"
+          >
 
             {/* Orbiting concentric ring guides */}
             <div className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full border border-cyan-500/15 pointer-events-none animate-pulse-slow" />
             <div className="absolute w-48 h-48 sm:w-60 sm:h-60 rounded-full border border-purple-500/15 pointer-events-none" />
 
             {/* Central Node: RESEARCH */}
-            <div className="relative z-20 w-24 h-24 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 shadow-lg dark:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center text-center">
-              <div className="w-full h-full rounded-full bg-slate-900 dark:bg-[#080d1e] flex flex-col items-center justify-center p-2">
-                <Sparkles className="w-5 h-5 text-cyan-400 mb-1 animate-pulse" />
-                <span className="font-mono font-bold text-xs sm:text-sm text-cyan-300 tracking-wider">
+            <div className="relative z-20 w-20 h-20 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 shadow-lg dark:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center text-center shrink-0">
+              <div className="w-full h-full rounded-full bg-slate-900 dark:bg-[#080d1e] flex flex-col items-center justify-center p-1 sm:p-2">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 mb-0.5 sm:mb-1 animate-pulse" />
+                <span className="font-mono font-bold text-[11px] sm:text-sm text-cyan-300 tracking-wider">
                   RESEARCH
                 </span>
-                <span className="font-mono text-[8px] text-slate-400 uppercase">CORE</span>
+                <span className="font-mono text-[7px] sm:text-[8px] text-slate-400 uppercase">CORE</span>
               </div>
             </div>
 
             {/* SVG Connecting Lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              {CONSTELLATION_NODES.map((node) => {
-                const rad = (node.angle * Math.PI) / 180;
-                const x2 = 50 + Math.cos(rad) * 38;
-                const y2 = 50 + Math.sin(rad) * 38;
+              {CONSTELLATION_NODES.map((node, index) => {
+                const coords = getNodeCoords(node.angle, index);
+                const x2Percent = 50 + (coords.x / containerDimensions.width) * 100;
+                const y2Percent = 50 + (coords.y / containerDimensions.height) * 100;
                 const isActive = node.id === activeNodeId;
 
                 return (
@@ -146,8 +194,8 @@ export const ResearchConstellation: React.FC = () => {
                     key={node.id}
                     x1="50%"
                     y1="50%"
-                    x2={`${x2}%`}
-                    y2={`${y2}%`}
+                    x2={`${x2Percent}%`}
+                    y2={`${y2Percent}%`}
                     stroke={isActive ? "#0284c7" : "rgba(14, 165, 233, 0.25)"}
                     strokeWidth={isActive ? "2.5" : "1"}
                     strokeDasharray={isActive ? "4,4" : "none"}
@@ -158,28 +206,25 @@ export const ResearchConstellation: React.FC = () => {
             </svg>
 
             {/* Satellite Nodes */}
-            {CONSTELLATION_NODES.map((node) => {
-              const rad = (node.angle * Math.PI) / 180;
-              const distance = 160;
-              const xOffset = Math.cos(rad) * distance;
-              const yOffset = Math.sin(rad) * (distance * 0.85);
+            {CONSTELLATION_NODES.map((node, index) => {
+              const coords = getNodeCoords(node.angle, index);
               const isActive = node.id === activeNodeId;
 
               return (
                 <motion.button
                   key={node.id}
                   onClick={() => setActiveNodeId(node.id)}
-                  style={{ x: xOffset, y: yOffset }}
-                  whileHover={{ scale: 1.15 }}
+                  style={{ x: coords.x, y: coords.y }}
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`group absolute z-30 px-3.5 py-1.5 rounded-full backdrop-blur-md border font-mono text-xs transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                  className={`group absolute z-30 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md border font-mono text-[10px] sm:text-xs transition-all duration-300 flex items-center gap-1 sm:gap-1.5 cursor-pointer max-w-[135px] min-[400px]:max-w-[160px] sm:max-w-none ${
                     isActive
-                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-black font-bold border-cyan-400 dark:border-cyan-300 shadow-md dark:shadow-[0_0_20px_rgba(0,240,255,0.6)] scale-110'
+                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-black font-bold border-cyan-400 dark:border-cyan-300 shadow-md dark:shadow-[0_0_20px_rgba(0,240,255,0.6)] scale-105 sm:scale-110'
                       : 'bg-white/90 dark:bg-slate-900/80 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700/80 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 shadow-sm'
                   }`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white dark:bg-black animate-ping' : 'bg-cyan-500 dark:bg-cyan-400 group-hover:animate-ping'}`} />
-                  <span className="whitespace-nowrap">{node.title}</span>
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isActive ? 'bg-white dark:bg-black animate-ping' : 'bg-cyan-500 dark:bg-cyan-400 group-hover:animate-ping'}`} />
+                  <span className="truncate">{node.title}</span>
                 </motion.button>
               );
             })}
