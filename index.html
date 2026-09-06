@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Dr. P. Chinnasamy | Associate Professor & Researcher in AI, Cybersecurity & Cloud</title>
+    <meta name="title" content="Dr. P. Chinnasamy | Associate Professor & Researcher" />
+    <meta name="description" content="Academic and research portfolio of Dr. P. Chinnasamy, Associate Professor at Kalasalingam Academy of Research and Education. Specializing in AI, Cybersecurity, Cryptography, Cloud Security, Access Control, and Intelligent Systems." />
+    <meta name="author" content="Dr. P. Chinnasamy" />
+    <meta name="keywords" content="Dr. P. Chinnasamy, Associate Professor, Kalasalingam Academy, KARE, Artificial Intelligence, Cybersecurity, Cryptography, Cloud Security, Access Control, Blockchain, Deep Learning" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dr. P. Chinnasamy | Associate Professor & Researcher" />
+    <meta property="og:description" content="Academic & Research Portfolio of Dr. P. Chinnasamy - Associate Professor at Kalasalingam Academy of Research and Education." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    
+    <!-- Instant Theme Initialization Script (Prevents Theme Flash) -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', saved);
+          if (saved === 'light' || saved === 'times') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+          document.documentElement.classList.add('theme-' + saved);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased selection:bg-cyan-500 selection:text-black overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #050811;
+  --bg-secondary: #080d1e;
+  --bg-card: rgba(13, 22, 45, 0.7);
+  --bg-card-border: rgba(56, 189, 248, 0.2);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-primary: #00f0ff;
+  --accent-secondary: #3b82f6;
+  --accent-glow: rgba(0, 240, 255, 0.25);
+  --font-sans: 'Inter', 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+/* 1. DARK MODE (Default Cyber) */
+[data-theme="dark"] {
+  --bg-primary: #050811;
+  --bg-secondary: #080d1e;
+  --bg-card: rgba(13, 22, 45, 0.75);
+  --bg-card-border: rgba(56, 189, 248, 0.2);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-primary: #00f0ff;
+  --accent-secondary: #3b82f6;
+  --accent-glow: rgba(0, 240, 255, 0.25);
+}
+
+/* 2. LIGHT MODE */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent-primary: #0284c7;
+  --accent-secondary: #2563eb;
+  --accent-glow: rgba(14, 165, 233, 0.15);
+}
+
+/* 3. NEURAL MODE (AI Synapse Purple & Cyan) */
+[data-theme="neural"] {
+  --bg-primary: #08071b;
+  --bg-secondary: #110e2d;
+  --bg-card: rgba(22, 17, 52, 0.75);
+  --bg-card-border: rgba(168, 85, 247, 0.35);
+  --text-primary: #f5f3ff;
+  --text-secondary: #ddd6fe;
+  --text-muted: #a78bfa;
+  --accent-primary: #c084fc;
+  --accent-secondary: #38bdf8;
+  --accent-glow: rgba(192, 132, 252, 0.35);
+}
+
+[data-theme="neural"] body {
+  background-color: #08071b !important;
+  color: #f5f3ff !important;
+}
+
+[data-theme="neural"] .bg-\[\#050811\],
+[data-theme="neural"] .dark\:bg-\[\#050811\],
+[data-theme="neural"] .dark\:bg-slate-950,
+[data-theme="neural"] .dark\:bg-slate-900 {
+  background-color: rgba(17, 14, 45, 0.9) !important;
+}
+
+[data-theme="neural"] .dark\:border-cyan-500\/20,
+[data-theme="neural"] .dark\:border-cyan-500\/30,
+[data-theme="neural"] .dark\:border-slate-800 {
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+[data-theme="neural"] .dark\:text-cyan-300,
+[data-theme="neural"] .dark\:text-cyan-400 {
+  color: #c084fc !important;
+}
+
+[data-theme="neural"] .dark\:bg-cyan-950\/60,
+[data-theme="neural"] .dark\:bg-cyan-950\/80 {
+  background-color: rgba(88, 28, 135, 0.4) !important;
+}
+
+/* 4. MATRIX MODE (Terminal Green Hacker) */
+[data-theme="matrix"] {
+  --bg-primary: #020604;
+  --bg-secondary: #051208;
+  --bg-card: rgba(5, 24, 12, 0.85);
+  --bg-card-border: rgba(34, 197, 94, 0.4);
+  --text-primary: #f0fdf4;
+  --text-secondary: #86efac;
+  --text-muted: #4ade80;
+  --accent-primary: #00ff66;
+  --accent-secondary: #10b981;
+  --accent-glow: rgba(0, 255, 102, 0.35);
+}
+
+[data-theme="matrix"] body {
+  background-color: #020604 !important;
+  color: #f0fdf4 !important;
+  font-family: 'Fira Code', monospace !important;
+}
+
+[data-theme="matrix"] h1,
+[data-theme="matrix"] h2,
+[data-theme="matrix"] h3,
+[data-theme="matrix"] h4,
+[data-theme="matrix"] button,
+[data-theme="matrix"] a {
+  font-family: 'Fira Code', monospace !important;
+}
+
+[data-theme="matrix"] .bg-\[\#050811\],
+[data-theme="matrix"] .dark\:bg-\[\#050811\],
+[data-theme="matrix"] .dark\:bg-slate-950,
+[data-theme="matrix"] .dark\:bg-slate-900 {
+  background-color: rgba(5, 24, 12, 0.9) !important;
+}
+
+[data-theme="matrix"] .dark\:border-cyan-500\/20,
+[data-theme="matrix"] .dark\:border-cyan-500\/30,
+[data-theme="matrix"] .dark\:border-slate-800 {
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+
+[data-theme="matrix"] .dark\:text-cyan-300,
+[data-theme="matrix"] .dark\:text-cyan-400 {
+  color: #00ff66 !important;
+}
+
+[data-theme="matrix"] .dark\:bg-cyan-950\/60,
+[data-theme="matrix"] .dark\:bg-cyan-950\/80 {
+  background-color: rgba(6, 78, 59, 0.5) !important;
+}
+
+/* 5. TIMES MODE (Editorial Newspaper) */
+[data-theme="times"] {
+  --bg-primary: #fbf9f4;
+  --bg-secondary: #f4f0e6;
+  --bg-card: #ffffff;
+  --bg-card-border: #e7e5e4;
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #78716c;
+  --accent-primary: #b45309;
+  --accent-secondary: #78350f;
+  --accent-glow: rgba(180, 83, 9, 0.15);
+}
+
+[data-theme="times"] body {
+  background-color: #fbf9f4 !important;
+  color: #1c1917 !important;
+  font-family: 'Merriweather', 'Georgia', serif !important;
+}
+
+[data-theme="times"] h1,
+[data-theme="times"] h2,
+[data-theme="times"] h3,
+[data-theme="times"] h4,
+[data-theme="times"] .font-heading {
+  font-family: 'Playfair Display', 'Georgia', serif !important;
+  letter-spacing: -0.01em !important;
+}
+
+[data-theme="times"] .bg-slate-50,
+[data-theme="times"] .bg-white\/85,
+[data-theme="times"] .bg-white\/60 {
+  background-color: rgba(244, 240, 230, 0.9) !important;
+}
+
+[data-theme="times"] .text-cyan-700,
+[data-theme="times"] .text-cyan-600,
+[data-theme="times"] .text-blue-700 {
+  color: #b45309 !important;
+}
+
+[data-theme="times"] .border-slate-200,
+[data-theme="times"] .border-cyan-400\/50 {
+  border-color: #e7e5e4 !important;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+}
+
+/* Custom Scrollbar for Themes */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid var(--border-color, rgba(56, 189, 248, 0.2));
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Hide scrollbar helpers */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
