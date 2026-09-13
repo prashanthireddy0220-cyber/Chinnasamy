@@ -13,7 +13,7 @@
   --accent-primary: #00f0ff;
   --accent-secondary: #3b82f6;
   --accent-glow: rgba(0, 240, 255, 0.25);
-  --font-sans: 'Inter', 'Outfit', sans-serif;
+  --font-sans: 'Merienda', cursive, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'Fira Code', monospace;
 }
@@ -195,7 +195,13 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    font-family: var(--font-sans);
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
   }
 }
 

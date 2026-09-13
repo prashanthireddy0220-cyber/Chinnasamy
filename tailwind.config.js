@@ -21,7 +21,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Outfit', 'sans-serif'],
+        sans: ['Merienda', 'Inter', 'Outfit', 'sans-serif'],
+        merienda: ['Merienda', 'cursive', 'sans-serif'],
         mono: ['Fira Code', 'monospace']
       },
       animation: {

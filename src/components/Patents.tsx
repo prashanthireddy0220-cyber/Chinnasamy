@@ -101,15 +101,30 @@ export const Patents: React.FC = () => {
                   <FileText className="w-4 h-4" />
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
+                <div className="space-y-1.5 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-mono text-[9px] uppercase border border-slate-200 dark:border-slate-800 font-semibold">
                       {patent.status}
                     </span>
+                    {patent.appNo && (
+                      <span className="px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/80 text-cyan-700 dark:text-cyan-400 font-mono text-[9px] border border-cyan-200 dark:border-cyan-800 font-semibold">
+                        App: {patent.appNo}
+                      </span>
+                    )}
+                    {patent.year && (
+                      <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                        {patent.year}
+                      </span>
+                    )}
                   </div>
                   <h4 className="font-sans font-bold text-sm text-slate-800 dark:text-slate-200 leading-snug">
                     {patent.title}
                   </h4>
+                  {patent.authors && (
+                    <p className="font-mono text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                      Inventors: {patent.authors}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             ))}

@@ -3,9 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, BookOpen, Filter, Calendar, Tag, ExternalLink, Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { professorData, Publication } from '../data/professorData';
 
-const YEAR_FILTERS = ['All', '2026', '2025', '2024'];
-const CATEGORY_FILTERS = ['All', 'AI', 'Machine Learning', 'Cybersecurity', 'Cryptography', 'Cloud Security', 'Blockchain', 'Access Control'];
-const TYPE_FILTERS = ['All', 'Journal', 'Conference'];
+const YEAR_FILTERS = ['All', '2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
+const CATEGORY_FILTERS = ['All', 'AI', 'Machine Learning', 'Cybersecurity', 'Cryptography', 'Cloud Security', 'Blockchain', 'Healthcare', 'IoT', 'Deep Learning', 'Access Control'];
+const TYPE_FILTERS = ['All', 'Journal', 'Conference', 'Book Chapter'];
+
+const ITEMS_PER_PAGE = 15;
 
 export const Publications: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,6 +16,7 @@ export const Publications: React.FC = () => {
   const [selectedType, setSelectedType] = useState('All');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   const filteredPublications = useMemo(() => {
     return professorData.publications.filter((pub) => {
@@ -32,6 +35,10 @@ export const Publications: React.FC = () => {
       return matchesSearch && matchesYear && matchesCategory && matchesType;
     });
   }, [searchTerm, selectedYear, selectedCategory, selectedType]);
+
+  const displayedPublications = useMemo(() => {
+    return filteredPublications.slice(0, visibleCount);
+  }, [filteredPublications, visibleCount]);
 
   const handleCopyCitation = (pub: Publication) => {
     const citation = `${professorData.name}. "${pub.title}." ${pub.venue || 'IEEE'}, ${pub.year || '2026'}. Indexed in ${pub.indexing || 'IEEE/Scopus'}.`;
@@ -153,7 +160,7 @@ export const Publications: React.FC = () => {
 
           {/* Active Filter Count */}
           <div className="flex items-center justify-between font-mono text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-800/80">
-            <span>Showing {filteredPublications.length} of {professorData.publications.length} publications</span>
+            <span>Showing {displayedPublications.length} of {filteredPublications.length} matching publications ({professorData.publications.length} total)</span>
             {(selectedYear !== 'All' || selectedCategory !== 'All' || selectedType !== 'All' || searchTerm) && (
               <button
                 onClick={() => {
@@ -161,6 +168,7 @@ export const Publications: React.FC = () => {
                   setSelectedCategory('All');
                   setSelectedType('All');
                   setSearchTerm('');
+                  setVisibleCount(ITEMS_PER_PAGE);
                 }}
                 className="text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer font-semibold"
               >
@@ -173,7 +181,7 @@ export const Publications: React.FC = () => {
         {/* Publication Cards List */}
         {filteredPublications.length > 0 ? (
           <div className="space-y-4">
-            {filteredPublications.map((pub, idx) => {
+            {displayedPublications.map((pub, idx) => {
               const isExpanded = expandedId === pub.id;
               const isCopied = copiedId === pub.id;
 
@@ -182,7 +190,7 @@ export const Publications: React.FC = () => {
                   key={pub.id}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
                   className="group relative p-6 rounded-3xl bg-white/90 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 shadow-xl dark:hover:shadow-[0_10px_30px_rgba(0,240,255,0.15)]"
                 >
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
@@ -261,7 +269,7 @@ export const Publications: React.FC = () => {
 
                   </div>
 
-                  {/* Expandable Abstract Details */}
+                  {/* Expandable Details */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
@@ -283,7 +291,7 @@ export const Publications: React.FC = () => {
                         )}
 
                         <div className="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400">
-                          <span>Authors: Dr. P. Chinnasamy et al.</span>
+                          <span>Authors: {pub.authors || 'Dr. P. Chinnasamy et al.'}</span>
                           {pub.link ? (
                             <a
                               href={pub.link}
@@ -305,6 +313,18 @@ export const Publications: React.FC = () => {
                 </motion.div>
               );
             })}
+
+            {/* Load More Button */}
+            {visibleCount < filteredPublications.length && (
+              <div className="pt-8 text-center">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
+                  className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-mono text-xs font-bold tracking-wider shadow-lg hover:shadow-cyan-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
+                >
+                  LOAD MORE PUBLICATIONS ({filteredPublications.length - visibleCount} REMAINING)
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="p-12 text-center rounded-3xl bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-mono text-sm shadow-md">
