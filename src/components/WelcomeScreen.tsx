@@ -21,7 +21,7 @@ const GREETINGS = [
   { text: "こんにちは", lang: "Japanese" },
   { text: "你好", lang: "Chinese" },
   { text: "안녕하세요", lang: "Korean" },
-  { text: "Hello", lang: "English" }
+  { text: "வணக்கம்", lang: "Tamil" }
 ];
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
