@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronUp, ExternalLink, Shield, BookOpen, Award, Users, Mail } from 'lucide-react';
 import { professorData } from '../data/professorData';
+import facePhoto from '../assets/chinnasamy_face.jpg';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -18,7 +19,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 p-0.5 shadow-md shadow-cyan-500/30 overflow-hidden shrink-0">
                 <img
-                  src={professorData.faceUrl}
+                  src={facePhoto || professorData.faceUrl}
                   alt={professorData.name}
                   className="w-full h-full rounded-full object-cover object-center"
                 />

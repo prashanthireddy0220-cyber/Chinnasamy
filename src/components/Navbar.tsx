@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Bot, Sparkles, ChevronRight, FileText } from 'lucide-react';
 import { professorData } from '../data/professorData';
 import { ThemeToggle } from './ThemeToggle';
+import facePhoto from '../assets/chinnasamy_face.jpg';
 
 interface NavbarProps {
   onOpenAI: () => void;
@@ -75,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
         >
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 p-0.5 shadow-md shadow-cyan-500/30 group-hover:scale-105 transition-transform duration-300 shrink-0 overflow-hidden">
             <img
-              src={professorData.faceUrl}
+              src={facePhoto || professorData.faceUrl}
               alt={professorData.name}
               className="w-full h-full rounded-full object-cover object-center"
             />
