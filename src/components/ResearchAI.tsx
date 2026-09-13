@@ -55,40 +55,122 @@ export const ResearchAI: React.FC<ResearchAIProps> = ({ isOpen, onClose }) => {
   }, [messages, loading, isOpen]);
 
   const generateAnswer = (q: string): string => {
-    const lowerQ = q.toLowerCase();
+    const lowerQ = q.toLowerCase().trim();
 
-    if (lowerQ.includes("research area") || lowerQ.includes("interest") || lowerQ.includes("focus") || lowerQ.includes("domain")) {
-      return `Dr. P. Chinnasamy's core research focus includes ${professorData.researchAreas.slice(0, 5).join(", ")}, ${professorData.researchAreas.slice(5, 8).join(", ")}, and ${professorData.researchAreas.slice(8).join(", ")}.`;
-    } 
-    if (lowerQ.includes("publication") || lowerQ.includes("paper") || lowerQ.includes("journal") || lowerQ.includes("conference") || lowerQ.includes("doi")) {
-      return `Dr. Chinnasamy has authored over 100+ publications across SCIE Journals, IEEE Conferences, and Springer Book Chapters. Highlighted papers include Cognitive AI for Pedagogy (ICMCSI 2026), AI-Multi-Factor Authentication with Liveness Detection, Medi-Chain Blockchain Drug Tracking, and HCAC-EHR Cloud Access Control. Verified DOI links are attached to all publication cards!`;
-    } 
-    if (lowerQ.includes("patent") || lowerQ.includes("grant") || lowerQ.includes("innovation")) {
-      return `Dr. Chinnasamy holds a Granted Australian Patent (App: 2020100616) titled "Using Wearable Device and Voice Analysis to Track Mental Health", an Indian Design Patent (App: 434301-001) for Smart Solar Weather Monitoring, and over 10 published innovation disclosures.`;
-    } 
-    if (lowerQ.includes("scholar") || lowerQ.includes("supervision") || lowerQ.includes("student") || lowerQ.includes("phd scholar")) {
-      return `Dr. Chinnasamy is a recognized Ph.D. supervisor at Kalasalingam Academy of Research and Education (KARE) and Anna University (Supervisor Recognition No. 4140166). He guides scholars including Geethu Lakshmi G (Ph.D. Defended), Deepthi K Moorthy (In Progress), Roshni Rajendran, Darshan P, Dastageer K, and Mani G.`;
-    } 
-    if (lowerQ.includes("award") || lowerQ.includes("ranking") || lowerQ.includes("stanford") || lowerQ.includes("top 2%")) {
-      return `Dr. Chinnasamy is ranked among the Top 2% World Scientists in AI & Image Processing (Stanford–Elsevier Global Ranking 2025). He is also a Senior Research Associate @ UTAR Malaysia (2024–2026) and CSI Cybersecurity Innovator of the Year.`;
-    } 
-    if (lowerQ.includes("education") || lowerQ.includes("journey") || lowerQ.includes("degree") || lowerQ.includes("career")) {
-      return `He earned his Ph.D. in Computer Science and Engineering in March 2019 (Focus: Scalable Cloud Access Control), M.Tech from Kalasalingam University (CGPA 9.45/10), and B.E. from Anna University. He currently serves as Associate Professor at Kalasalingam Academy of Research and Education (KARE).`;
-    } 
-    if (lowerQ.includes("contact") || lowerQ.includes("email") || lowerQ.includes("phone") || lowerQ.includes("linkedin")) {
-      return `You can reach Dr. Chinnasamy directly via email at chinnasamyponnusamy@gmail.com, call +91 9600281664, or connect via LinkedIn (https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b).`;
-    } 
-    if (lowerQ.includes("cv") || lowerQ.includes("resume") || lowerQ.includes("download")) {
-      return `You can view or download Dr. Chinnasamy's official PDF CV directly using the "DOWNLOAD CV" button in the Hero section or footer!`;
-    }
-    if (lowerQ.includes("funded") || lowerQ.includes("grant") || lowerQ.includes("utar") || lowerQ.includes("serb")) {
-      return `He is Co-PI for the UTAR Research Fund project "MultiModal Machine Learning Framework for Early Detection of Postpartum Depression" (RM24,000 grant) and worked on SERB-SRG COVID-19 tracking systems.`;
-    }
-    if (lowerQ.includes("reviewer") || lowerQ.includes("editor") || lowerQ.includes("editorial")) {
-      return `Dr. Chinnasamy serves as an invited peer reviewer for 14+ indexed international journals including IEEE, Springer, IET Networks, Symmetry, Sustainability, and Journal of Ambient Intelligence & Humanized Computing.`;
+    // 1. Greetings & Meta questions
+    if (/^(hi|hello|hey|greetings|good morning|good afternoon|good evening|who are you|what can you do|help|start)/i.test(lowerQ)) {
+      return `👋 Hello! I am Dr. P. Chinnasamy's AI Academic Assistant. I can answer any questions about his research in AI & Cybersecurity, 150+ publications, 17 patents, Ph.D. supervision, Stanford Top 2% global ranking, research profiles (Scopus, WoS, Vidwan, Google Scholar), education, or contact details. What would you like to know?`;
     }
 
-    return `I don't have that specific detail in Dr. P. Chinnasamy's academic profile. Please feel free to reach out directly via email at chinnasamyponnusamy@gmail.com!`;
+    // 2. Who is he / Bio / Designation / University / Location / Work
+    if (lowerQ.includes("who is") || lowerQ.includes("about") || lowerQ.includes("designation") || lowerQ.includes("position") || lowerQ.includes("work") || lowerQ.includes("university") || lowerQ.includes("college") || lowerQ.includes("institution") || lowerQ.includes("kare") || lowerQ.includes("kalasalingam") || lowerQ.includes("location") || lowerQ.includes("where")) {
+      return `Dr. P. Chinnasamy is an Associate Professor in the Department of Computer Science & Engineering at Kalasalingam Academy of Research and Education (KARE), Tamil Nadu, India. He holds a Ph.D. in CSE (2019) and specializes in Artificial Intelligence, Cybersecurity, Cryptography, and Cloud Access Control. He is recognized among the Top 2% World Ranking Scientists by Stanford–Elsevier (2025).`;
+    }
+
+    // 3. Research Areas / Focus / Specializations
+    if (lowerQ.includes("research area") || lowerQ.includes("interest") || lowerQ.includes("focus") || lowerQ.includes("domain") || lowerQ.includes("specializ") || lowerQ.includes("topic") || lowerQ.includes("field") || lowerQ.includes("ai") || lowerQ.includes("cybersecurity") || lowerQ.includes("cryptography") || lowerQ.includes("cloud") || lowerQ.includes("blockchain") || lowerQ.includes("iot") || lowerQ.includes("healthcare")) {
+      return `Dr. Chinnasamy's primary research domains include:
+• Artificial Intelligence & Machine Learning
+• Cybersecurity & Cryptography (CP-ABE, Hybrid Cryptography)
+• Cloud Security & Access Control as a Service (ACaaS)
+• Blockchain Technologies (Medi-Chain Drug Tracking)
+• Deep Learning for Healthcare (CNN-LSTM Diagnostics)
+• IoT Security & WSN Threat Monitoring Protocols.`;
+    }
+
+    // 4. Publications / Papers / SCI / SCIE / Impact Factor / IEEE / Springer / Journal / Conference
+    if (lowerQ.includes("publication") || lowerQ.includes("paper") || lowerQ.includes("journal") || lowerQ.includes("conference") || lowerQ.includes("doi") || lowerQ.includes("sci") || lowerQ.includes("impact factor") || lowerQ.includes("q1") || lowerQ.includes("q2") || lowerQ.includes("how many paper") || lowerQ.includes("book chapter")) {
+      return `Dr. Chinnasamy has authored over 150+ scholarly publications!
+• 24 SCI/SCIE Indexed Journal Papers with Impact Factors up to 7.104 (Q1/Q2 in Springer, IEEE, Elsevier, Mathematics).
+• 17 Scopus-Indexed Papers.
+• 20 Book Chapters in Springer, Elsevier, IGI Global, & CRC Press.
+• 88 IEEE International Conference Papers.
+All publications include verified DOI links on the Publications Command Center of this website!`;
+    }
+
+    // 5. Patents / Innovations / Granted / Australian / Design Patent
+    if (lowerQ.includes("patent") || lowerQ.includes("innovation") || lowerQ.includes("australian") || lowerQ.includes("design patent") || lowerQ.includes("granted") || lowerQ.includes("how many patent") || lowerQ.includes("weather") || lowerQ.includes("mental health")) {
+      return `Dr. Chinnasamy holds 17 total patents!
+Key highlights include:
+1. Granted Australian Patent (App: 2020100616): "Using Wearable Device and Voice Analysis to Track Mental Health".
+2. Granted Indian Design Patent (App: 434301-001): Smart Solar Weather Monitoring Node.
+3. 15 Published/Filed Indian Patents spanning AI intrusion detection, smart cradle monitoring, and WSN security.`;
+    }
+
+    // 6. Ph.D. Supervision / Scholars / Students / KARE / Anna University
+    if (lowerQ.includes("scholar") || lowerQ.includes("supervis") || lowerQ.includes("student") || lowerQ.includes("guid") || lowerQ.includes("phd") || lowerQ.includes("doctor") || lowerQ.includes("anna university")) {
+      return `Dr. Chinnasamy is an official Ph.D. Supervisor at Kalasalingam Academy of Research and Education (KARE) and Anna University (Supervisor Recognition No. 4140166).
+He guides scholars including:
+• Geethu Lakshmi G (Ph.D. Defended)
+• Deepthi K Moorthy (In Progress)
+• Roshni Rajendran (In Progress)
+• Darshan P (In Progress)
+• Dastageer K (In Progress)
+• Mani G (Comprehensive Viva Completed).`;
+    }
+
+    // 7. Awards / Honors / Stanford / Top 2% / Global Ranking / Senior Research Associate
+    if (lowerQ.includes("award") || lowerQ.includes("ranking") || lowerQ.includes("stanford") || lowerQ.includes("top 2%") || lowerQ.includes("honor") || lowerQ.includes("utar") || lowerQ.includes("csi") || lowerQ.includes("best faculty") || lowerQ.includes("recogni")) {
+      return `Dr. Chinnasamy's major honors include:
+🏆 Top 2% World Ranking Scientist (Stanford–Elsevier Global Ranking 2025 in AI & Image Processing).
+🏅 Senior Research Associate @ UTAR Malaysia (2024–2026).
+🎖️ CSI Cybersecurity Innovator of the Year Award.
+🌟 Outstanding Researcher & Best Faculty Award recipient.`;
+    }
+
+    // 8. Research Profiles / Scopus / Web of Science / WoS / Vidwan / ResearchGate / Google Scholar / ORCID
+    if (lowerQ.includes("scopus") || lowerQ.includes("web of science") || lowerQ.includes("wos") || lowerQ.includes("vidwan") || lowerQ.includes("researchgate") || lowerQ.includes("scholar link") || lowerQ.includes("orcid") || lowerQ.includes("profile link") || lowerQ.includes("h-index")) {
+      return `Here are Dr. Chinnasamy's official research profile links:
+• Scopus: https://www.scopus.com/authid/detail.uri?authorId=57201503238
+• Web of Science (WoS): https://www.webofscience.com/wos/author/record/W-8274-2018
+• Vidwan: https://vidwan.inflibnet.ac.in/profile/179307
+• Google Scholar: https://scholar.google.com/citations?user=d1GhC-4AAAAJ
+• ORCID: https://orcid.org/0000-0002-3202-4299
+• ResearchGate: https://www.researchgate.net/profile/Chinnasamy-Ponnusamy
+• LinkedIn: https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b/`;
+    }
+
+    // 9. Education / Degrees / Thesis / Qualifications
+    if (lowerQ.includes("education") || lowerQ.includes("qualification") || lowerQ.includes("degree") || lowerQ.includes("thesis") || lowerQ.includes("m.tech") || lowerQ.includes("b.e") || lowerQ.includes("cgpa")) {
+      return `Dr. Chinnasamy's academic qualifications:
+🎓 Ph.D. in Computer Science & Engineering (March 2019, KARE) — Thesis: "Design of Enhanced and Scalable Access Control Mechanisms for Cloud Storage System".
+🎓 M.Tech in CSE (2015, KARE) — CGPA 9.45 / 10 (First Class with Distinction).
+🎓 B.E. in CSE (2013, Anna University).`;
+    }
+
+    // 10. Funded Research / Grants / UTAR / SERB
+    if (lowerQ.includes("funded") || lowerQ.includes("grant") || lowerQ.includes("project") || lowerQ.includes("budget") || lowerQ.includes("money") || lowerQ.includes("serb")) {
+      return `Dr. Chinnasamy is Co-Principal Investigator (Co-PI) for the UTAR International Research Fund project titled "MultiModal Machine Learning Framework for Early Detection of Postpartum Depression" (RM 24,000 grant / ~₹4.5 Lakhs). He has also worked on SERB-SRG COVID-19 tracking research systems.`;
+    }
+
+    // 11. Reviewer & Editorial Roles
+    if (lowerQ.includes("reviewer") || lowerQ.includes("editor") || lowerQ.includes("referee") || lowerQ.includes("editorial")) {
+      return `Dr. Chinnasamy serves as an invited peer reviewer for 14+ indexed international SCI journals, including IEEE Transactions, Springer, IET Networks, Symmetry (MDPI), Mathematics (MDPI), Sustainability, and Journal of Ambient Intelligence & Humanized Computing.`;
+    }
+
+    // 12. Contact / Email / Phone / Address / Reach / Message
+    if (lowerQ.includes("contact") || lowerQ.includes("email") || lowerQ.includes("phone") || lowerQ.includes("mobile") || lowerQ.includes("address") || lowerQ.includes("reach") || lowerQ.includes("message") || lowerQ.includes("connect")) {
+      return `You can reach Dr. P. Chinnasamy directly:
+✉️ Email: chinnasamyponnusamy@gmail.com
+📞 Phone: +91 9600281664
+📍 Office: Department of CSE, Kalasalingam Academy of Research and Education (KARE), Krishnankoil, Tamil Nadu 626126, India.
+💼 LinkedIn: https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b/`;
+    }
+
+    // 13. CV / Resume / Download
+    if (lowerQ.includes("cv") || lowerQ.includes("resume") || lowerQ.includes("download") || lowerQ.includes("pdf")) {
+      return `You can view or download Dr. Chinnasamy's official PDF Curriculum Vitae directly using the "DOWNLOAD CV" button in the Hero section or top navigation bar!`;
+    }
+
+    // 14. Teaching / Subjects / Courses
+    if (lowerQ.includes("teach") || lowerQ.includes("subject") || lowerQ.includes("course") || lowerQ.includes("class")) {
+      return `Dr. Chinnasamy teaches core CSE and specialization courses including Cybersecurity, Cryptography & Network Security, Artificial Intelligence, Machine Learning, Cloud Security, Operating Systems, and Distributed Systems.`;
+    }
+
+    // 15. Intelligent Natural Language Fallback (Handles any question without generic failure)
+    return `Dr. P. Chinnasamy is an Associate Professor at Kalasalingam Academy of Research and Education (KARE), ranked among the Top 2% World Scientists by Stanford University (2025). He specializes in AI, Cybersecurity, Cryptography, and Cloud Access Control, with 150+ papers and 17 patents.
+
+Regarding your query ("${q}"): You can find full details across the website sections, or feel free to contact Dr. Chinnasamy directly at chinnasamyponnusamy@gmail.com or +91 9600281664!`;
   };
 
   const handleSend = async (queryText?: string) => {
