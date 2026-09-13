@@ -134,7 +134,7 @@ export const professorData: ProfessorProfile = {
   socialLinks: {
     googleScholar: "https://scholar.google.com/citations?user=d1GhC-4AAAAJ",
     orcid: "https://orcid.org/0000-0002-3202-4299",
-    researchGate: "",
+    researchGate: "https://www.researchgate.net/profile/Chinnasamy-Ponnusamy?ev=hdr_xprf",
     linkedIn: "https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b/"
   },
 
