@@ -84,6 +84,9 @@ export interface ProfessorProfile {
     orcid: string;
     researchGate: string;
     linkedIn: string;
+    scopus: string;
+    webOfScience: string;
+    vidwan: string;
   };
   education: Array<{
     degree: string;
@@ -135,7 +138,10 @@ export const professorData: ProfessorProfile = {
     googleScholar: "https://scholar.google.com/citations?user=d1GhC-4AAAAJ",
     orcid: "https://orcid.org/0000-0002-3202-4299",
     researchGate: "https://www.researchgate.net/profile/Chinnasamy-Ponnusamy?ev=hdr_xprf",
-    linkedIn: "https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b/"
+    linkedIn: "https://www.linkedin.com/in/dr-p-chinnasamy-52674b3b/",
+    scopus: "https://www.scopus.com/authid/detail.uri?authorId=57201503238",
+    webOfScience: "https://www.webofscience.com/wos/author/record/W-8274-2018",
+    vidwan: "https://vidwan.inflibnet.ac.in/profile/179307"
   },
 
   researchAreas: [

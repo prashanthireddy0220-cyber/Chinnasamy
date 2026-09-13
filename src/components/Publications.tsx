@@ -68,6 +68,69 @@ export const Publications: React.FC = () => {
           <p className="text-slate-600 dark:text-slate-400 font-light text-base max-w-2xl">
             Explore peer-reviewed journal papers, conference proceedings, and book chapters.
           </p>
+
+          {/* Research Profile Direct Links */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2 font-mono text-xs">
+            <a
+              href={professorData.socialLinks.scopus}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-500/30 text-amber-800 dark:text-amber-300 hover:border-amber-500 transition-all shadow-sm"
+            >
+              <span>Scopus</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            <a
+              href={professorData.socialLinks.webOfScience}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-300 dark:border-purple-500/30 text-purple-800 dark:text-purple-300 hover:border-purple-500 transition-all shadow-sm"
+            >
+              <span>Web of Science (WoS)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            <a
+              href={professorData.socialLinks.vidwan}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300 hover:border-emerald-500 transition-all shadow-sm"
+            >
+              <span>Vidwan Profile</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            <a
+              href={professorData.socialLinks.googleScholar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-300 dark:border-cyan-500/30 text-cyan-800 dark:text-cyan-300 hover:border-cyan-500 transition-all shadow-sm"
+            >
+              <span>Google Scholar</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            <a
+              href={professorData.socialLinks.orcid}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-lime-50 dark:bg-lime-950/40 border border-lime-300 dark:border-lime-500/30 text-lime-800 dark:text-lime-300 hover:border-lime-500 transition-all shadow-sm"
+            >
+              <span>ORCID</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            <a
+              href={professorData.socialLinks.researchGate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-300 dark:border-blue-500/30 text-blue-800 dark:text-blue-300 hover:border-blue-500 transition-all shadow-sm"
+            >
+              <span>ResearchGate</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
 
         {/* Search & Filter Controls Panel */}

@@ -71,25 +71,45 @@ export const Footer: React.FC = () => {
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
 
-              {professorData.socialLinks.researchGate ? (
-                <a
-                  href={professorData.socialLinks.researchGate}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all cursor-pointer shadow-sm"
-                >
-                  <span>ResearchGate</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              ) : (
-                <div
-                  title="ResearchGate Profile URL Required"
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-75"
-                >
-                  <span>ResearchGate (URL Required)</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 dark:text-slate-600" />
-                </div>
-              )}
+              <a
+                href={professorData.socialLinks.scopus}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all cursor-pointer shadow-sm"
+              >
+                <span>Scopus Profile</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={professorData.socialLinks.webOfScience}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all cursor-pointer shadow-sm"
+              >
+                <span>Web of Science (WoS)</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={professorData.socialLinks.vidwan}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all cursor-pointer shadow-sm"
+              >
+                <span>Vidwan Profile</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={professorData.socialLinks.researchGate}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-all cursor-pointer shadow-sm"
+              >
+                <span>ResearchGate</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
 
               <a
                 href={professorData.socialLinks.linkedIn}
