@@ -16,10 +16,12 @@ export const Footer: React.FC = () => {
           {/* Col 1: Bio */}
           <div className="md:col-span-7 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-md shadow-cyan-500/20">
-                <div className="w-full h-full rounded-[10px] bg-slate-900 dark:bg-[#050811] flex items-center justify-center font-bold text-xs text-cyan-400 font-mono">
-                  PC
-                </div>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 p-0.5 shadow-md shadow-cyan-500/30 overflow-hidden shrink-0">
+                <img
+                  src={professorData.faceUrl}
+                  alt={professorData.name}
+                  className="w-full h-full rounded-full object-cover object-center"
+                />
               </div>
 
               <div>

@@ -73,10 +73,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
           className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0"
         >
-          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300 shrink-0">
-            <div className="w-full h-full rounded-[10px] bg-slate-900 dark:bg-[#050811] flex items-center justify-center font-bold text-[10px] sm:text-xs text-cyan-400 font-mono">
-              PC
-            </div>
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 p-0.5 shadow-md shadow-cyan-500/30 group-hover:scale-105 transition-transform duration-300 shrink-0 overflow-hidden">
+            <img
+              src={professorData.faceUrl}
+              alt={professorData.name}
+              className="w-full h-full rounded-full object-cover object-center"
+            />
           </div>
 
           <div className="flex flex-col min-w-0">
