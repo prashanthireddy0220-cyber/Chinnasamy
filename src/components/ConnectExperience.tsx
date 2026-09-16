@@ -44,22 +44,24 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
   const getNodeCoords = (angle: number, index: number) => {
     const rad = (angle * Math.PI) / 180;
     const w = containerDimensions.width;
-    const isSmallMobile = w < 440;
+    const isSmallMobile = w < 400;
     const isMobile = w < 640;
 
     let rx: number;
     let ry: number;
 
+    const isOuter = index % 2 !== 0;
+
     if (isSmallMobile) {
-      rx = index % 2 === 0 ? w * 0.28 : w * 0.38;
-      ry = index % 2 === 0 ? 145 : 185;
+      rx = isOuter ? Math.min(w * 0.38, 135) : Math.min(w * 0.27, 98);
+      ry = isOuter ? 160 : 115;
     } else if (isMobile) {
-      rx = index % 2 === 0 ? w * 0.30 : w * 0.38;
-      ry = index % 2 === 0 ? 160 : 200;
+      rx = isOuter ? Math.min(w * 0.39, 175) : Math.min(w * 0.29, 125);
+      ry = isOuter ? 180 : 135;
     } else {
       // Desktop: ample radius so node labels NEVER overlap with the central avatar photo
-      rx = index % 2 === 0 ? 215 : 260;
-      ry = index % 2 === 0 ? 185 : 225;
+      rx = isOuter ? 260 : 210;
+      ry = isOuter ? 225 : 180;
     }
 
     const x = Math.cos(rad) * rx;
@@ -110,12 +112,12 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0284c70a_1px,transparent_1px),linear-gradient(to_bottom,#0284c70a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#00f0ff0a_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff0a_1px,transparent_1px)] bg-[size:3rem_3rem]" />
 
       {/* Main Node Diagram Area */}
-      <div ref={containerRef} className="relative w-full max-w-4xl h-[480px] md:h-[540px] flex items-center justify-center min-w-0">
+      <div ref={containerRef} className="relative w-full max-w-4xl h-[460px] sm:h-[500px] md:h-[540px] flex items-center justify-center min-w-0">
 
         {/* Pulsing Shockwave Rings */}
-        <div className={`absolute w-72 h-72 rounded-full border border-cyan-500/20 transition-all duration-700 ${connecting || established ? 'scale-150 border-cyan-400/60 animate-ping' : 'animate-pulse'}`} />
-        <div className={`absolute w-96 h-96 rounded-full border border-purple-500/20 transition-all duration-700 ${connecting || established ? 'scale-125 border-purple-400/60' : ''}`} />
-        <div className={`absolute w-[480px] h-[480px] rounded-full border border-blue-500/10 hidden md:block`} />
+        <div className={`absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border border-cyan-500/20 transition-all duration-700 ${connecting || established ? 'scale-150 border-cyan-400/60 animate-ping' : 'animate-pulse'}`} />
+        <div className={`absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full border border-purple-500/20 transition-all duration-700 ${connecting || established ? 'scale-125 border-purple-400/60' : ''}`} />
+        <div className={`absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-blue-500/10 hidden md:block`} />
 
         {/* SVG Connecting Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none">
@@ -161,7 +163,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
                 y: coords.y
               }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`group absolute z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border text-xs font-mono transition-all duration-300 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
+              className={`group absolute z-30 flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full backdrop-blur-md border text-[10px] sm:text-xs font-mono transition-all duration-300 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
                 connecting || established
                   ? 'bg-cyan-600 dark:bg-cyan-950/80 border-cyan-400 text-white dark:text-cyan-300 shadow-md dark:shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'bg-white/90 dark:bg-slate-900/80 border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-300 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 hover:scale-110 shadow-sm'
@@ -181,7 +183,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
             boxShadow: connecting ? '0 0 50px rgba(0,240,255,0.6)' : '0 0 25px rgba(0,240,255,0.25)'
           }}
           transition={{ repeat: connecting ? Infinity : 0, duration: 1 }}
-          className={`relative z-20 w-44 h-44 md:w-52 md:h-52 rounded-full p-1.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center backdrop-blur-xl shadow-2xl transition-all duration-500 group cursor-pointer ${
+          className={`relative z-20 w-28 h-28 min-[400px]:w-36 min-[400px]:h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full p-1.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center backdrop-blur-xl shadow-2xl transition-all duration-500 group cursor-pointer ${
             established ? 'ring-4 ring-cyan-400/80' : ''
           }`}
         >
