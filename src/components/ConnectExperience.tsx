@@ -161,7 +161,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
                 y: coords.y
               }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`group absolute z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border text-xs font-mono transition-all duration-300 cursor-pointer ${
+              className={`group absolute z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border text-xs font-mono transition-all duration-300 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
                 connecting || established
                   ? 'bg-cyan-600 dark:bg-cyan-950/80 border-cyan-400 text-white dark:text-cyan-300 shadow-md dark:shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'bg-white/90 dark:bg-slate-900/80 border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-300 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 hover:scale-110 shadow-sm'
