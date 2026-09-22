@@ -13,7 +13,7 @@
   --accent-primary: #00f0ff;
   --accent-secondary: #3b82f6;
   --accent-glow: rgba(0, 240, 255, 0.25);
-  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Merienda', cursive, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'Fira Code', monospace;
 }
@@ -199,8 +199,8 @@
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sans);
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Merienda', cursive, sans-serif;
     font-weight: 700;
   }
 }
