@@ -123,7 +123,7 @@ export const ProfessionalMembership: React.FC = () => {
                     {membership.description}
                   </p>
 
-                  {/* CSI Official Membership Card Link & Preview */}
+                  {/* Official Membership Card Link */}
                   {membership.cardImage && (
                     <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-3">
                       <div className="font-mono text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider flex items-center justify-between">
@@ -133,25 +133,25 @@ export const ProfessionalMembership: React.FC = () => {
                       {/* Clickable Card Link / Button */}
                       <button
                         onClick={() => setActiveModal({
-                          title: "Official CSI Life Membership Card (ID: 702224018)",
+                          title: `Official ${membership.title} Card ${membership.membershipId ? `(ID: ${membership.membershipId})` : ''}`,
                           src: membership.cardImage!
                         })}
-                        className="w-full group/card p-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-cyan-950/40 border border-emerald-300/80 dark:border-emerald-500/40 hover:border-emerald-500 text-emerald-900 dark:text-emerald-200 text-xs font-mono font-bold transition-all duration-300 flex items-center justify-between gap-2 shadow-sm hover:shadow-md cursor-pointer"
+                        className="w-full group/card p-3 rounded-2xl bg-gradient-to-r from-blue-50 via-cyan-50 to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border border-cyan-300/80 dark:border-cyan-500/40 hover:border-cyan-500 text-cyan-900 dark:text-cyan-200 text-xs font-mono font-bold transition-all duration-300 flex items-center justify-between gap-2 shadow-sm hover:shadow-md cursor-pointer"
                       >
                         <div className="flex items-center gap-2">
-                          <IdCard className="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover/card:scale-110 transition-transform" />
-                          <span>View Official CSI Membership Card</span>
+                          <IdCard className="w-4 h-4 text-cyan-600 dark:text-cyan-400 group-hover/card:scale-110 transition-transform" />
+                          <span>View Official {membership.abbreviation} Membership Card</span>
                         </div>
-                        <div className="p-1 rounded-lg bg-emerald-200/80 dark:bg-emerald-900/80 text-emerald-800 dark:text-emerald-200">
+                        <div className="p-1 rounded-lg bg-cyan-200/80 dark:bg-cyan-900/80 text-cyan-800 dark:text-cyan-200">
                           <Eye className="w-3.5 h-3.5" />
                         </div>
                       </button>
 
-                      {/* CSI Certificate Links */}
+                      {/* Certificate Links */}
                       {membership.certificates && membership.certificates.length > 0 && (
                         <div className="pt-2 space-y-1.5">
                           <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold block">
-                            CSI Recognized Award Certificates:
+                            Recognized Award Certificates:
                           </span>
                           {membership.certificates.map((cert) => (
                             <button
@@ -160,7 +160,7 @@ export const ProfessionalMembership: React.FC = () => {
                                 title: cert.title,
                                 src: cert.image
                               })}
-                              className="w-full text-left p-2 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-emerald-400 text-[11px] font-mono text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all flex items-center justify-between gap-2 cursor-pointer"
+                              className="w-full text-left p-2 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-[11px] font-mono text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all flex items-center justify-between gap-2 cursor-pointer"
                             >
                               <span className="truncate">{cert.title}</span>
                               <ExternalLink className="w-3 h-3 shrink-0 text-slate-400" />
@@ -202,20 +202,20 @@ export const ProfessionalMembership: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full bg-slate-900 border border-emerald-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+              className="relative max-w-4xl w-full bg-slate-900 border border-cyan-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
             >
               {/* Modal Header */}
               <div className="p-4 sm:p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-emerald-950 border border-emerald-500/40 text-emerald-400">
+                  <div className="p-2 rounded-xl bg-cyan-950 border border-cyan-500/40 text-cyan-400">
                     <IdCard className="w-5 h-5" />
                   </div>
                   <div>
                     <h3 className="font-sans font-bold text-sm sm:text-base text-white truncate max-w-xs sm:max-w-md">
                       {activeModal.title}
                     </h3>
-                    <p className="font-mono text-[10px] sm:text-xs text-emerald-400">
-                      Computer Society of India • Verified Document
+                    <p className="font-mono text-[10px] sm:text-xs text-cyan-400">
+                      Verified Membership Credential Document
                     </p>
                   </div>
                 </div>

@@ -2370,8 +2370,10 @@ export const professorData: ProfessorProfile = {
       society: "Institute of Electrical and Electronics Engineers (IEEE)",
       abbreviation: "IEEE EdSoc",
       role: "Professional Member",
-      description: "Active member of the IEEE Education Society, dedicated to advancing education in engineering, computing, and technology fields globally.",
-      badge: "IEEE Member"
+      membershipId: "94203253",
+      description: "Active member of IEEE (Member # 94203253, Podhigai Subsection) and IEEE Education Society, dedicated to advancing education in engineering, computing, and technology fields globally.",
+      badge: "IEEE Member",
+      cardImage: "/assets/ieee_membership_card.jpg"
     },
     {
       id: "mem-2",
