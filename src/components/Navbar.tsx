@@ -83,10 +83,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           </div>
 
           <div className="flex flex-col min-w-0">
-            <span className="font-sans font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 tracking-wide group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors truncate max-w-[110px] min-[360px]:max-w-[150px] sm:max-w-none">
+            <span className="font-merienda font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 tracking-wide group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors truncate max-w-[110px] min-[360px]:max-w-[150px] sm:max-w-none">
               DR. P. CHINNASAMY
             </span>
-            <span className="font-mono text-[8px] sm:text-[9px] text-cyan-600 dark:text-cyan-400 tracking-wider uppercase font-semibold truncate">
+            <span className="font-merienda text-[8px] sm:text-[9px] text-cyan-600 dark:text-cyan-400 tracking-wider uppercase font-bold truncate">
               Assoc. Professor • KARE
             </span>
           </div>
@@ -101,9 +101,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className={`px-3 py-1.5 rounded-lg font-mono text-xs font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg font-merienda text-xs font-bold transition-all duration-200 ${
                   isActive
-                    ? 'text-cyan-700 dark:text-cyan-300 bg-cyan-100/80 dark:bg-cyan-950/60 border border-cyan-400/50 dark:border-cyan-500/30 font-bold'
+                    ? 'text-cyan-700 dark:text-cyan-300 bg-cyan-100/80 dark:bg-cyan-950/60 border border-cyan-400/50 dark:border-cyan-500/30'
                     : 'text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-200/60 dark:hover:bg-slate-900/60'
                 }`}
               >
@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           {/* ASK AI Button */}
           <button
             onClick={onOpenAI}
-            className="relative group px-2 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-600 border border-cyan-500/40 text-cyan-700 dark:text-cyan-300 hover:text-white text-[11px] sm:text-xs font-mono font-semibold tracking-wider transition-all duration-300 flex items-center gap-1.5 sm:gap-2 shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] cursor-pointer"
+            className="relative group px-2 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-600 border border-cyan-500/40 text-cyan-700 dark:text-cyan-300 hover:text-white text-[11px] sm:text-xs font-merienda font-bold tracking-wider transition-all duration-300 flex items-center gap-1.5 sm:gap-2 shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] cursor-pointer"
           >
             <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400 group-hover:text-white animate-pulse" />
             <span className="hidden sm:inline">ASK AI</span>
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="flex items-center justify-between px-4 py-2.5 rounded-xl font-mono text-sm text-slate-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-300 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 border border-transparent hover:border-cyan-300/40 dark:hover:border-cyan-500/20 transition-all"
+                className="flex items-center justify-between px-4 py-2.5 rounded-xl font-merienda font-bold text-sm text-slate-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-300 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 border border-transparent hover:border-cyan-300/40 dark:hover:border-cyan-500/20 transition-all"
               >
                 <span>{link.name}</span>
                 <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
