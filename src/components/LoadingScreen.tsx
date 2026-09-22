@@ -101,7 +101,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           </span>
 
           <h2 className="font-sans text-xl font-semibold tracking-widest text-slate-900 dark:text-slate-200 mt-2">
-            DR. P. CHINNASAMY
+            Dr. P. Chinnasamy
           </h2>
 
           <p className="font-mono text-[10px] tracking-wider text-slate-500">

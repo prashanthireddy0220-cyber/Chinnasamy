@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
 
               <div>
                 <h3 className="font-sans font-bold text-lg text-slate-900 dark:text-slate-100">
-                  DR. P. CHINNASAMY
+                  Dr. P. Chinnasamy
                 </h3>
                 <p className="font-mono text-xs text-cyan-700 dark:text-cyan-400 font-semibold">
                   Associate Professor • KARE

@@ -83,7 +83,7 @@ export const About: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-sans text-slate-900 dark:text-white tracking-tight">
-            ABOUT <span className="bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">DR. P. CHINNASAMY</span>
+            ABOUT <span className="bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">Dr. P. CHINNASAMY</span>
           </h2>
 
           <p className="text-slate-600 dark:text-slate-400 font-light text-base max-w-2xl">

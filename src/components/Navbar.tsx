@@ -84,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
 
           <div className="flex flex-col min-w-0">
             <span className="font-merienda font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 tracking-wide group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors truncate max-w-[110px] min-[360px]:max-w-[150px] sm:max-w-none">
-              DR. P. CHINNASAMY
+              Dr. P. Chinnasamy
             </span>
             <span className="font-merienda text-[8px] sm:text-[9px] text-cyan-600 dark:text-cyan-400 tracking-wider uppercase font-bold truncate">
               Assoc. Professor • KARE
