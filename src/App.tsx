@@ -16,7 +16,7 @@ import { Awards } from './components/Awards';
 import { Leadership } from './components/Leadership';
 import { Certifications } from './components/Certifications';
 import { AcademicService } from './components/AcademicService';
-import { Reviewer } from './components/Reviewer';
+import { ProfessionalMembership } from './components/ProfessionalMembership';
 import { ResearchMap } from './components/ResearchMap';
 import { ResearchAI } from './components/ResearchAI';
 import { Contact } from './components/Contact';
@@ -107,8 +107,8 @@ export function App() {
           {/* Academic Service */}
           <AcademicService />
 
-          {/* Journal Reviewer Roles */}
-          <Reviewer />
+          {/* Professional Memberships */}
+          <ProfessionalMembership />
 
           {/* Research Ecosystem Map */}
           <ResearchMap />

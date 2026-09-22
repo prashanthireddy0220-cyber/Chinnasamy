@@ -114,7 +114,15 @@ export interface ProfessorProfile {
     event: string;
     year?: string;
   }>;
-  reviewerJournals: string[];
+  professionalMemberships: Array<{
+    id: string;
+    title: string;
+    society: string;
+    abbreviation: string;
+    role: string;
+    description: string;
+    badge: string;
+  }>;
 }
 
 export const professorData: ProfessorProfile = {
@@ -2344,20 +2352,33 @@ export const professorData: ProfessorProfile = {
     }
   ],
 
-  reviewerJournals: [
-    "Journal of Ambient Intelligence and Humanized Computing",
-    "IJCNSA (International Journal of Computer Networks and Security)",
-    "IET Networks",
-    "IET Information Security",
-    "Journal of Intelligent & Fuzzy Systems",
-    "Intelligent Automation & Soft Computing",
-    "Cybernetics and Information Technologies",
-    "Computer Systems Science and Engineering (CSSE)",
-    "Transactions on Emerging Telecommunications Technologies",
-    "Symmetry",
-    "Applied Sciences",
-    "Sustainability",
-    "Mathematics",
-    "Journal of Supercomputing"
+  professionalMemberships: [
+    {
+      id: "mem-1",
+      title: "IEEE Education Society",
+      society: "Institute of Electrical and Electronics Engineers (IEEE)",
+      abbreviation: "IEEE EdSoc",
+      role: "Professional Member",
+      description: "Active member of the IEEE Education Society, dedicated to advancing education in engineering, computing, and technology fields globally.",
+      badge: "IEEE Member"
+    },
+    {
+      id: "mem-2",
+      title: "Computer Society of India (CSI)",
+      society: "Computer Society of India",
+      abbreviation: "CSI",
+      role: "Professional Member",
+      description: "Professional member of CSI, fostering knowledge exchange, computing research advancement, and technology standards across India.",
+      badge: "CSI Member"
+    },
+    {
+      id: "mem-3",
+      title: "Association for Computing Machinery (ACM)",
+      society: "Association for Computing Machinery",
+      abbreviation: "ACM",
+      role: "Professional Member",
+      description: "Professional member of ACM, the world's largest educational and scientific computing society driving innovation and computing ethics.",
+      badge: "ACM Member"
+    }
   ]
 };

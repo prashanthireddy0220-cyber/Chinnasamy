@@ -27,7 +27,7 @@ const QUICK_ACTIONS = [
 const FOLLOW_UP_SUGGESTIONS = [
   "What is his Ph.D. thesis topic?",
   "Tell me about the Stanford Top 2% ranking.",
-  "Which journals does he review for?",
+  "What professional memberships does he hold?",
   "What funded research projects does he lead?",
   "Where can I download his CV?"
 ];
@@ -143,9 +143,12 @@ He guides scholars including:
       return `Dr. Chinnasamy is Co-Principal Investigator (Co-PI) for the UTAR International Research Fund project titled "MultiModal Machine Learning Framework for Early Detection of Postpartum Depression" (RM 24,000 grant / ~₹4.5 Lakhs). He has also worked on SERB-SRG COVID-19 tracking research systems.`;
     }
 
-    // 11. Reviewer & Editorial Roles
-    if (lowerQ.includes("reviewer") || lowerQ.includes("editor") || lowerQ.includes("referee") || lowerQ.includes("editorial")) {
-      return `Dr. Chinnasamy serves as an invited peer reviewer for 14+ indexed international SCI journals, including IEEE Transactions, Springer, IET Networks, Symmetry (MDPI), Mathematics (MDPI), Sustainability, and Journal of Ambient Intelligence & Humanized Computing.`;
+    // 11. Professional Memberships
+    if (lowerQ.includes("membership") || lowerQ.includes("ieee") || lowerQ.includes("csi") || lowerQ.includes("acm") || lowerQ.includes("professional body") || lowerQ.includes("society")) {
+      return `Dr. Chinnasamy holds 3 prestigious international professional memberships:
+1. IEEE Education Society (Professional Member)
+2. Computer Society of India (CSI - Professional Member)
+3. Association for Computing Machinery (ACM - Professional Member).`;
     }
 
     // 12. Contact / Email / Phone / Address / Reach / Message

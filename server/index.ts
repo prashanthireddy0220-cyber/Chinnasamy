@@ -167,6 +167,8 @@ app.post('/api/ai/chat', (req: Request, res: Response) => {
       answer = `You can connect with Dr. Chinnasamy for research collaborations via email at chinnasamyponnusamy@gmail.com, or through the contact form on this portfolio.`;
     } else if (q.includes("funding") || q.includes("grant") || q.includes("project") || q.includes("utar")) {
       answer = `Dr. Chinnasamy is Co-PI on a RM24,000 UTAR Research Fund project titled "A MultiModal Machine Learning Framework for Early Detection of Postpartum Depression" (2025–2026), and has worked on SERB-SRG COVID-19 screening frameworks.`;
+    } else if (q.includes("membership") || q.includes("society") || q.includes("acm") || q.includes("csi")) {
+      answer = `Dr. Chinnasamy holds 3 prestigious professional memberships: 1. IEEE Education Society, 2. Computer Society of India (CSI), and 3. Association for Computing Machinery (ACM).`;
     } else {
       answer = "I don't have that information in Dr. P. Chinnasamy's academic profile.";
     }
