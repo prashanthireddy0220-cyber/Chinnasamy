@@ -147,24 +147,6 @@ export const ProfessionalMembership: React.FC = () => {
                         </div>
                       </button>
 
-                      {/* Card Thumbnail Preview */}
-                      <div
-                        onClick={() => setActiveModal({
-                          title: "Official CSI Life Membership Card (ID: 702224018)",
-                          src: membership.cardImage!
-                        })}
-                        className="relative rounded-2xl overflow-hidden border border-emerald-300/60 dark:border-emerald-500/30 group/img cursor-pointer max-h-36 bg-slate-950 flex items-center justify-center"
-                      >
-                        <img
-                          src={membership.cardImage}
-                          alt="CSI Membership Card"
-                          className="w-full object-cover object-top opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs font-bold">
-                          <Eye className="w-4 h-4" /> Click to expand
-                        </div>
-                      </div>
-
                       {/* CSI Certificate Links */}
                       {membership.certificates && membership.certificates.length > 0 && (
                         <div className="pt-2 space-y-1.5">

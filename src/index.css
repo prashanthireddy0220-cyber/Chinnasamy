@@ -13,7 +13,7 @@
   --accent-primary: #00f0ff;
   --accent-secondary: #3b82f6;
   --accent-glow: rgba(0, 240, 255, 0.25);
-  --font-sans: 'Merienda', cursive, sans-serif;
+  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'Fira Code', monospace;
 }
