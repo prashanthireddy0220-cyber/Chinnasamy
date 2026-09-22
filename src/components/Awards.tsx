@@ -1,9 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Trophy, Award, Sparkles, Medal, Star, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Trophy, Award, Sparkles, Medal, Star, CheckCircle, ExternalLink, Eye, X } from 'lucide-react';
 import { professorData } from '../data/professorData';
 
+interface AwardModalState {
+  title: string;
+  src: string;
+}
+
 export const Awards: React.FC = () => {
+  const [activeModal, setActiveModal] = useState<AwardModalState | null>(null);
+
   return (
     <section id="awards" className="py-24 relative bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-hidden">
       {/* Background Glow */}
@@ -13,7 +20,7 @@ export const Awards: React.FC = () => {
 
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-3 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/90 dark:bg-amber-950/80 border border-amber-400/50 dark:border-amber-500/30 font-mono text-xs text-amber-800 dark:text-amber-400 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/90 dark:bg-amber-950/80 border border-amber-400/50 dark:border-amber-500/30 font-mono text-xs text-amber-800 dark:text-amber-400 shadow-sm font-semibold">
             <Trophy className="w-3.5 h-3.5" />
             HONORS & GLOBAL RECOGNITION
           </div>
@@ -32,7 +39,7 @@ export const Awards: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-amber-50 via-white to-white dark:from-amber-950/40 dark:via-slate-900/90 dark:to-slate-900/90 border border-amber-300 dark:border-amber-500/50 shadow-xl dark:shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 mb-12 relative overflow-hidden group hover:-translate-y-1 hover:shadow-2xl dark:hover:shadow-[0_15px_40px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-pointer"
+          className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-amber-50 via-white to-white dark:from-amber-950/40 dark:via-slate-900/90 dark:to-slate-900/90 border border-amber-300 dark:border-amber-500/50 shadow-xl dark:shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 mb-12 relative overflow-hidden group hover:-translate-y-1 hover:shadow-2xl dark:hover:shadow-[0_15px_40px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default"
         >
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-xs font-bold">
@@ -68,7 +75,7 @@ export const Awards: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200 dark:border-slate-800 hover:border-amber-400/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl dark:hover:shadow-[0_12px_35px_rgba(245,158,11,0.2)] group cursor-pointer"
+              className="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200 dark:border-slate-800 hover:border-amber-400/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl dark:hover:shadow-[0_12px_35px_rgba(245,158,11,0.2)] group cursor-default"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -96,12 +103,93 @@ export const Awards: React.FC = () => {
                     {award.description}
                   </p>
                 )}
+
+                {/* View Certificate Button if available */}
+                {award.image && (
+                  <button
+                    onClick={() => setActiveModal({
+                      title: `${award.title} (${award.organization})`,
+                      src: award.image!
+                    })}
+                    className="w-full mt-3 p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>View Official Certificate</span>
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
 
       </div>
+
+      {/* Fullscreen Certificate Modal */}
+      <AnimatePresence>
+        {activeModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveModal(null)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-slate-900 border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              {/* Modal Header */}
+              <div className="p-4 sm:p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 rounded-xl bg-amber-950 border border-amber-500/40 text-amber-400">
+                    <Trophy className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-bold text-sm sm:text-base text-white truncate max-w-xs sm:max-w-md">
+                      {activeModal.title}
+                    </h3>
+                    <p className="font-mono text-[10px] sm:text-xs text-amber-400">
+                      Official Honor & Recognition Document
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={activeModal.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs font-mono flex items-center gap-1.5"
+                    title="Open in new tab"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span className="hidden sm:inline">Open Full Image</span>
+                  </a>
+
+                  <button
+                    onClick={() => setActiveModal(null)}
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Image Body */}
+              <div className="p-4 sm:p-6 overflow-y-auto flex items-center justify-center bg-slate-950/80 min-h-[300px]">
+                <img
+                  src={activeModal.src}
+                  alt={activeModal.title}
+                  className="max-h-[70vh] w-auto object-contain rounded-2xl border border-slate-800 shadow-2xl"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -49,6 +49,7 @@ export interface Award {
   year?: string;
   description?: string;
   badge?: string;
+  image?: string;
 }
 
 export interface LeadershipRole {
@@ -120,8 +121,14 @@ export interface ProfessorProfile {
     society: string;
     abbreviation: string;
     role: string;
+    membershipId?: string;
     description: string;
     badge: string;
+    cardImage?: string;
+    certificates?: Array<{
+      title: string;
+      image: string;
+    }>;
   }>;
 }
 
@@ -2259,8 +2266,10 @@ export const professorData: ProfessorProfile = {
       id: "award-2",
       title: "Cybersecurity Innovator of the Year",
       organization: "CSI Mumbai Chapter",
+      year: "2025",
       badge: "National Recognition",
-      description: "Honored for breakthrough developments in cryptographic cloud access security and threat prevention."
+      description: "Honored at the CSI Cyber FIFC Conference & Cyber Security Awards 2025 as Cyber Security Innovator of the Year.",
+      image: "/assets/csi_cyber_security_award_2025.png"
     },
     {
       id: "award-3",
@@ -2272,10 +2281,12 @@ export const professorData: ProfessorProfile = {
     },
     {
       id: "award-4",
-      title: "Innovative Researcher Award",
-      organization: "CSI Hyderabad",
+      title: "Innovative Research Award",
+      organization: "CSI Hyderabad Chapter",
+      year: "2024",
       badge: "State Award",
-      description: "Awarded by Computer Society of India for exemplary research in deep learning and cybersecurity."
+      description: "Awarded by Computer Society of India at Annual Excellence Awards 2024 for exemplary research in deep learning and cybersecurity.",
+      image: "/assets/csi_innovative_research_award_2024.jpg"
     },
     {
       id: "award-5",
@@ -2367,9 +2378,21 @@ export const professorData: ProfessorProfile = {
       title: "Computer Society of India (CSI)",
       society: "Computer Society of India",
       abbreviation: "CSI",
-      role: "Professional Member",
-      description: "Professional member of CSI, fostering knowledge exchange, computing research advancement, and technology standards across India.",
-      badge: "CSI Member"
+      role: "Life Member",
+      membershipId: "702224018",
+      description: "Official Life Member of the Computer Society of India (CSI ID: 702224018). Fostering knowledge exchange, computing research advancement, and technology standards across India.",
+      badge: "CSI Life Member",
+      cardImage: "/assets/csi_membership_card.png",
+      certificates: [
+        {
+          title: "CSI Cyber Security Innovator of the Year Award (2025)",
+          image: "/assets/csi_cyber_security_award_2025.png"
+        },
+        {
+          title: "CSI Hyderabad Chapter Innovative Research Award (2024)",
+          image: "/assets/csi_innovative_research_award_2024.jpg"
+        }
+      ]
     },
     {
       id: "mem-3",

@@ -1,9 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, ShieldCheck, CheckCircle2, Globe, Cpu, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Award, ShieldCheck, CheckCircle2, Globe, Cpu, Users, ExternalLink, X, Eye, IdCard, Sparkles } from 'lucide-react';
 import { professorData } from '../data/professorData';
 
+interface ImageModalState {
+  title: string;
+  src: string;
+}
+
 export const ProfessionalMembership: React.FC = () => {
+  const [activeModal, setActiveModal] = useState<ImageModalState | null>(null);
+
   const getMembershipIcon = (abbr: string) => {
     switch (abbr) {
       case 'IEEE EdSoc':
@@ -103,12 +110,84 @@ export const ProfessionalMembership: React.FC = () => {
                     <p className="font-mono text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                       {membership.society}
                     </p>
+                    {membership.membershipId && (
+                      <p className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 pt-1">
+                        <IdCard className="w-3.5 h-3.5" />
+                        Membership ID: {membership.membershipId}
+                      </p>
+                    )}
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-600 dark:text-slate-300 font-normal leading-relaxed pt-2">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 font-normal leading-relaxed pt-1">
                     {membership.description}
                   </p>
+
+                  {/* CSI Official Membership Card Link & Preview */}
+                  {membership.cardImage && (
+                    <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-3">
+                      <div className="font-mono text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider flex items-center justify-between">
+                        <span>Official Credential Card:</span>
+                      </div>
+
+                      {/* Clickable Card Link / Button */}
+                      <button
+                        onClick={() => setActiveModal({
+                          title: "Official CSI Life Membership Card (ID: 702224018)",
+                          src: membership.cardImage!
+                        })}
+                        className="w-full group/card p-3 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950/40 dark:via-teal-950/40 dark:to-cyan-950/40 border border-emerald-300/80 dark:border-emerald-500/40 hover:border-emerald-500 text-emerald-900 dark:text-emerald-200 text-xs font-mono font-bold transition-all duration-300 flex items-center justify-between gap-2 shadow-sm hover:shadow-md cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <IdCard className="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover/card:scale-110 transition-transform" />
+                          <span>View Official CSI Membership Card</span>
+                        </div>
+                        <div className="p-1 rounded-lg bg-emerald-200/80 dark:bg-emerald-900/80 text-emerald-800 dark:text-emerald-200">
+                          <Eye className="w-3.5 h-3.5" />
+                        </div>
+                      </button>
+
+                      {/* Card Thumbnail Preview */}
+                      <div
+                        onClick={() => setActiveModal({
+                          title: "Official CSI Life Membership Card (ID: 702224018)",
+                          src: membership.cardImage!
+                        })}
+                        className="relative rounded-2xl overflow-hidden border border-emerald-300/60 dark:border-emerald-500/30 group/img cursor-pointer max-h-36 bg-slate-950 flex items-center justify-center"
+                      >
+                        <img
+                          src={membership.cardImage}
+                          alt="CSI Membership Card"
+                          className="w-full object-cover object-top opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs font-bold">
+                          <Eye className="w-4 h-4" /> Click to expand
+                        </div>
+                      </div>
+
+                      {/* CSI Certificate Links */}
+                      {membership.certificates && membership.certificates.length > 0 && (
+                        <div className="pt-2 space-y-1.5">
+                          <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold block">
+                            CSI Recognized Award Certificates:
+                          </span>
+                          {membership.certificates.map((cert) => (
+                            <button
+                              key={cert.title}
+                              onClick={() => setActiveModal({
+                                title: cert.title,
+                                src: cert.image
+                              })}
+                              className="w-full text-left p-2 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-emerald-400 text-[11px] font-mono text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all flex items-center justify-between gap-2 cursor-pointer"
+                            >
+                              <span className="truncate">{cert.title}</span>
+                              <ExternalLink className="w-3 h-3 shrink-0 text-slate-400" />
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Footer Status */}
@@ -125,6 +204,73 @@ export const ProfessionalMembership: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Fullscreen Image Preview Modal */}
+      <AnimatePresence>
+        {activeModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveModal(null)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-slate-900 border border-emerald-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              {/* Modal Header */}
+              <div className="p-4 sm:p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 rounded-xl bg-emerald-950 border border-emerald-500/40 text-emerald-400">
+                    <IdCard className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-bold text-sm sm:text-base text-white truncate max-w-xs sm:max-w-md">
+                      {activeModal.title}
+                    </h3>
+                    <p className="font-mono text-[10px] sm:text-xs text-emerald-400">
+                      Computer Society of India • Verified Document
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={activeModal.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs font-mono flex items-center gap-1.5"
+                    title="Open in new tab"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span className="hidden sm:inline">Open Full Image</span>
+                  </a>
+
+                  <button
+                    onClick={() => setActiveModal(null)}
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Image Body */}
+              <div className="p-4 sm:p-6 overflow-y-auto flex items-center justify-center bg-slate-950/80 min-h-[300px]">
+                <img
+                  src={activeModal.src}
+                  alt={activeModal.title}
+                  className="max-h-[70vh] w-auto object-contain rounded-2xl border border-slate-800 shadow-2xl"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
