@@ -124,6 +124,7 @@ export interface ProfessorProfile {
     membershipId?: string;
     description: string;
     badge: string;
+    logo?: string;
     cardImage?: string;
     certificates?: Array<{
       title: string;
@@ -2373,6 +2374,7 @@ export const professorData: ProfessorProfile = {
       membershipId: "94203253",
       description: "Active member of IEEE (Member # 94203253, Podhigai Subsection) and IEEE Education Society, dedicated to advancing education in engineering, computing, and technology fields globally.",
       badge: "IEEE Member",
+      logo: "/assets/ieee_edsoc_logo.png",
       cardImage: "/assets/ieee_membership_card.jpg"
     },
     {
@@ -2384,6 +2386,7 @@ export const professorData: ProfessorProfile = {
       membershipId: "702224018",
       description: "Official Life Member of the Computer Society of India (CSI ID: 702224018). Fostering knowledge exchange, computing research advancement, and technology standards across India.",
       badge: "CSI Life Member",
+      logo: "/assets/csi_logo.jpg",
       cardImage: "/assets/csi_membership_card.png",
       certificates: [
         {
@@ -2403,7 +2406,8 @@ export const professorData: ProfessorProfile = {
       abbreviation: "ACM",
       role: "Professional Member",
       description: "Professional member of ACM, the world's largest educational and scientific computing society driving innovation and computing ethics.",
-      badge: "ACM Member"
+      badge: "ACM Member",
+      logo: "/assets/acm_logo.png"
     }
   ]
 };

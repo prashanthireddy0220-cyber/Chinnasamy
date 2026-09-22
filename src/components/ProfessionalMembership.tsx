@@ -93,8 +93,16 @@ export const ProfessionalMembership: React.FC = () => {
                 {/* Top Badge & Abbreviation */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between gap-3">
-                    <div className={`p-3 rounded-2xl ${styles.bgBadge} border shadow-sm group-hover:scale-105 transition-transform duration-300`}>
-                      {iconComp}
+                    <div className="w-12 h-12 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md group-hover:scale-105 transition-transform duration-300 flex items-center justify-center overflow-hidden shrink-0">
+                      {membership.logo ? (
+                        <img
+                          src={membership.logo}
+                          alt={`${membership.title} logo`}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        iconComp
+                      )}
                     </div>
 
                     <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${styles.pillBg}`}>
