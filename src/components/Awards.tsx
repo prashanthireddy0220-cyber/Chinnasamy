@@ -39,15 +39,15 @@ export const Awards: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-amber-50 via-white to-white dark:from-amber-950/40 dark:via-slate-900/90 dark:to-slate-900/90 border border-amber-300 dark:border-amber-500/50 shadow-xl dark:shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 mb-12 relative overflow-hidden group hover:-translate-y-1 hover:shadow-2xl dark:hover:shadow-[0_15px_40px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default"
+          className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-50 via-white to-white dark:from-amber-950/30 dark:via-[#0D1425] dark:to-[#0D1425] border border-amber-300 dark:border-amber-500/50 shadow-xl dark:shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 mb-12 relative overflow-hidden group hover:-translate-y-1 hover:shadow-2xl dark:hover:shadow-[0_15px_40px_rgba(245,158,11,0.25)] transition-all duration-300 cursor-default"
         >
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-xs font-bold">
               <Award className="w-3.5 h-3.5" />
               GLOBAL SCIENTIST RANKING 2025
             </div>
 
-            <h3 className="text-2xl sm:text-4xl font-extrabold font-sans text-slate-900 dark:text-white group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
+            <h3 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 dark:text-[#F5F7FF] group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
               Top 2% World Scientist
             </h3>
 
@@ -55,7 +55,7 @@ export const Awards: React.FC = () => {
               Artificial Intelligence and Image Processing • Stanford–Elsevier Global Ranking
             </p>
 
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-[#91A0BA] font-light leading-relaxed">
               Recognized among the top 2% of researchers worldwide in Artificial Intelligence and Image Processing based on standardized citation metrics, h-index, and co-authorship impact.
             </p>
           </div>
@@ -75,7 +75,7 @@ export const Awards: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200 dark:border-slate-800 hover:border-amber-400/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl dark:hover:shadow-[0_12px_35px_rgba(245,158,11,0.2)] group cursor-default"
+              className="p-6 rounded-3xl bg-white/95 dark:bg-[#0D1425] backdrop-blur-xl border border-slate-200 dark:border-slate-800 hover:border-amber-400/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl dark:hover:shadow-[0_12px_35px_rgba(245,158,11,0.2)] group cursor-default"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">

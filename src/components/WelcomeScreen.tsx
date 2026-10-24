@@ -48,14 +48,23 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.05, transition: { duration: 0.8 } }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-hidden px-4"
     >
+      {/* Skip Intro Button */}
+      <button
+        onClick={onComplete}
+        className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-slate-200/70 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-[11px] font-mono text-slate-700 dark:text-cyan-400 hover:text-cyan-500 font-semibold backdrop-blur-md cursor-pointer transition-all shadow-sm"
+        aria-label="Skip Intro"
+      >
+        Skip &rarr;
+      </button>
+
       {/* Dynamic Background Network Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-100/30 via-slate-50 to-slate-50 dark:from-cyan-900/20 dark:via-[#050811] dark:to-[#050811]" />
 
-      <div className="relative z-10 max-w-3xl px-6 text-center flex flex-col items-center space-y-6">
+      <div className="relative z-10 max-w-3xl px-4 sm:px-6 text-center flex flex-col items-center space-y-4 sm:space-y-6">
         {/* Multi-language Greeting Heading */}
-        <div className="h-28 md:h-36 flex items-center justify-center relative w-full overflow-visible">
+        <div className="h-24 sm:h-28 md:h-36 flex items-center justify-center relative w-full overflow-visible">
           <AnimatePresence mode="wait">
             <motion.h1
               key={currentIndex}
@@ -63,7 +72,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-cyan-600 dark:from-white dark:via-slate-200 dark:to-cyan-400 bg-clip-text text-transparent drop-shadow-sm dark:drop-shadow-[0_0_35px_rgba(0,240,255,0.35)] py-2 select-none"
+              className="text-4xl min-[400px]:text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-cyan-600 dark:from-white dark:via-slate-200 dark:to-cyan-400 bg-clip-text text-transparent drop-shadow-sm dark:drop-shadow-[0_0_35px_rgba(0,240,255,0.35)] py-2 select-none"
             >
               {currentGreeting.text}
             </motion.h1>

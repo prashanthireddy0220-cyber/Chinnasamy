@@ -26,11 +26,11 @@ const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'dark',
     name: 'DARK',
-    subtitle: 'Cyberpunk Charcoal',
+    subtitle: 'Midnight Research',
     icon: Moon,
-    primaryBg: '#050811',
-    accentColor: '#00f0ff',
-    badgeBg: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+    primaryBg: '#050810',
+    accentColor: '#20D5F2',
+    badgeBg: 'bg-cyan-500/20 text-[#20D5F2] border-cyan-500/30',
   },
   {
     id: 'light',

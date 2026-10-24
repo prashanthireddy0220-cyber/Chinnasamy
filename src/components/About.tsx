@@ -100,27 +100,27 @@ export const About: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 p-8 rounded-3xl bg-white/90 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-6 shadow-xl dark:shadow-2xl relative overflow-hidden"
+            className="lg:col-span-7 p-5 sm:p-8 rounded-3xl bg-white/95 dark:bg-[#0D1425] backdrop-blur-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-6 shadow-xl dark:shadow-2xl relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-cyan-500/10 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#20D5F2]/10 via-transparent to-transparent pointer-events-none" />
 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-cyan-700 dark:text-cyan-400 tracking-wider uppercase font-semibold">
+                <span className="font-mono text-xs text-cyan-700 dark:text-[#20D5F2] tracking-wider uppercase font-semibold">
                   CAREER PROFILE
                 </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-400/50 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-400 font-mono text-xs">
+                <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-400/50 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-400 font-mono text-xs font-bold">
                   ACTIVE RESEARCHER
                 </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 font-sans">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-[#F5F7FF] font-display">
                 Research Identity & Leadership
               </h3>
 
-              <p className="text-slate-700 dark:text-slate-300 font-light leading-relaxed text-sm sm:text-base">
+              <p className="text-slate-700 dark:text-[#91A0BA] font-light leading-relaxed text-sm sm:text-base">
                 Dr. P. Chinnasamy is an accomplished academician and researcher specializing in{' '}
-                <strong className="text-cyan-700 dark:text-cyan-300 font-medium">Artificial Intelligence, Cybersecurity, Cryptography, and Cloud Access Control</strong>.
+                <strong className="text-cyan-700 dark:text-[#20D5F2] font-medium">Artificial Intelligence, Cybersecurity, Cryptography, and Cloud Access Control</strong>.
                 He earned his Ph.D. in Computer Science and Engineering in March 2019, focusing on scalable access control for cloud storage.
                 With over a decade of combined teaching, industrial training, and supervisory experience, he leads advanced doctoral research projects at Kalasalingam Academy of Research and Education.
               </p>
@@ -168,35 +168,35 @@ export const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-5 p-8 rounded-3xl bg-white/90 dark:bg-slate-900/60 backdrop-blur-xl border border-cyan-400/30 dark:border-cyan-500/20 flex flex-col justify-between space-y-6 shadow-xl relative"
+            className="lg:col-span-5 p-5 sm:p-8 rounded-3xl bg-white/95 dark:bg-[#0D1425] backdrop-blur-xl border border-cyan-400/30 dark:border-[#20D5F2]/25 flex flex-col justify-between space-y-6 shadow-xl relative"
           >
             <div className="space-y-3">
-              <span className="font-mono text-xs text-purple-600 dark:text-purple-400 tracking-wider uppercase flex items-center gap-2 font-semibold">
+              <span className="font-mono text-xs text-purple-600 dark:text-[#A855F7] tracking-wider uppercase flex items-center gap-2 font-bold">
                 <Brain className="w-4 h-4" />
                 INTERACTIVE DOMAIN INSPECTOR
               </span>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-sans">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-[#F5F7FF] font-display">
                 Research Specializations
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-light">
+              <p className="text-xs text-slate-500 dark:text-[#91A0BA] font-light">
                 Click on any focus area tag below to inspect Dr. Chinnasamy's specialized contribution:
               </p>
             </div>
 
             {/* Selected Focus Area Detail Card */}
-            <div className="p-5 rounded-2xl bg-cyan-50/80 dark:bg-cyan-950/40 border border-cyan-300 dark:border-cyan-500/30 space-y-3 transition-all duration-300">
+            <div className="p-5 rounded-2xl bg-cyan-50/80 dark:bg-[#050810] border border-cyan-300 dark:border-[#20D5F2]/30 space-y-3 transition-all duration-300">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-400/40">
+                <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-700 dark:text-[#20D5F2] border border-[#20D5F2]/40">
                   <IconComponent className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-mono font-bold text-sm text-cyan-800 dark:text-cyan-300">
+                  <h4 className="font-mono font-bold text-sm text-cyan-800 dark:text-[#20D5F2]">
                     {selectedArea}
                   </h4>
                   <p className="text-xs text-slate-700 dark:text-slate-300 font-medium">{activeDetail.summary}</p>
                 </div>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pt-2 border-t border-cyan-300/40 dark:border-cyan-500/20">
+              <p className="text-xs text-slate-600 dark:text-[#91A0BA] leading-relaxed pt-2 border-t border-cyan-300/40 dark:border-[#20D5F2]/20">
                 {activeDetail.details}
               </p>
             </div>
@@ -211,8 +211,8 @@ export const About: React.FC = () => {
                     onClick={() => setSelectedArea(area)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                       isSelected
-                        ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold shadow-md dark:shadow-[0_0_15px_rgba(0,240,255,0.4)]'
-                        : 'bg-slate-100 dark:bg-slate-950/60 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                        ? 'bg-gradient-to-r from-[#20D5F2] to-[#4388FF] text-slate-950 font-bold shadow-md dark:shadow-[0_0_15px_rgba(32,213,242,0.4)]'
+                        : 'bg-slate-100 dark:bg-[#050810] text-slate-700 dark:text-[#91A0BA] hover:text-[#20D5F2] hover:bg-slate-200 dark:hover:bg-[#121B32] border border-slate-200 dark:border-slate-800'
                     }`}
                   >
                     {area}

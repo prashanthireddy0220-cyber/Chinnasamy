@@ -11,13 +11,13 @@ interface ConnectExperienceProps {
 const RESEARCH_NODES = [
   { id: 'ai', name: 'Artificial Intelligence', label: 'AI', angle: 0 },
   { id: 'ml', name: 'Machine Learning', label: 'ML', angle: 40 },
-  { id: 'cyber', name: 'Cybersecurity', label: 'Cybersecurity', angle: 80 },
-  { id: 'crypto', name: 'Cryptography', label: 'Cryptography', angle: 120 },
-  { id: 'cloud', name: 'Cloud Security', label: 'Cloud Security', angle: 160 },
-  { id: 'access', name: 'Access Control', label: 'Access Control', angle: 200 },
-  { id: 'block', name: 'Blockchain', label: 'Blockchain', angle: 240 },
-  { id: 'dl', name: 'Deep Learning', label: 'Deep Learning', angle: 280 },
-  { id: 'iot', name: 'IoT Security', label: 'IoT Security', angle: 320 }
+  { id: 'cyber', name: 'Cybersecurity', label: 'Cyber', angle: 80 },
+  { id: 'crypto', name: 'Cryptography', label: 'Crypto', angle: 120 },
+  { id: 'cloud', name: 'Cloud Security', label: 'Cloud', angle: 160 },
+  { id: 'access', name: 'Access Control', label: 'Access', angle: 200 },
+  { id: 'block', name: 'Blockchain', label: 'Chain', angle: 240 },
+  { id: 'dl', name: 'Deep Learning', label: 'DL', angle: 280 },
+  { id: 'iot', name: 'IoT Security', label: 'IoT', angle: 320 }
 ];
 
 export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnected }) => {
@@ -44,6 +44,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
   const getNodeCoords = (angle: number, index: number) => {
     const rad = (angle * Math.PI) / 180;
     const w = containerDimensions.width;
+    const h = containerDimensions.height;
     const isSmallMobile = w < 400;
     const isMobile = w < 640;
 
@@ -53,11 +54,11 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
     const isOuter = index % 2 !== 0;
 
     if (isSmallMobile) {
-      rx = isOuter ? Math.min(w * 0.38, 135) : Math.min(w * 0.27, 98);
-      ry = isOuter ? 160 : 115;
+      rx = isOuter ? Math.min(w * 0.33, 110) : Math.min(w * 0.23, 76);
+      ry = isOuter ? Math.min(h * 0.36, 116) : Math.min(h * 0.24, 76);
     } else if (isMobile) {
-      rx = isOuter ? Math.min(w * 0.39, 175) : Math.min(w * 0.29, 125);
-      ry = isOuter ? 180 : 135;
+      rx = isOuter ? Math.min(w * 0.36, 140) : Math.min(w * 0.26, 102);
+      ry = isOuter ? Math.min(h * 0.37, 135) : Math.min(h * 0.26, 95);
     } else {
       // Desktop: ample radius so node labels NEVER overlap with the central avatar photo
       rx = isOuter ? 260 : 210;
@@ -104,20 +105,29 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.05, transition: { duration: 0.8 } }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-between sm:justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-y-auto px-3 sm:px-6 py-4 sm:py-8"
     >
+      {/* Direct Access Shortcut Button */}
+      <button
+        onClick={onConnected}
+        className="absolute top-3 right-3 sm:top-5 sm:right-6 z-40 px-3.5 py-1.5 rounded-full bg-slate-200/80 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-[11px] font-mono text-slate-700 dark:text-cyan-400 hover:text-cyan-600 font-semibold backdrop-blur-md cursor-pointer transition-all shadow-sm"
+        aria-label="Direct Access to Portfolio"
+      >
+        Direct Access &rarr;
+      </button>
+
       {/* Background Radial & Cyber Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,240,255,0.12)_0%,_rgba(5,8,17,1)_70%)] dark:block hidden" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(2,132,199,0.08)_0%,_rgba(248,250,252,1)_70%)] dark:hidden block" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0284c70a_1px,transparent_1px),linear-gradient(to_bottom,#0284c70a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#00f0ff0a_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff0a_1px,transparent_1px)] bg-[size:3rem_3rem]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,240,255,0.12)_0%,_rgba(5,8,17,1)_70%)] dark:block hidden pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(2,132,199,0.08)_0%,_rgba(248,250,252,1)_70%)] dark:hidden block pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0284c70a_1px,transparent_1px),linear-gradient(to_bottom,#0284c70a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#00f0ff0a_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff0a_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
 
       {/* Main Node Diagram Area */}
-      <div ref={containerRef} className="relative w-full max-w-4xl h-[460px] sm:h-[500px] md:h-[540px] flex items-center justify-center min-w-0">
+      <div ref={containerRef} className="relative w-full max-w-4xl h-[280px] min-[380px]:h-[320px] sm:h-[460px] md:h-[500px] flex items-center justify-center min-w-0 my-auto">
 
         {/* Pulsing Shockwave Rings */}
-        <div className={`absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full border border-cyan-500/20 transition-all duration-700 ${connecting || established ? 'scale-150 border-cyan-400/60 animate-ping' : 'animate-pulse'}`} />
-        <div className={`absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full border border-purple-500/20 transition-all duration-700 ${connecting || established ? 'scale-125 border-purple-400/60' : ''}`} />
-        <div className={`absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-blue-500/10 hidden md:block`} />
+        <div className={`absolute w-44 h-44 sm:w-72 sm:h-72 rounded-full border border-cyan-500/20 pointer-events-none transition-all duration-700 ${connecting || established ? 'scale-150 border-cyan-400/60 animate-ping' : 'animate-pulse'}`} />
+        <div className={`absolute w-56 h-56 sm:w-96 sm:h-96 rounded-full border border-purple-500/20 pointer-events-none transition-all duration-700 ${connecting || established ? 'scale-125 border-purple-400/60' : ''}`} />
+        <div className={`absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-blue-500/10 pointer-events-none hidden md:block`} />
 
         {/* SVG Connecting Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none">
@@ -157,19 +167,19 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
               key={node.id}
               initial={{ scale: 0, opacity: 0 }}
               animate={{
-                scale: connecting || established ? 1.1 : 1,
+                scale: connecting || established ? 1.08 : 1,
                 opacity: 1,
                 x: coords.x,
                 y: coords.y
               }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className={`group absolute z-30 flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full backdrop-blur-md border text-[10px] sm:text-xs font-mono transition-all duration-300 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
+              className={`group absolute z-30 flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full backdrop-blur-md border text-[9px] min-[380px]:text-[10px] sm:text-xs font-mono transition-all duration-300 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
                 connecting || established
                   ? 'bg-cyan-600 dark:bg-cyan-950/80 border-cyan-400 text-white dark:text-cyan-300 shadow-md dark:shadow-[0_0_15px_rgba(0,240,255,0.4)]'
-                  : 'bg-white/90 dark:bg-slate-900/80 border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-300 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 hover:scale-110 shadow-sm'
+                  : 'bg-white/95 dark:bg-slate-900/85 border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-300 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 hover:scale-105 shadow-sm'
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${connecting || established ? 'bg-white dark:bg-cyan-400 animate-ping' : 'bg-cyan-600 dark:bg-cyan-500/80 group-hover:bg-cyan-400'}`} />
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${connecting || established ? 'bg-white dark:bg-cyan-400 animate-ping' : 'bg-cyan-600 dark:bg-cyan-500/80 group-hover:bg-cyan-400'}`} />
               <span className="hidden sm:inline">{node.name}</span>
               <span className="sm:hidden">{node.label}</span>
             </motion.div>
@@ -183,7 +193,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
             boxShadow: connecting ? '0 0 50px rgba(0,240,255,0.6)' : '0 0 25px rgba(0,240,255,0.25)'
           }}
           transition={{ repeat: connecting ? Infinity : 0, duration: 1 }}
-          className={`relative z-20 w-28 h-28 min-[400px]:w-36 min-[400px]:h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full p-1.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center backdrop-blur-xl shadow-2xl transition-all duration-500 group cursor-pointer ${
+          className={`relative z-20 w-20 h-20 min-[380px]:w-24 min-[380px]:h-24 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full p-1 sm:p-1.5 bg-gradient-to-tr from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center backdrop-blur-xl shadow-2xl transition-all duration-500 group cursor-pointer ${
             established ? 'ring-4 ring-cyan-400/80' : ''
           }`}
         >
@@ -202,18 +212,18 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
       </div>
 
       {/* Action Footer Controls */}
-      <div className="relative z-30 flex flex-col items-center text-center mt-2 px-4 space-y-4">
+      <div className="relative z-30 flex flex-col items-center text-center mt-2 px-3 sm:px-4 space-y-2.5 sm:space-y-4 shrink-0">
         {!established && !connecting && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center space-y-2"
+            className="flex flex-col items-center space-y-1 sm:space-y-2"
           >
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400 flex items-center gap-2 font-semibold">
-              <Zap className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400 flex items-center gap-1.5 sm:gap-2 font-semibold">
+              <Zap className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
               ESTABLISH A CONNECTION
             </span>
-            <p className="text-xs text-slate-600 dark:text-slate-400 max-w-sm font-light">
+            <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 max-w-sm font-light">
               Connect to Dr. Chinnasamy’s intelligent research network to enter the portfolio space.
             </p>
           </motion.div>
@@ -228,7 +238,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
             <span className="font-mono text-xs uppercase tracking-widest text-cyan-700 dark:text-cyan-400 animate-pulse font-bold">
               ESTABLISHING CONNECTION... {progress}%
             </span>
-            <div className="w-64 h-2 bg-slate-200 dark:bg-slate-900 rounded-full border border-cyan-400/30 overflow-hidden">
+            <div className="w-56 sm:w-64 h-2 bg-slate-200 dark:bg-slate-900 rounded-full border border-cyan-400/30 overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-100"
                 style={{ width: `${progress}%` }}
@@ -243,11 +253,11 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
             animate={{ scale: 1, opacity: 1 }}
             className="flex flex-col items-center space-y-1 text-cyan-700 dark:text-cyan-400"
           >
-            <div className="flex items-center gap-2 text-base md:text-lg font-mono font-bold tracking-wider">
-              <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400 animate-bounce" />
+            <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg font-mono font-bold tracking-wider">
+              <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400 animate-bounce" />
               CONNECTION ESTABLISHED ✓
             </div>
-            <p className="font-sans text-sm text-slate-700 dark:text-slate-200 font-light">
+            <p className="font-sans text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-light">
               WELCOME TO THE RESEARCH SPACE
             </p>
           </motion.div>
@@ -259,7 +269,7 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleConnect}
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 font-mono text-sm font-semibold tracking-widest text-white shadow-lg dark:shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:shadow-xl transition-all duration-300 border border-cyan-300/40 flex items-center gap-3 cursor-pointer"
+            className="px-7 py-3 sm:px-8 sm:py-3.5 rounded-full bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 font-mono text-xs sm:text-sm font-semibold tracking-widest text-white shadow-lg dark:shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:shadow-xl transition-all duration-300 border border-cyan-300/40 flex items-center gap-2.5 sm:gap-3 cursor-pointer touch-manipulation active:scale-95"
           >
             <Network className="w-4 h-4 text-cyan-200" />
             CONNECT

@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "chinnasamy-b22f5"
+  },
+  "targets": {
+    "chinnasamy-b22f5": {
+      "hosting": {
+        "portfolio": [
+          "dr-chinnasamy-portfolio"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -149,11 +149,12 @@ export const ThemeBackground: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(#d6d3d1_1px,transparent_1px)] [background-size:24px_24px] opacity-25" />
       )}
 
-      {/* 5. DARK MODE Cyber Glows */}
+      {/* 5. DARK MODE Midnight Research Glows */}
       {theme === 'dark' && (
         <>
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px]" />
-          <div className="absolute bottom-1/4 left-10 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[130px]" />
+          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#20D5F2]/5 rounded-full blur-[150px]" />
+          <div className="absolute bottom-1/4 left-10 w-[500px] h-[500px] bg-[#4388FF]/5 rounded-full blur-[130px]" />
+          <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-[#A855F7]/4 rounded-full blur-[140px]" />
         </>
       )}
     </div>

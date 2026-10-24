@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { ResearchConstellation } from './components/ResearchConstellation';
 import { AcademicTimeline } from './components/AcademicTimeline';
+import { ResearchImpact } from './components/ResearchImpact';
 import { ResearchSupervision } from './components/ResearchSupervision';
 import { Publications } from './components/Publications';
 import { Patents } from './components/Patents';
@@ -82,6 +83,9 @@ export function App() {
 
           {/* Academic & Professional Journey Timelines */}
           <AcademicTimeline />
+
+          {/* Research Impact & Global Recognition (Stanford Top 2% Infographic) */}
+          <ResearchImpact />
 
           {/* Research Supervision */}
           <ResearchSupervision />

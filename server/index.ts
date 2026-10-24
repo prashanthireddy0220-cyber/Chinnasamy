@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import { professorData } from '../src/data/professorData.js';
+import { generateAIResponse } from '../src/data/aiKnowledgeEngine.js';
 
 dotenv.config();
 
@@ -144,34 +145,7 @@ app.post('/api/ai/chat', (req: Request, res: Response) => {
       });
     }
 
-    const q = question.toLowerCase().trim();
-
-    let answer = "";
-
-    if (q.includes("research area") || q.includes("interest") || q.includes("focus") || q.includes("work on")) {
-      answer = `Dr. P. Chinnasamy's core research areas include ${professorData.researchAreas.slice(0, 7).join(", ")}, along with ${professorData.researchAreas.slice(7).join(", ")}.`;
-    } else if (q.includes("phd") || q.includes("doctorate") || q.includes("thesis") || q.includes("degree") || q.includes("education")) {
-      const phd = professorData.education.find(e => e.degree.includes("Ph.D."));
-      answer = `Dr. Chinnasamy completed his Ph.D. in CSE in ${phd?.year}. His thesis was titled "${phd?.thesis}". He also holds an M.Tech (CGPA 9.45/10) from Kalasalingam University and a B.E. from Anna University.`;
-    } else if (q.includes("patent") || q.includes("invention") || q.includes("granted")) {
-      answer = `Dr. Chinnasamy holds a Granted Australian Patent (App No: 2020100616) titled "${professorData.patents[0].title}", a Design Patent (App: 434301-001) for Smart Solar Weather Monitoring, and over 10 published/filed innovations in AI, Cloud Security, IoT, and Healthcare.`;
-    } else if (q.includes("scholar") || q.includes("student") || q.includes("supervision") || q.includes("guided")) {
-      answer = `Dr. Chinnasamy is a recognized supervisor at KARE and Anna University (Recognition No. 4140166). He guides Ph.D. scholars including Geethu Lakshmi G (PhD Defended), Deepthi K Moorthy (In Progress), Roshni Rajendran, Darshan P, Dastageer K, and Mani G.`;
-    } else if (q.includes("publication") || q.includes("paper") || q.includes("journal") || q.includes("ieee") || q.includes("recent")) {
-      answer = `Dr. Chinnasamy has authored numerous publications in top IEEE/Scopus venue including papers on Cognitive AI, AI-MFA with Liveness Detection, Medi-Chain Blockchain, Drug Interaction ML, and HCAC-EHR Cloud Security.`;
-    } else if (q.includes("award") || q.includes("stanford") || q.includes("ranking") || q.includes("top 2%")) {
-      answer = `Dr. Chinnasamy is recognized in the Stanford-Elsevier Global Ranking 2025 among the Top 2% Scientists in AI & Image Processing. He has also received Cybersecurity Innovator of the Year from CSI Mumbai and is a Senior Research Associate with UTAR Malaysia.`;
-    } else if (q.includes("role") || q.includes("hod") || q.includes("designation") || q.includes("position") || q.includes("leadership")) {
-      answer = `Dr. Chinnasamy serves as Associate Professor at Kalasalingam Academy of Research and Education (KARE). He has also served as In-charge HoD, NAAC Criteria 3 Lead, Department R&D In-charge, and Patent In-charge.`;
-    } else if (q.includes("collaborate") || q.includes("contact") || q.includes("email") || q.includes("reach")) {
-      answer = `You can connect with Dr. Chinnasamy for research collaborations via email at chinnasamyponnusamy@gmail.com, or through the contact form on this portfolio.`;
-    } else if (q.includes("funding") || q.includes("grant") || q.includes("project") || q.includes("utar")) {
-      answer = `Dr. Chinnasamy is Co-PI on a RM24,000 UTAR Research Fund project titled "A MultiModal Machine Learning Framework for Early Detection of Postpartum Depression" (2025–2026), and has worked on SERB-SRG COVID-19 screening frameworks.`;
-    } else if (q.includes("membership") || q.includes("society") || q.includes("acm") || q.includes("csi")) {
-      answer = `Dr. Chinnasamy holds 3 prestigious professional memberships: 1. IEEE Education Society, 2. Computer Society of India (CSI), and 3. Association for Computing Machinery (ACM).`;
-    } else {
-      answer = "I don't have that information in Dr. P. Chinnasamy's academic profile.";
-    }
+    const answer = generateAIResponse(question);
 
     return res.status(200).json({
       success: true,

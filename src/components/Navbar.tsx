@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { name: 'About', href: '#about' },
   { name: 'Research', href: '#research' },
   { name: 'Journey', href: '#journey' },
+  { name: 'Impact', href: '#impact' },
   { name: 'Publications', href: '#publications' },
   { name: 'Patents', href: '#patents' },
   { name: 'Supervision', href: '#supervision' },
@@ -39,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
+          if (rect.top <= 160 && rect.bottom >= 160) {
             setActiveSection(section);
             break;
           }
@@ -47,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -64,8 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
     <header className="fixed top-0 left-0 right-0 z-40 px-2 sm:px-4 py-2 sm:py-3 transition-all duration-300">
       <div className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
         scrolled
-          ? 'bg-white/85 dark:bg-[#080d1e]/85 backdrop-blur-xl border border-slate-200/80 dark:border-cyan-500/20 shadow-lg shadow-slate-200/50 dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] px-3 sm:px-4 py-2 sm:py-2.5'
-          : 'bg-white/60 dark:bg-slate-950/40 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/60 px-3 sm:px-5 py-2.5 sm:py-3'
+          ? 'bg-white/90 dark:bg-[#080d1a]/90 backdrop-blur-xl border border-slate-200/80 dark:border-[#20D5F2]/25 shadow-lg shadow-slate-200/50 dark:shadow-[0_10px_35px_rgba(5,8,16,0.8)] px-3 sm:px-4 py-2 sm:py-2.5'
+          : 'bg-white/70 dark:bg-[#050810]/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/80 px-3 sm:px-5 py-2.5 sm:py-3'
       } flex items-center justify-between gap-2`}>
 
         {/* Brand Identity */}
@@ -74,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
           className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0"
         >
-          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 p-0.5 shadow-md shadow-cyan-500/30 group-hover:scale-105 transition-transform duration-300 shrink-0 overflow-hidden">
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-[#20D5F2] via-[#4388FF] to-[#A855F7] p-0.5 shadow-md shadow-[#20D5F2]/25 group-hover:scale-105 transition-transform duration-300 shrink-0 overflow-hidden">
             <img
               src={facePhoto || professorData.faceUrl}
               alt={professorData.name}
@@ -83,10 +84,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           </div>
 
           <div className="flex flex-col min-w-0">
-            <span className="font-merienda font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 tracking-wide group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors truncate max-w-[110px] min-[360px]:max-w-[150px] sm:max-w-none">
+            <span className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-[#F5F7FF] tracking-wide group-hover:text-[#20D5F2] transition-colors truncate max-w-[110px] min-[360px]:max-w-[150px] sm:max-w-none">
               Dr. P. Chinnasamy
             </span>
-            <span className="font-merienda text-[8px] sm:text-[9px] text-cyan-600 dark:text-cyan-400 tracking-wider uppercase font-bold truncate">
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#20D5F2] tracking-wider uppercase font-semibold truncate">
               Assoc. Professor • KARE
             </span>
           </div>
@@ -101,10 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className={`px-3 py-1.5 rounded-lg font-merienda text-xs font-bold transition-all duration-200 ${
+                className={`px-2.5 py-1.5 rounded-xl font-sans text-xs transition-all duration-200 ${
                   isActive
-                    ? 'text-cyan-700 dark:text-cyan-300 bg-cyan-100/80 dark:bg-cyan-950/60 border border-cyan-400/50 dark:border-cyan-500/30'
-                    : 'text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-200/60 dark:hover:bg-slate-900/60'
+                    ? 'text-[#20D5F2] bg-[#20D5F2]/10 border border-[#20D5F2]/40 shadow-[0_0_12px_rgba(32,213,242,0.15)] font-semibold'
+                    : 'text-slate-700 dark:text-[#91A0BA] hover:text-[#20D5F2] dark:hover:text-[#20D5F2] hover:bg-slate-100 dark:hover:bg-[#0D1425]'
                 }`}
               >
                 {link.name}
@@ -123,14 +124,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           {/* ASK AI Button */}
           <button
             onClick={onOpenAI}
-            className="relative group px-2 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-600 border border-cyan-500/40 text-cyan-700 dark:text-cyan-300 hover:text-white text-[11px] sm:text-xs font-merienda font-bold tracking-wider transition-all duration-300 flex items-center gap-1.5 sm:gap-2 shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] cursor-pointer"
+            className="relative group px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#20D5F2]/15 via-[#4388FF]/15 to-[#A855F7]/15 hover:from-[#20D5F2] hover:via-[#4388FF] hover:to-[#A855F7] border border-[#20D5F2]/40 text-cyan-800 dark:text-[#20D5F2] hover:text-slate-950 font-mono text-[11px] sm:text-xs font-bold tracking-wider transition-all duration-300 flex items-center gap-1.5 sm:gap-2 shadow-[0_0_15px_rgba(32,213,242,0.15)] hover:shadow-[0_0_25px_rgba(32,213,242,0.4)] cursor-pointer"
           >
-            <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-600 dark:text-cyan-400 group-hover:text-white animate-pulse" />
+            <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#20D5F2] group-hover:text-slate-950 animate-pulse" />
             <span className="hidden sm:inline">ASK AI</span>
-            <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-300 group-hover:text-white" />
+            <Sparkles className="w-3 h-3 text-[#20D5F2] group-hover:text-slate-950" />
 
             {/* Hover Tooltip */}
-            <div className="absolute top-full right-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200 pointer-events-none z-50 px-2.5 py-1 rounded-lg bg-slate-900 dark:bg-slate-950 border border-cyan-400/50 text-[10px] font-mono text-cyan-300 whitespace-nowrap shadow-xl">
+            <div className="absolute top-full right-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200 pointer-events-none z-50 px-2.5 py-1 rounded-lg bg-slate-900 dark:bg-[#0D1425] border border-[#20D5F2]/50 text-[10px] font-mono text-[#20D5F2] whitespace-nowrap shadow-xl">
               Research AI Assistant
             </div>
           </button>
@@ -138,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 focus:outline-none cursor-pointer"
+            className="xl:hidden p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-[#0D1425] border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-[#91A0BA] hover:text-[#20D5F2] dark:hover:text-[#20D5F2] focus:outline-none cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -154,17 +155,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="xl:hidden max-w-7xl mx-auto mt-2 p-4 rounded-2xl bg-white/95 dark:bg-[#080d1e]/95 backdrop-blur-2xl border border-slate-200 dark:border-cyan-500/30 shadow-2xl flex flex-col space-y-2"
+            className="xl:hidden max-w-7xl mx-auto mt-2 p-3 sm:p-4 rounded-2xl bg-white/95 dark:bg-[#0D1425]/95 backdrop-blur-2xl border border-slate-200 dark:border-[#20D5F2]/30 shadow-2xl flex flex-col space-y-1 max-h-[calc(100vh-5.5rem)] overflow-y-auto"
           >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="flex items-center justify-between px-4 py-2.5 rounded-xl font-merienda font-bold text-sm text-slate-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-300 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 border border-transparent hover:border-cyan-300/40 dark:hover:border-cyan-500/20 transition-all"
+                className="flex items-center justify-between px-4 py-2.5 rounded-xl font-sans font-medium text-sm text-slate-800 dark:text-[#F5F7FF] hover:text-[#20D5F2] hover:bg-[#20D5F2]/10 border border-transparent hover:border-[#20D5F2]/20 transition-all"
               >
                 <span>{link.name}</span>
-                <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                <ChevronRight className="w-4 h-4 text-slate-400 dark:text-[#91A0BA]" />
               </a>
             ))}
 
@@ -174,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
                 href={professorData.cvUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-center font-mono text-xs text-cyan-700 dark:text-cyan-400 flex items-center justify-center gap-2 hover:bg-slate-200 dark:hover:bg-slate-800 font-semibold"
+                className="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-[#050810] border border-slate-300 dark:border-slate-800 text-center font-mono text-xs text-cyan-800 dark:text-[#20D5F2] flex items-center justify-center gap-2 hover:bg-slate-200 dark:hover:bg-[#121B32] font-semibold"
               >
                 <FileText className="w-4 h-4" />
                 DOWNLOAD CV

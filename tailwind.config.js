@@ -6,24 +6,38 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      serif: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      mono: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      display: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      editorial: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      merienda: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+      heading: ['"Marina Bold"', 'Marina', 'Merienda', 'cursive', 'sans-serif'],
+    },
     extend: {
       colors: {
         cyber: {
-          bg: "#050811",
-          card: "rgba(13, 22, 45, 0.65)",
-          border: "rgba(56, 189, 248, 0.2)",
-          cyan: "#00f0ff",
-          blue: "#3b82f6",
-          purple: "#8b5cf6",
-          glow: "rgba(0, 240, 255, 0.15)",
-          text: "#e2e8f0",
-          muted: "#94a3b8"
+          bg: "#050810",
+          card: "#0D1425",
+          border: "rgba(32, 213, 242, 0.18)",
+          cyan: "#20D5F2",
+          blue: "#4388FF",
+          purple: "#A855F7",
+          glow: "rgba(32, 213, 242, 0.15)",
+          text: "#F5F7FF",
+          muted: "#91A0BA"
+        },
+        brand: {
+          bg: "#050810",
+          card: "#0D1425",
+          border: "rgba(32, 213, 242, 0.18)",
+          cyan: "#20D5F2",
+          blue: "#4388FF",
+          violet: "#A855F7",
+          text: "#F5F7FF",
+          muted: "#91A0BA"
         }
-      },
-      fontFamily: {
-        sans: ['Merienda', 'Inter', 'Outfit', 'sans-serif'],
-        merienda: ['Merienda', 'cursive', 'sans-serif'],
-        mono: ['Fira Code', 'monospace']
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

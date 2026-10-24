@@ -5,6 +5,7 @@ import { Network, Sparkles, BookOpen, ChevronRight, Zap } from 'lucide-react';
 interface ConstellationNode {
   id: string;
   title: string;
+  shortTitle: string;
   shortDesc: string;
   topics: string[];
   angle: number;
@@ -14,6 +15,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'ai',
     title: 'Artificial Intelligence',
+    shortTitle: 'AI',
     shortDesc: 'Cognitive intelligence engines & adaptive algorithm frameworks.',
     topics: ['Personalized Learning AI', 'Cognitive Pedagogy', 'Decision Intelligence', 'Sub-network Optimization'],
     angle: 0
@@ -21,6 +23,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'ml',
     title: 'Machine Learning',
+    shortTitle: 'ML',
     shortDesc: 'Supervised & ensemble classification algorithms.',
     topics: ['Drug-Drug Interaction ML', 'Chronic Kidney Disease Classifiers', 'Multi-label Feature Selection'],
     angle: 36
@@ -28,6 +31,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'cyber',
     title: 'Cybersecurity',
+    shortTitle: 'Cyber',
     shortDesc: 'Polymorphic malware analysis & network intrusion prevention.',
     topics: ['6G Intrusion Prevention', 'Zero-day Threat Detection', 'Network Telemetry Filters'],
     angle: 72
@@ -35,6 +39,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'crypto',
     title: 'Cryptography',
+    shortTitle: 'Crypto',
     shortDesc: 'Attribute-based encryption & privacy-preserving schemes.',
     topics: ['CP-ABE Schemes', 'Visual Cryptography', 'Post-Quantum Primitives', 'Key Management'],
     angle: 108
@@ -42,6 +47,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'cloud',
     title: 'Cloud Security',
+    shortTitle: 'Cloud',
     shortDesc: 'Multi-tenant cloud storage protection & lightweight decryption.',
     topics: ['Cloud Storage Access Control', 'Decryption Overhead Optimization', 'Encrypted Cloud Repositories'],
     angle: 144
@@ -49,6 +55,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'access',
     title: 'Access Control',
+    shortTitle: 'Access',
     shortDesc: 'Multilabel Access Control as a Service (ACaaS).',
     topics: ['Fine-grained Multilabel Control', 'Role-Based Access (RBAC)', 'Cloud Storage Policy Engine'],
     angle: 180
@@ -56,6 +63,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'blockchain',
     title: 'Blockchain',
+    shortTitle: 'Chain',
     shortDesc: 'Decentralized provenance ledgers & educational certificate validation.',
     topics: ['Medi-Chain Drug Tracking', 'Educational Certificate Blockchain', 'Smart Contracts'],
     angle: 216
@@ -63,6 +71,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'dl',
     title: 'Deep Learning',
+    shortTitle: 'DL',
     shortDesc: 'Hybrid CNN-LSTM networks & computer vision liveness detection.',
     topics: ['Lung Cancer Analysis CNN', 'Facial Liveness Detection', 'Hairstyle AR CNN', 'Hybrid CNN-LSTM'],
     angle: 252
@@ -70,6 +79,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'healthcare',
     title: 'Healthcare Security',
+    shortTitle: 'Health',
     shortDesc: 'HCAC-EHR hybrid access control & secure medical record retrieval.',
     topics: ['HCAC-EHR Cloud', 'Visual Cryptography EHR', 'COVID-19 Face Tracking', 'Postpartum Depression ML'],
     angle: 288
@@ -77,6 +87,7 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
   {
     id: 'iot',
     title: 'IoT Security',
+    shortTitle: 'IoT',
     shortDesc: 'Wireless sensor network threat analysis & smart monitors.',
     topics: ['WSN Threat Response', 'Smart Cradle IoT', 'Solar Weather Monitoring Node', 'Smart Bus Tracking'],
     angle: 324
@@ -105,6 +116,7 @@ export const ResearchConstellation: React.FC = () => {
   const getNodeCoords = (angle: number, index: number) => {
     const rad = (angle * Math.PI) / 180;
     const w = containerDimensions.width;
+    const h = containerDimensions.height;
     const isSmallMobile = w < 420;
     const isMobile = w < 640;
     const isTablet = w >= 640 && w < 1024;
@@ -115,11 +127,11 @@ export const ResearchConstellation: React.FC = () => {
     const isOuter = index % 2 !== 0;
 
     if (isSmallMobile) {
-      rx = isOuter ? Math.min(w * 0.38, 135) : Math.min(w * 0.26, 95);
-      ry = isOuter ? 175 : 130;
+      rx = isOuter ? Math.min(w * 0.33, 110) : Math.min(w * 0.24, 76);
+      ry = isOuter ? Math.min(h * 0.35, 120) : Math.min(h * 0.24, 78);
     } else if (isMobile) {
-      rx = isOuter ? Math.min(w * 0.39, 185) : Math.min(w * 0.28, 130);
-      ry = isOuter ? 185 : 140;
+      rx = isOuter ? Math.min(w * 0.36, 140) : Math.min(w * 0.26, 100);
+      ry = isOuter ? Math.min(h * 0.37, 140) : Math.min(h * 0.26, 95);
     } else if (isTablet) {
       rx = isOuter ? 220 : 160;
       ry = isOuter ? 190 : 140;
@@ -165,73 +177,93 @@ export const ResearchConstellation: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
           {/* Left Column: Visual Interactive Constellation Canvas */}
-          <div
-            ref={containerRef}
-            className="lg:col-span-7 relative w-full h-[520px] min-[400px]:h-[540px] sm:h-[560px] flex items-center justify-center bg-white/70 dark:bg-slate-950/40 rounded-3xl border border-cyan-400/30 dark:border-cyan-500/20 p-2 sm:p-4 shadow-xl overflow-hidden min-w-0"
-          >
+          <div className="lg:col-span-7 flex flex-col items-center">
+            <div
+              ref={containerRef}
+              className="relative w-full h-[340px] min-[400px]:h-[380px] sm:h-[560px] flex items-center justify-center bg-white/70 dark:bg-slate-950/40 rounded-3xl border border-cyan-400/30 dark:border-cyan-500/20 p-2 sm:p-4 shadow-xl overflow-hidden min-w-0"
+            >
 
-            {/* Orbiting concentric ring guides */}
-            <div className="absolute w-72 h-72 sm:w-[420px] sm:h-[350px] rounded-full border border-cyan-500/15 pointer-events-none animate-pulse-slow" />
-            <div className="absolute w-48 h-48 sm:w-72 sm:h-72 rounded-full border border-purple-500/15 pointer-events-none" />
+              {/* Orbiting concentric ring guides */}
+              <div className="absolute w-60 h-60 sm:w-[420px] sm:h-[350px] rounded-full border border-cyan-500/15 pointer-events-none animate-pulse-slow" />
+              <div className="absolute w-40 h-40 sm:w-72 sm:h-72 rounded-full border border-purple-500/15 pointer-events-none" />
 
-            {/* Central Node: RESEARCH */}
-            <div className="relative z-20 w-20 h-20 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 shadow-lg dark:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center text-center shrink-0">
-              <div className="w-full h-full rounded-full bg-slate-900 dark:bg-[#080d1e] flex flex-col items-center justify-center p-1 sm:p-2">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 mb-0.5 sm:mb-1 animate-pulse" />
-                <span className="font-mono font-bold text-[11px] sm:text-sm text-cyan-300 tracking-wider">
-                  RESEARCH
-                </span>
-                <span className="font-mono text-[7px] sm:text-[8px] text-slate-400 uppercase">CORE</span>
+              {/* Central Node: RESEARCH */}
+              <div className="relative z-20 w-16 h-16 min-[400px]:w-20 min-[400px]:h-20 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-600 shadow-lg dark:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center text-center shrink-0">
+                <div className="w-full h-full rounded-full bg-slate-900 dark:bg-[#080d1e] flex flex-col items-center justify-center p-1 sm:p-2">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-cyan-400 mb-0.5 sm:mb-1 animate-pulse" />
+                  <span className="font-mono font-bold text-[9px] min-[400px]:text-[11px] sm:text-sm text-cyan-300 tracking-wider">
+                    RESEARCH
+                  </span>
+                  <span className="font-mono text-[6px] sm:text-[8px] text-slate-400 uppercase">CORE</span>
+                </div>
               </div>
-            </div>
 
-            {/* SVG Connecting Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {/* SVG Connecting Lines */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                {CONSTELLATION_NODES.map((node, index) => {
+                  const coords = getNodeCoords(node.angle, index);
+                  const x2Percent = 50 + (coords.x / containerDimensions.width) * 100;
+                  const y2Percent = 50 + (coords.y / containerDimensions.height) * 100;
+                  const isActive = node.id === activeNodeId;
+
+                  return (
+                    <line
+                      key={node.id}
+                      x1="50%"
+                      y1="50%"
+                      x2={`${x2Percent}%`}
+                      y2={`${y2Percent}%`}
+                      stroke={isActive ? "#0284c7" : "rgba(14, 165, 233, 0.25)"}
+                      strokeWidth={isActive ? "2.5" : "1"}
+                      strokeDasharray={isActive ? "4,4" : "none"}
+                      className="transition-all duration-300"
+                    />
+                  );
+                })}
+              </svg>
+
+              {/* Satellite Nodes */}
               {CONSTELLATION_NODES.map((node, index) => {
                 const coords = getNodeCoords(node.angle, index);
-                const x2Percent = 50 + (coords.x / containerDimensions.width) * 100;
-                const y2Percent = 50 + (coords.y / containerDimensions.height) * 100;
                 const isActive = node.id === activeNodeId;
 
                 return (
-                  <line
+                  <motion.button
                     key={node.id}
-                    x1="50%"
-                    y1="50%"
-                    x2={`${x2Percent}%`}
-                    y2={`${y2Percent}%`}
-                    stroke={isActive ? "#0284c7" : "rgba(14, 165, 233, 0.25)"}
-                    strokeWidth={isActive ? "2.5" : "1"}
-                    strokeDasharray={isActive ? "4,4" : "none"}
-                    className="transition-all duration-300"
-                  />
+                    onClick={() => setActiveNodeId(node.id)}
+                    style={{ x: coords.x, y: coords.y }}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`group absolute z-30 px-2 sm:px-3 py-0.5 sm:py-1.5 rounded-full backdrop-blur-md border font-mono text-[9px] min-[400px]:text-[10px] sm:text-xs transition-all duration-300 flex items-center gap-1 sm:gap-1.5 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
+                      isActive
+                        ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-black font-bold border-cyan-400 dark:border-cyan-300 shadow-md dark:shadow-[0_0_20px_rgba(0,240,255,0.6)] scale-105 sm:scale-110 z-40'
+                        : 'bg-white/95 dark:bg-slate-900/85 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700/80 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 shadow-sm'
+                    }`}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isActive ? 'bg-white dark:bg-black animate-ping' : 'bg-cyan-500 dark:bg-cyan-400 group-hover:animate-ping'}`} />
+                    <span className="hidden sm:inline">{node.title}</span>
+                    <span className="sm:hidden">{node.shortTitle}</span>
+                  </motion.button>
                 );
               })}
-            </svg>
+            </div>
 
-            {/* Satellite Nodes */}
-            {CONSTELLATION_NODES.map((node, index) => {
-              const coords = getNodeCoords(node.angle, index);
-              const isActive = node.id === activeNodeId;
-
-              return (
-                <motion.button
+            {/* Mobile Touch Quick-Selector Chips */}
+            <div className="lg:hidden flex flex-wrap gap-1.5 justify-center mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 w-full">
+              {CONSTELLATION_NODES.map((node) => (
+                <button
                   key={node.id}
                   onClick={() => setActiveNodeId(node.id)}
-                  style={{ x: coords.x, y: coords.y }}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`group absolute z-30 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-md border font-mono text-[10px] sm:text-xs transition-all duration-300 flex items-center gap-1 sm:gap-1.5 cursor-pointer whitespace-nowrap -translate-x-1/2 -translate-y-1/2 ${
-                    isActive
-                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-black font-bold border-cyan-400 dark:border-cyan-300 shadow-md dark:shadow-[0_0_20px_rgba(0,240,255,0.6)] scale-105 sm:scale-110 z-40'
-                      : 'bg-white/90 dark:bg-slate-900/80 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700/80 hover:border-cyan-500 hover:text-cyan-700 dark:hover:text-cyan-300 shadow-sm'
+                  className={`px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+                    activeNodeId === node.id
+                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-black shadow-md'
+                      : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
                   }`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isActive ? 'bg-white dark:bg-black animate-ping' : 'bg-cyan-500 dark:bg-cyan-400 group-hover:animate-ping'}`} />
-                  <span>{node.title}</span>
-                </motion.button>
-              );
-            })}
+                  {node.shortTitle}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Right Column: Node Details Inspector Card */}
@@ -243,7 +275,7 @@ export const ResearchConstellation: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="p-8 rounded-3xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-cyan-500/30 shadow-xl dark:shadow-2xl flex flex-col justify-between space-y-6"
+                className="p-5 sm:p-8 rounded-3xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-cyan-500/30 shadow-xl dark:shadow-2xl flex flex-col justify-between space-y-5 sm:space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
