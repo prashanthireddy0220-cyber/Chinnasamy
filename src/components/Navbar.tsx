@@ -19,6 +19,7 @@ const NAV_LINKS = [
   { name: 'Patents', href: '#patents' },
   { name: 'Supervision', href: '#supervision' },
   { name: 'Awards', href: '#awards' },
+  { name: 'Gallery', href: '#gallery' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -94,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden xl:flex items-center space-x-1">
+        <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -102,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAI }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className={`px-2.5 py-1.5 rounded-xl font-sans text-xs transition-all duration-200 ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-xl font-sans text-[11px] 2xl:text-xs transition-all duration-200 ${
                   isActive
                     ? 'text-[#20D5F2] bg-[#20D5F2]/10 border border-[#20D5F2]/40 shadow-[0_0_12px_rgba(32,213,242,0.15)] font-semibold'
                     : 'text-slate-700 dark:text-[#91A0BA] hover:text-[#20D5F2] dark:hover:text-[#20D5F2] hover:bg-slate-100 dark:hover:bg-[#0D1425]'

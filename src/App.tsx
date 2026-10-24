@@ -14,6 +14,7 @@ import { Publications } from './components/Publications';
 import { Patents } from './components/Patents';
 import { FundedResearch } from './components/FundedResearch';
 import { Awards } from './components/Awards';
+import { Gallery } from './components/Gallery';
 import { Leadership } from './components/Leadership';
 import { Certifications } from './components/Certifications';
 import { AcademicService } from './components/AcademicService';
@@ -101,6 +102,9 @@ export function App() {
 
           {/* Awards & Recognition */}
           <Awards />
+
+          {/* Gallery & Credential Archive */}
+          <Gallery />
 
           {/* Academic Leadership */}
           <Leadership />
