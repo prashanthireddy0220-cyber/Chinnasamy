@@ -135,6 +135,26 @@ const GALLERY_ITEMS: GalleryItem[] = [
     isDocument: false
   },
   {
+    id: 'thiruthangal-nadar-seminar',
+    title: 'National Seminar @ Thiruthangal Nadar College, Chennai',
+    organization: 'Thiruthangal Nadar College & ICSSR / MHRD',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Keynote Speaker',
+    badge: 'National Seminar Keynote',
+    badgeColor: 'blue',
+    image: '/assets/national_seminar_thiruthangal_nadar_college.jpg',
+    credentialId: 'ICSSR-MHRD Sponsored',
+    description: 'Invited Keynote Speaker delivering an expert technical session on "Machine Learning Applications in Crime Prediction" at the ICSSR-sponsored National Seminar organized by the Department of Software Applications, Thiruthangal Nadar College, Chennai.',
+    details: [
+      'Sponsored by Indian Council of Social Science Research (ICSSR), MHRD',
+      'Host: Dept. of Software Applications, Thiruthangal Nadar College, Chennai',
+      'Topic: Machine Learning Applications in Crime Prediction',
+      'Session addressing faculty members, research scholars, and postgraduate students'
+    ],
+    isDocument: false
+  },
+  {
     id: 'kare-academic-leadership',
     title: 'Academic Leadership & Department Direction',
     organization: 'Kalasalingam Academy of Research and Education (KARE)',

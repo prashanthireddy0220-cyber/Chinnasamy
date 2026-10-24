@@ -2353,6 +2353,11 @@ export const professorData: ProfessorProfile = {
 
   academicService: [
     {
+      role: "Keynote Speaker & Resource Person",
+      event: "ICSSR-MHRD Sponsored National Seminar on 'Machine Learning Applications in Crime Prediction', Thiruthangal Nadar College, Chennai",
+      year: "Keynote Address"
+    },
+    {
       role: "Technical Committee Member",
       event: "IEEE International Conference on Computer Communications and Informatics (ICCCI)",
       year: "2020 & 2021"
