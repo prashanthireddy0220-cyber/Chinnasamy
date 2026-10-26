@@ -33,7 +33,7 @@ const MILESTONES: MilestoneStep[] = [
     title: 'Cloud Security & Access Control Foundations',
     category: 'Doctoral Foundations & Security Architectures',
     metric: '15+ Scopus Papers',
-    heightPercent: 44,
+    heightPercent: 35,
     color: '#4388FF',
     badge: 'Foundation Phase',
     summary: 'Published breakthrough scalable attribute-based access control models for cloud multi-authority systems.',
@@ -44,7 +44,7 @@ const MILESTONES: MilestoneStep[] = [
     title: 'AI Authentication & Supervisor Recognition',
     category: 'Biometrics & Research Mentorship',
     metric: 'Supervisor No. 4140166',
-    heightPercent: 58,
+    heightPercent: 48,
     color: '#20D5F2',
     badge: 'State Recognition',
     summary: 'Appointed recognized supervisor at Anna University & KARE; developed AI-MFA anti-spoofing liveness detection.',
@@ -55,7 +55,7 @@ const MILESTONES: MilestoneStep[] = [
     title: 'Medi-Chain & Cognitive Deep Learning',
     category: 'Healthcare Security & Patents',
     metric: '3 Granted / Design Patents',
-    heightPercent: 72,
+    heightPercent: 62,
     color: '#A855F7',
     badge: 'Patents & Innovations',
     summary: 'Invented Medi-Chain blockchain EHR architectures and patented smart IoT solar weather monitoring systems.',
@@ -66,7 +66,7 @@ const MILESTONES: MilestoneStep[] = [
     title: 'CSI Award & UTAR International Fellowship',
     category: 'International Collaborative Research',
     metric: 'RM 24,000 Grant Award',
-    heightPercent: 86,
+    heightPercent: 75,
     color: '#38BDF8',
     badge: 'Fellowship & Award',
     summary: 'Conferred CSI Innovative Research Award; appointed Senior Research Associate at UTAR Malaysia for AI depression detection.',
@@ -74,21 +74,33 @@ const MILESTONES: MilestoneStep[] = [
   },
   {
     year: '2025',
-    title: 'Stanford World Top 2% Scientist Ranking',
+    title: 'Stanford World Top 2% Scientist Ranking (2025)',
     category: 'Artificial Intelligence & Image Processing',
     metric: 'Top 2% Worldwide',
-    heightPercent: 100,
+    heightPercent: 88,
     color: '#F59E0B',
     badge: 'World Pinnacle Ranking',
     summary: 'Ranked among the top 2% of researchers worldwide in AI & Image Processing based on composite citation metrics and h-index.',
     verifiedSource: 'Stanford University & Elsevier BV Global Ranking (2025)',
+    isPinnacle: true
+  },
+  {
+    year: '2026',
+    title: 'World Top 2% Scientist Global Recognition (2026)',
+    category: 'Artificial Intelligence & Image Processing',
+    metric: 'Top 2% Worldwide (2026)',
+    heightPercent: 100,
+    color: '#F59E0B',
+    badge: 'Consecutive World Ranking',
+    summary: 'Reaffirmed and recognized among the World Top 2% Scientists in 2026 by Stanford University & Elsevier in Artificial Intelligence and Image Processing, celebrating consecutive global citation excellence.',
+    verifiedSource: 'Stanford University & Elsevier BV Global Ranking (2025, 2026)',
     isPinnacle: true
   }
 ];
 
 export const ResearchImpact: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
-  const [activeStepIndex, setActiveStepIndex] = useState<number>(4); // Default to 2025 pinnacle
+  const [activeStepIndex, setActiveStepIndex] = useState<number>(MILESTONES.length - 1); // Default to 2026 pinnacle
 
   const activeMilestone = MILESTONES[activeStepIndex];
 
@@ -182,7 +194,7 @@ export const ResearchImpact: React.FC = () => {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>Current Status: World Top 2% (2025)</span>
+              <span>Current Status: World Top 2% (2025, 2026)</span>
             </div>
           </div>
 
@@ -375,7 +387,7 @@ export const ResearchImpact: React.FC = () => {
           <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80 flex items-start gap-2.5 text-xs font-mono text-slate-500 dark:text-[#91A0BA] leading-relaxed">
             <Info className="w-4 h-4 text-[#20D5F2] shrink-0 mt-0.5" />
             <p>
-              <strong>Methodology & Verification Note:</strong> Stanford University & Elsevier BV Data-Repository (Ioannidis, J.P.A. 2025). The World Top 2% Scientists List evaluates standardized citation indicators, composite c-scores, h-index, and co-authorship impact across 22 scientific fields and 174 subfields in Artificial Intelligence & Image Processing. All milestones reflect verified academic records.
+              <strong>Methodology & Verification Note:</strong> Stanford University & Elsevier BV Data-Repository (Ioannidis, J.P.A. 2025/2026). The World Top 2% Scientists List evaluates standardized citation indicators, composite c-scores, h-index, and co-authorship impact across 22 scientific fields and 174 subfields in Artificial Intelligence & Image Processing. All milestones reflect verified academic records.
             </p>
           </div>
 

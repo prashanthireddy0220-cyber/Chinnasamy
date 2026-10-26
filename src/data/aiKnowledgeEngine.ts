@@ -13,7 +13,7 @@ export const generateAIResponse = (query: string): string => {
     /^(hi|hello|hey|hola|namaste|vanakkam|good morning|good afternoon|good evening|greetings|yo|sup|start|help|menu|options)\b/i.test(q) ||
     q === 'hi' || q === 'hello' || q === 'hey' || q === 'vanakkam'
   ) {
-    return `👋 Hello and welcome! I am the **Research AI Assistant** for **Dr. P. Chinnasamy** — Associate Professor at Kalasalingam Academy of Research and Education (KARE) and recognized among the **World Top 2% Scientists** by Stanford University (2025).
+    return `👋 Hello and welcome! I am the **Research AI Assistant** for **Dr. P. Chinnasamy** — Associate Professor at Kalasalingam Academy of Research and Education (KARE) and recognized among the **World Top 2% Scientists** by Stanford University (2025 & 2026).
 
 I can answer any questions about:
 • 🤖 **AI & Machine Learning**: Trained neural models (CNN, LSTM, Multimodal AI, AI-MFA)
@@ -94,7 +94,7 @@ Would you like details on a specific publication or application among these mode
     return `👨‍🏫 **Dr. P. Chinnasamy** is an Associate Professor in the Department of Computer Science and Engineering at **Kalasalingam Academy of Research and Education (KARE)**, Anand Nagar, Krishnankoil, Tamil Nadu, India.
 
 **Key Highlights**:
-• 🌟 **Stanford–Elsevier World Top 2% Scientist (2025)** in Artificial Intelligence & Image Processing.
+• 🌟 **Stanford–Elsevier World Top 2% Scientist (2025 & 2026)** in Artificial Intelligence & Image Processing.
 • 🏅 **Senior Research Associate** at Universiti Tunku Abdul Rahman (UTAR), Malaysia (2024–2026).
 • 🎓 **Ph.D. in CSE (2019)** from KARE, with M.Tech (CGPA 9.45/10) and B.E. from Anna University.
 • 📚 **150+ Publications** (24 SCI/SCIE Indexed with Impact Factors up to 7.104).
@@ -199,7 +199,7 @@ You can explore all publications with direct verified DOI links in the **Publica
   ) {
     return `🏆 **Honors, Awards & Global Recognitions**:
 
-• **Stanford–Elsevier World Top 2% Scientist (2025)**: Recognized among the world's most cited researchers in Artificial Intelligence & Image Processing based on composite c-scores, citations, and h-index.
+• **Stanford–Elsevier World Top 2% Scientist (2025 & 2026)**: Recognized among the world's most cited researchers in Artificial Intelligence & Image Processing based on composite c-scores, citations, and h-index.
 • **IEEE Senior Member (SMIEEE)**: Elevated to prestigious IEEE Senior Member grade (Member # 94203253, Podhigai Subsection, Valid through 2027), an honor held by only 10% of IEEE's 500,000+ members worldwide.
 • **Senior Research Associate** @ UTAR Malaysia (2024–2026): International research appointment at Universiti Tunku Abdul Rahman.
 • **CSI Cybersecurity Innovator of the Year (2025)**: Awarded by Computer Society of India (Mumbai Chapter) at Cyber FIFC.
@@ -452,7 +452,7 @@ At Kalasalingam Academy of Research and Education (KARE), Dr. Chinnasamy has ser
   // 19. INTELLIGENT COMPREHENSIVE FALLBACK (NEVER gives "I don't have that information")
   return `💡 **Regarding your question ("${query}")**:
 
-Dr. P. Chinnasamy is an Associate Professor at Kalasalingam Academy of Research and Education (KARE) and ranks among the **World Top 2% Scientists** (Stanford–Elsevier, 2025). His expertise spans:
+Dr. P. Chinnasamy is an Associate Professor at Kalasalingam Academy of Research and Education (KARE) and ranks among the **World Top 2% Scientists** (Stanford–Elsevier, 2025 & 2026). His expertise spans:
 • **Artificial Intelligence & Deep Learning**: Training CNN, LSTM, and multimodal models for healthcare diagnostics and threat classification.
 • **Cybersecurity & Cryptography**: Attribute-based encryption (CP-ABE), cloud access control, and zero-day intrusion detection.
 • **Scholarly Output**: 150+ publications and 17 patents (including granted Australian and Indian Design patents).

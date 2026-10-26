@@ -77,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 py-2">
             <div className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0D1425] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-[#F5F7FF] shadow-sm flex items-center gap-2">
               <Award className="w-3.5 h-3.5 text-amber-500" />
-              <span>Top 2% Stanford-Elsevier Scientist 2025</span>
+              <span>Top 2% Stanford-Elsevier Scientist (2025, 2026)</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0D1425] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-[#F5F7FF] shadow-sm flex items-center gap-2">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />

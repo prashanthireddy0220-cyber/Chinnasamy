@@ -2268,9 +2268,9 @@ export const professorData: ProfessorProfile = {
       id: "award-1",
       title: "Top 2% Scientist in Artificial Intelligence & Image Processing",
       organization: "Stanford–Elsevier Global Ranking",
-      year: "2025",
+      year: "2025, 2026",
       badge: "World Ranking",
-      description: "Recognized among the world's top 2% researchers in Artificial Intelligence and Image Processing."
+      description: "Recognized among the world's top 2% researchers in Artificial Intelligence and Image Processing (Stanford–Elsevier 2025 & 2026)."
     },
     {
       id: "award-2",

@@ -56,11 +56,11 @@ export const Awards: React.FC = () => {
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-xs font-bold">
               <Award className="w-3.5 h-3.5" />
-              GLOBAL SCIENTIST RANKING 2025
+              GLOBAL SCIENTIST RANKING (2025 & 2026)
             </div>
 
             <h3 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 dark:text-[#F5F7FF] group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
-              Top 2% World Scientist
+              Top 2% World Scientist (2025, 2026)
             </h3>
 
             <p className="text-sm font-mono text-amber-700 dark:text-amber-300 font-semibold">
@@ -68,7 +68,7 @@ export const Awards: React.FC = () => {
             </p>
 
             <p className="text-xs sm:text-sm text-slate-700 dark:text-[#91A0BA] font-light leading-relaxed">
-              Recognized among the top 2% of researchers worldwide in Artificial Intelligence and Image Processing based on standardized citation metrics, h-index, and co-authorship impact.
+              Recognized among the top 2% of researchers worldwide in Artificial Intelligence and Image Processing across consecutive years (2025 & 2026) based on standardized citation metrics, composite c-scores, h-index, and co-authorship impact.
             </p>
           </div>
 

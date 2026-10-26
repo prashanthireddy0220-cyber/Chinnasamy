@@ -28,7 +28,7 @@ const QUICK_ACTIONS = [
 const FOLLOW_UP_SUGGESTIONS = [
   "How does he train AI and Machine Learning models?",
   "What is his Ph.D. thesis topic?",
-  "Tell me about the Stanford Top 2% ranking.",
+  "Tell me about the Stanford Top 2% ranking (2025 & 2026).",
   "What patents and innovations does he hold?",
   "What professional memberships does he hold?",
   "Where can I download his CV?"
