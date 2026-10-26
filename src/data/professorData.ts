@@ -2307,11 +2307,22 @@ export const professorData: ProfessorProfile = {
       description: "Prestigious doctoral research fellowship for doctoral studies in cloud security."
     },
     {
-      id: "award-6",
-      title: "Toycathon Judge & Primary Evaluator",
-      organization: "MSME / AICTE",
-      badge: "Government Jury",
-      description: "Appointed as national primary evaluator for innovative student projects and hardware prototypes."
+      id: "award-toycathon-primary-evaluator",
+      title: "Primary Evaluator – Toycathon 2021",
+      organization: "Ministry of Education & AICTE (Govt. of India)",
+      year: "2021",
+      badge: "National Evaluator",
+      description: "Conferred certificate for exceptional contribution as a Primary Evaluator in 'Toycathon, 2021', jointly organized by Ministry of Education, Ministry of Women and Child Development, Ministry of Information and Broadcasting, Ministry of Commerce & Industry, Ministry of MSME, Ministry of Textiles, and AICTE.",
+      image: "/assets/toycathon_2021_primary_evaluator_certificate.jpg"
+    },
+    {
+      id: "award-toycathon-judge",
+      title: "Judge – Toycathon 2021",
+      organization: "Ministry of Education & AICTE (Govt. of India)",
+      year: "2021",
+      badge: "National Jury",
+      description: "Conferred certificate for exceptional contribution as a Judge in 'Toycathon, 2021', evaluating digital concepts, toys, games, and indigenous student hardware innovations under the Government of India initiative.",
+      image: "/assets/toycathon_2021_judge_certificate.jpg"
     },
     {
       id: "award-7",
@@ -2329,6 +2340,15 @@ export const professorData: ProfessorProfile = {
       badge: "Guest of Honor",
       description: "Presided as Guest of Honor at the National Conference, inaugurating the convention and sharing the presidential dais with collegiate leadership and distinguished guests.",
       image: "/assets/guest_of_honor_thiruthangal_nadar_college.jpg"
+    },
+    {
+      id: "award-ieee-senior-member",
+      title: "Elevated to IEEE Senior Member (SMIEEE)",
+      organization: "Institute of Electrical and Electronics Engineers (IEEE)",
+      year: "2024–2027",
+      badge: "Senior Member Grade",
+      description: "Conferred the prestigious IEEE Senior Member grade (Member # 94203253, Podhigai Subsection), an honor held by only 10% of IEEE's 500,000+ members worldwide, recognizing significant contributions and research impact.",
+      image: "/assets/ieee_senior_membership_card.png"
     },
     {
       id: "award-ieee-session-chair",
@@ -2463,15 +2483,21 @@ export const professorData: ProfessorProfile = {
   professionalMemberships: [
     {
       id: "mem-1",
-      title: "IEEE Education Society",
+      title: "IEEE Senior Member (SMIEEE)",
       society: "Institute of Electrical and Electronics Engineers (IEEE)",
-      abbreviation: "IEEE EdSoc",
-      role: "Professional Member",
+      abbreviation: "IEEE Senior Member",
+      role: "Senior Member",
       membershipId: "94203253",
-      description: "Active member of IEEE (Member # 94203253, Podhigai Subsection) and IEEE Education Society, dedicated to advancing education in engineering, computing, and technology fields globally.",
-      badge: "IEEE Member",
+      description: "Elevated to IEEE Senior Member (SMIEEE) — a prestigious grade achieved by only ~10% of IEEE members globally, recognizing significant professional maturity, engineering achievements, and technical contributions in computing and cybersecurity (Podhigai Subsection, Region 10).",
+      badge: "IEEE Senior Member",
       logo: "/assets/ieee_edsoc_logo.png",
-      cardImage: "/assets/ieee_membership_card.jpg"
+      cardImage: "/assets/ieee_senior_membership_card.png",
+      certificates: [
+        {
+          title: "IEEE Senior Member Official Membership Document & Digital Card (Valid through 2027)",
+          image: "/assets/ieee_senior_membership_certificate.png"
+        }
+      ]
     },
     {
       id: "mem-2",

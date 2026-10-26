@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Network, BookOpen, Download, Mail, Award, Sparkles, ChevronDown } from 'lucide-react';
+import { Network, BookOpen, Download, Mail, Award, Sparkles, ChevronDown, ShieldCheck } from 'lucide-react';
 import { professorData } from '../data/professorData';
 
 interface HeroProps {
@@ -78,6 +78,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCV }) => {
             <div className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0D1425] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-[#F5F7FF] shadow-sm flex items-center gap-2">
               <Award className="w-3.5 h-3.5 text-amber-500" />
               <span>Top 2% Stanford-Elsevier Scientist 2025</span>
+            </div>
+            <div className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0D1425] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-[#F5F7FF] shadow-sm flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
+              <span>IEEE Senior Member #94203253</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#0D1425] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-[#F5F7FF] shadow-sm flex items-center gap-2">
               <Sparkles className="w-3.5 h-3.5 text-[#20D5F2]" />

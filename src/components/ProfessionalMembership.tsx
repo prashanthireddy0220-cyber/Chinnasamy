@@ -11,10 +11,23 @@ interface ImageModalState {
 export const ProfessionalMembership: React.FC = () => {
   const [activeModal, setActiveModal] = useState<ImageModalState | null>(null);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveModal(null);
+      }
+    };
+    if (activeModal) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModal]);
+
   const getMembershipIcon = (abbr: string) => {
+    if (abbr.includes('IEEE')) {
+      return <Globe className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
+    }
     switch (abbr) {
-      case 'IEEE EdSoc':
-        return <Globe className="w-6 h-6 text-blue-600 dark:text-blue-400" />;
       case 'CSI':
         return <Users className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />;
       case 'ACM':
@@ -25,14 +38,15 @@ export const ProfessionalMembership: React.FC = () => {
   };
 
   const getGradientStyle = (abbr: string) => {
+    if (abbr.includes('IEEE')) {
+      return {
+        bgBadge: 'bg-blue-100 dark:bg-blue-950/80 border-blue-300 dark:border-blue-500/30 text-blue-800 dark:text-blue-300',
+        hoverBorder: 'hover:border-blue-500/60 dark:hover:shadow-[0_8px_30px_rgba(59,130,246,0.3)]',
+        pillBg: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-500/30',
+        accentGradient: 'from-blue-600 via-cyan-600 to-indigo-600 dark:from-blue-400 dark:via-cyan-400 dark:to-indigo-400',
+      };
+    }
     switch (abbr) {
-      case 'IEEE EdSoc':
-        return {
-          bgBadge: 'bg-blue-100 dark:bg-blue-950/80 border-blue-300 dark:border-blue-500/30 text-blue-800 dark:text-blue-300',
-          hoverBorder: 'hover:border-blue-500/60 dark:hover:shadow-[0_8px_30px_rgba(59,130,246,0.25)]',
-          pillBg: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-500/30',
-          accentGradient: 'from-blue-600 via-cyan-600 to-indigo-600 dark:from-blue-400 dark:via-cyan-400 dark:to-indigo-400',
-        };
       case 'CSI':
         return {
           bgBadge: 'bg-emerald-100 dark:bg-emerald-950/80 border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300',
@@ -136,6 +150,31 @@ export const ProfessionalMembership: React.FC = () => {
                     <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-3">
                       <div className="font-mono text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider flex items-center justify-between">
                         <span>Official Credential Card:</span>
+                      </div>
+
+                      {/* Visual Card Preview Thumbnail */}
+                      <div
+                        onClick={() => setActiveModal({
+                          title: `Official ${membership.title} Card ${membership.membershipId ? `(ID: ${membership.membershipId})` : ''}`,
+                          src: membership.cardImage!
+                        })}
+                        className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950/60 aspect-[16/7] group/thumb cursor-pointer shadow-inner"
+                      >
+                        <img
+                          src={membership.cardImage}
+                          alt={`${membership.title} Card`}
+                          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/thumb:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3">
+                          <span className="text-[11px] font-mono text-white font-medium flex items-center gap-1.5">
+                            <Eye className="w-3.5 h-3.5 text-cyan-400" />
+                            Click to view full card
+                          </span>
+                          <span className="p-1 rounded-lg bg-cyan-500 text-black">
+                            <ExternalLink className="w-3 h-3" />
+                          </span>
+                        </div>
                       </div>
 
                       {/* Clickable Card Link / Button */}

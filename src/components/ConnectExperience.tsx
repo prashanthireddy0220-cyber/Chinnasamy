@@ -107,15 +107,6 @@ export const ConnectExperience: React.FC<ConnectExperienceProps> = ({ onConnecte
       exit={{ opacity: 0, scale: 1.05, transition: { duration: 0.8 } }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-between sm:justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-y-auto px-3 sm:px-6 py-4 sm:py-8"
     >
-      {/* Direct Access Shortcut Button */}
-      <button
-        onClick={onConnected}
-        className="absolute top-3 right-3 sm:top-5 sm:right-6 z-40 px-3.5 py-1.5 rounded-full bg-slate-200/80 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-[11px] font-mono text-slate-700 dark:text-cyan-400 hover:text-cyan-600 font-semibold backdrop-blur-md cursor-pointer transition-all shadow-sm"
-        aria-label="Direct Access to Portfolio"
-      >
-        Direct Access &rarr;
-      </button>
-
       {/* Background Radial & Cyber Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,240,255,0.12)_0%,_rgba(5,8,17,1)_70%)] dark:block hidden pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(2,132,199,0.08)_0%,_rgba(248,250,252,1)_70%)] dark:hidden block pointer-events-none" />

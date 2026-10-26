@@ -78,21 +78,83 @@ const GALLERY_ITEMS: GalleryItem[] = [
     isDocument: true
   },
   {
-    id: 'ieee-membership-card',
-    title: 'IEEE Podhigai Subsection Membership Card',
+    id: 'toycathon-2021-primary-evaluator',
+    title: 'Primary Evaluator Certificate – Toycathon 2021',
+    organization: 'Ministry of Education & AICTE (Govt. of India)',
+    category: 'awards',
+    categoryLabel: 'Awards & Honors',
+    year: '2021',
+    badge: 'Primary Evaluator',
+    badgeColor: 'amber',
+    image: '/assets/toycathon_2021_primary_evaluator_certificate.jpg',
+    credentialId: 'Toycathon 2021 Evaluator',
+    description: "Awarded certificate for exceptional contribution as a Primary Evaluator in 'Toycathon, 2021', an inter-ministerial initiative organized by 6 Union Ministries and AICTE to discover and promote indigenous toy and game innovations.",
+    details: [
+      'Issued by Ministry of Education & AICTE',
+      'Signed by AICTE Chairman Prof. Anil Sahasrabudhe & Dr. Abhay Jere',
+      'Assessed national student prototypes and indigenous concepts',
+      'Joint Initiative of 6 Union Ministries of India'
+    ],
+    isDocument: true
+  },
+  {
+    id: 'toycathon-2021-judge',
+    title: 'Judge Certificate – Toycathon 2021',
+    organization: 'Ministry of Education & AICTE (Govt. of India)',
+    category: 'awards',
+    categoryLabel: 'Awards & Honors',
+    year: '2021',
+    badge: 'National Judge',
+    badgeColor: 'amber',
+    image: '/assets/toycathon_2021_judge_certificate.jpg',
+    credentialId: 'Toycathon 2021 Judge',
+    description: "Awarded certificate for exceptional contribution as a Judge in 'Toycathon, 2021', evaluating innovative physical and digital toy prototypes, gaming concepts, and student designs.",
+    details: [
+      'Conferred by Ministry of Education & AICTE',
+      'Signed by AICTE Chairman Prof. Anil Sahasrabudhe & Dr. Mohit Gambhir',
+      'National Grand Finale & Prototype Evaluation Panel',
+      'Promoting Indian ethos and creative engineering solutions'
+    ],
+    isDocument: true
+  },
+  {
+    id: 'ieee-senior-membership-card',
+    title: 'IEEE Senior Member Official Credential Card',
     organization: 'Institute of Electrical and Electronics Engineers (IEEE)',
     category: 'memberships',
     categoryLabel: 'Society Credentials',
-    year: '2024–Present',
-    badge: 'IEEE Member #94203253',
-    badgeColor: 'cyan',
-    image: '/assets/ieee_membership_card.jpg',
+    year: 'Valid through 2027',
+    badge: 'IEEE Senior Member #94203253',
+    badgeColor: 'blue',
+    image: '/assets/ieee_senior_membership_card.png',
     credentialId: 'Member # 94203253',
-    description: 'Official membership credential card of IEEE Region 10 and IEEE Education Society under the Podhigai Subsection. Fostering global engineering excellence, educational technology, and computing research.',
+    description: 'Official IEEE Senior Member credential card (Podhigai Subsection, Region 10). Elevation to Senior Member grade recognizes significant performance and leadership across engineering, computing, and technology fields.',
     details: [
-      'IEEE Membership ID: 94203253',
-      'Podhigai Subsection • Region 10 (Asia-Pacific)',
-      'IEEE Education Society Professional Member'
+      'Elevated Grade: IEEE Senior Member (SMIEEE)',
+      'IEEE Membership ID: 94203253 • Podhigai Subsection',
+      'Valued IEEE Member for 4 years • Valid through 31 Dec 2027',
+      'Signed by Jill I. Gostin, 2027 IEEE President & CEO',
+      'IEEE Region 10 (Asia-Pacific) & Global Technical Societies'
+    ],
+    isDocument: true
+  },
+  {
+    id: 'ieee-senior-member-document',
+    title: 'IEEE Senior Member Official Elevation Document',
+    organization: 'Institute of Electrical and Electronics Engineers (IEEE)',
+    category: 'memberships',
+    categoryLabel: 'Society Credentials',
+    year: '2024–2027',
+    badge: 'Official Document',
+    badgeColor: 'cyan',
+    image: '/assets/ieee_senior_membership_certificate.png',
+    credentialId: 'IEEE SM # 94203253',
+    description: 'Complete official IEEE Senior Membership document and digital wallet credential confirming active elevation and global membership across 500,000+ professionals worldwide.',
+    details: [
+      'Official IEEE Membership Renewal & Elevation Document',
+      'Part of global community of 500,000+ professionals',
+      'Contains verified digital QR wallet authentication',
+      'IEEE HQ: 3 Park Avenue, 17th Floor, New York, NY, USA'
     ],
     isDocument: true
   },
@@ -262,7 +324,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     year: '2021–2022',
     badge: 'National Jury Member',
     badgeColor: 'emerald',
-    image: '/assets/acm_logo.png',
+    image: '/assets/toycathon_2021_primary_evaluator_certificate.jpg',
     credentialId: 'MIC/AICTE Jury',
     description: 'Selected as Primary Evaluator and National Jury Member evaluating cutting-edge innovations, hardware prototypes, and digital solutions by student engineering teams across India.',
     details: [
@@ -270,7 +332,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       'Toycathon National Evaluator & Reviewer',
       'Evaluated 50+ Prototype Submissions'
     ],
-    isDocument: false
+    isDocument: true
   }
 ];
 

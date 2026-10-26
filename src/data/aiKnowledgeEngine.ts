@@ -200,8 +200,11 @@ You can explore all publications with direct verified DOI links in the **Publica
     return `🏆 **Honors, Awards & Global Recognitions**:
 
 • **Stanford–Elsevier World Top 2% Scientist (2025)**: Recognized among the world's most cited researchers in Artificial Intelligence & Image Processing based on composite c-scores, citations, and h-index.
+• **IEEE Senior Member (SMIEEE)**: Elevated to prestigious IEEE Senior Member grade (Member # 94203253, Podhigai Subsection, Valid through 2027), an honor held by only 10% of IEEE's 500,000+ members worldwide.
 • **Senior Research Associate** @ UTAR Malaysia (2024–2026): International research appointment at Universiti Tunku Abdul Rahman.
-• **CSI Cybersecurity Innovator of the Year**: Awarded by the Computer Society of India (Mumbai Chapter) for contributions to cryptography and cloud security.
+• **CSI Cybersecurity Innovator of the Year (2025)**: Awarded by Computer Society of India (Mumbai Chapter) at Cyber FIFC.
+• **CSI Innovative Research Award (2024)**: Awarded by CSI Hyderabad Chapter for deep learning and cybersecurity innovations.
+• **Toycathon 2021 Primary Evaluator & National Judge**: Conferred official government evaluation certificates by the Ministry of Education, AICTE, MSME, and MIC for judging and evaluating indigenous student innovations.
 • **Outstanding Faculty & Researcher Awards**: Received multiple institutional recognitions for high-impact research and academic mentorship.`;
   }
 
@@ -312,6 +315,32 @@ Dr. Chinnasamy actively serves premier international and national computing conf
   - Organized and convened the two-week AICTE-sponsored Faculty Development Program on Blockchain Technology & Applications for 100+ educators nationwide.
 • ⚖️ **National Jury Evaluator**:
   - Appointed primary evaluator for Smart India Hackathon (SIH 2022) & Toycathon by the Ministry of Education Innovation Cell (MIC) & AICTE.`;
+  }
+
+  // 12.5. PROFESSIONAL MEMBERSHIPS & IEEE SENIOR MEMBER
+  if (
+    q.includes("membership") ||
+    q.includes("ieee") ||
+    q.includes("senior member") ||
+    q.includes("society") ||
+    q.includes("societies") ||
+    q.includes("csi member") ||
+    q.includes("acm")
+  ) {
+    return `🌐 **Professional Memberships & Affiliations**:
+
+1. 🔷 **IEEE Senior Member (SMIEEE)**:
+   - **Grade**: Senior Member (held by only ~10% of 500,000+ IEEE members worldwide)
+   - **Member ID**: 94203253 | **Subsection**: Podhigai Subsection, Region 10
+   - **Validity**: Valued IEEE Member for 4 years (Valid through 31 December 2027)
+   - **Affiliation**: IEEE Education Society & Global Computing Initiatives
+
+2. 🟢 **Computer Society of India (CSI)**:
+   - **Grade**: Official Life Member (CSI ID: 702224018)
+   - **Honors**: Conferred *Cyber Security Innovator of the Year (2025)* and *Innovative Research Award (2024)*
+
+3. 🟣 **Association for Computing Machinery (ACM)**:
+   - **Grade**: Professional Member of ACM, the world's largest computing society.`;
   }
 
   // 13. CONTACT DETAILS & HOW TO CONNECT

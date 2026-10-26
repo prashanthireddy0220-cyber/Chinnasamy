@@ -50,15 +50,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
       exit={{ opacity: 0, scale: 1.05, transition: { duration: 0.8 } }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white transition-colors duration-300 overflow-hidden px-4"
     >
-      {/* Skip Intro Button */}
-      <button
-        onClick={onComplete}
-        className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-slate-200/70 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-[11px] font-mono text-slate-700 dark:text-cyan-400 hover:text-cyan-500 font-semibold backdrop-blur-md cursor-pointer transition-all shadow-sm"
-        aria-label="Skip Intro"
-      >
-        Skip &rarr;
-      </button>
-
       {/* Dynamic Background Network Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-100/30 via-slate-50 to-slate-50 dark:from-cyan-900/20 dark:via-[#050811] dark:to-[#050811]" />
 

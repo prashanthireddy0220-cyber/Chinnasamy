@@ -11,6 +11,18 @@ interface AwardModalState {
 export const Awards: React.FC = () => {
   const [activeModal, setActiveModal] = useState<AwardModalState | null>(null);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveModal(null);
+      }
+    };
+    if (activeModal) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModal]);
+
   return (
     <section id="awards" className="py-24 relative bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-hidden">
       {/* Background Glow */}
@@ -104,6 +116,33 @@ export const Awards: React.FC = () => {
                   </p>
                 )}
 
+                {/* Visual Certificate / Photograph Preview Thumbnail */}
+                {award.image && (
+                  <div
+                    onClick={() => setActiveModal({
+                      title: `${award.title} (${award.organization})`,
+                      src: award.image!
+                    })}
+                    className="relative mt-3 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 aspect-[16/10] group/img cursor-pointer shadow-inner"
+                  >
+                    <img
+                      src={award.image}
+                      alt={award.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3">
+                      <span className="text-[11px] font-mono text-white font-medium flex items-center gap-1.5">
+                        <Eye className="w-3.5 h-3.5 text-amber-400" />
+                        Click to enlarge
+                      </span>
+                      <span className="p-1.5 rounded-lg bg-amber-500 text-black">
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 {/* View Certificate / Photograph Button if available */}
                 {award.image && (
                   <button
@@ -111,11 +150,11 @@ export const Awards: React.FC = () => {
                       title: `${award.title} (${award.organization})`,
                       src: award.image!
                     })}
-                    className="w-full mt-3 p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full mt-2 p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>
-                      {award.image.includes('award') || award.image.includes('certificate')
+                      {award.image.includes('award') || award.image.includes('certificate') || award.image.includes('evaluator') || award.image.includes('judge')
                         ? 'View Official Certificate'
                         : 'View Official Photograph'}
                     </span>
@@ -156,7 +195,7 @@ export const Awards: React.FC = () => {
                       {activeModal.title}
                     </h3>
                     <p className="font-mono text-[10px] sm:text-xs text-amber-400">
-                      {activeModal.src.includes('award') || activeModal.src.includes('certificate')
+                      {activeModal.src.includes('award') || activeModal.src.includes('certificate') || activeModal.src.includes('evaluator') || activeModal.src.includes('judge')
                         ? 'Official Honor & Recognition Document'
                         : 'Official Conference & Dignitary Photograph'}
                     </p>
