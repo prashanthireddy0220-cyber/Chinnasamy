@@ -104,7 +104,7 @@ export const Awards: React.FC = () => {
                   </p>
                 )}
 
-                {/* View Certificate Button if available */}
+                {/* View Certificate / Photograph Button if available */}
                 {award.image && (
                   <button
                     onClick={() => setActiveModal({
@@ -114,7 +114,11 @@ export const Awards: React.FC = () => {
                     className="w-full mt-3 p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    <span>View Official Certificate</span>
+                    <span>
+                      {award.image.includes('award') || award.image.includes('certificate')
+                        ? 'View Official Certificate'
+                        : 'View Official Photograph'}
+                    </span>
                   </button>
                 )}
               </div>
@@ -152,7 +156,9 @@ export const Awards: React.FC = () => {
                       {activeModal.title}
                     </h3>
                     <p className="font-mono text-[10px] sm:text-xs text-amber-400">
-                      Official Honor & Recognition Document
+                      {activeModal.src.includes('award') || activeModal.src.includes('certificate')
+                        ? 'Official Honor & Recognition Document'
+                        : 'Official Conference & Dignitary Photograph'}
                     </p>
                   </div>
                 </div>

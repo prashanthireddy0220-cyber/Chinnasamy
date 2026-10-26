@@ -135,8 +135,50 @@ const GALLERY_ITEMS: GalleryItem[] = [
     isDocument: false
   },
   {
+    id: 'ieee-iccci-session-chair',
+    title: 'IEEE International Conference Session Chair',
+    organization: 'IEEE & Sri Shakthi Institute of Engineering & Technology (ICCCI)',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Session Chair',
+    badge: 'IEEE Session Chair',
+    badgeColor: 'cyan',
+    image: '/assets/ieee_session_chair_iccci.jpg',
+    credentialId: 'IEEE ICCCI Technical Session Chair',
+    description: 'Served as Session Chair and Technical Evaluator at the IEEE International Conference on Computer Communication and Informatics (ICCCI), evaluating scholarly presentations, methodology rigor, and peer-reviewed contributions across AI, networking, and computing.',
+    details: [
+      'Technical Session Chair for peer-reviewed paper tracks',
+      'IEEE International Conference on Computer Communication and Informatics (ICCCI)',
+      'Technical Co-Sponsorship: IEEE Region 10',
+      'Evaluated cutting-edge research presentations in AI, Cloud, and Cybersecurity',
+      'Presided over author defense and technical Q&A evaluation panel'
+    ],
+    isDocument: false
+  },
+  {
+    id: 'guest-of-honor-thiruthangal-nadar',
+    title: 'National Conference: Guest of Honor @ Thiruthangal Nadar College',
+    organization: 'Thiruthangal Nadar College, Chennai',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Guest of Honor',
+    badge: 'Guest of Honor',
+    badgeColor: 'amber',
+    image: '/assets/guest_of_honor_thiruthangal_nadar_college.jpg',
+    credentialId: 'National Conference Dignitary on Dais',
+    description: 'Invited as the Guest of Honor at the National Conference at Thiruthangal Nadar College, Chennai, gracing the central presidential dais alongside management, principal, and department heads during the inaugural ceremony.',
+    details: [
+      'Role: Conferred Guest of Honor on Central Dais',
+      'Venue: Selvammal Hall / Auditorium, Thiruthangal Nadar College, Chennai',
+      'Inauguration and Presidential Address alongside College Leadership',
+      'Addressed delegates, researchers, and faculty on emerging computing frontiers',
+      'Presided over official release and ceremonial lighting of the lamp'
+    ],
+    isDocument: false
+  },
+  {
     id: 'thiruthangal-nadar-seminar',
-    title: 'National Seminar @ Thiruthangal Nadar College, Chennai',
+    title: 'National Seminar Keynote Speaker @ Thiruthangal Nadar College',
     organization: 'Thiruthangal Nadar College & ICSSR / MHRD',
     category: 'academic',
     categoryLabel: 'Academic & Leadership',

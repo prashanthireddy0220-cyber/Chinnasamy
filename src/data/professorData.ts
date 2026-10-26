@@ -64,6 +64,19 @@ export interface Certification {
   year: string;
 }
 
+export interface AcademicServiceItem {
+  id?: string;
+  role: string;
+  event: string;
+  year?: string;
+  organization?: string;
+  badge?: string;
+  badgeColor?: 'cyan' | 'amber' | 'blue' | 'purple' | 'emerald';
+  image?: string;
+  description?: string;
+  highlights?: string[];
+}
+
 export interface ProfessorProfile {
   name: string;
   designation: string;
@@ -110,11 +123,7 @@ export interface ProfessorProfile {
   awards: Award[];
   leadership: LeadershipRole[];
   certifications: Certification[];
-  academicService: Array<{
-    role: string;
-    event: string;
-    year?: string;
-  }>;
+  academicService: AcademicServiceItem[];
   professionalMemberships: Array<{
     id: string;
     title: string;
@@ -2311,6 +2320,24 @@ export const professorData: ProfessorProfile = {
       year: "2022",
       badge: "National Evaluator",
       description: "Evaluated high-impact technology solutions presented by engineering teams across India."
+    },
+    {
+      id: "award-guest-honor-thiruthangal",
+      title: "Guest of Honor: National Conference",
+      organization: "Thiruthangal Nadar College, Chennai",
+      year: "Guest of Honor",
+      badge: "Guest of Honor",
+      description: "Presided as Guest of Honor at the National Conference, inaugurating the convention and sharing the presidential dais with collegiate leadership and distinguished guests.",
+      image: "/assets/guest_of_honor_thiruthangal_nadar_college.jpg"
+    },
+    {
+      id: "award-ieee-session-chair",
+      title: "IEEE International Conference Session Chair",
+      organization: "IEEE & Sri Shakthi Institute of Engineering & Technology (ICCCI)",
+      year: "Session Chair",
+      badge: "IEEE Session Chair",
+      description: "Chaired and evaluated peer-reviewed research tracks at the IEEE International Conference on Computer Communication and Informatics (ICCCI).",
+      image: "/assets/ieee_session_chair_iccci.jpg"
     }
   ],
 
@@ -2353,19 +2380,83 @@ export const professorData: ProfessorProfile = {
 
   academicService: [
     {
+      id: "service-ieee-session-chair",
+      role: "IEEE Conference Session Chair & Evaluator",
+      event: "IEEE International Conference on Computer Communication and Informatics (ICCCI)",
+      year: "Session Chair",
+      organization: "IEEE Region 10 & Sri Shakthi Institute of Engineering and Technology",
+      badge: "IEEE Session Chair",
+      badgeColor: "cyan",
+      image: "/assets/ieee_session_chair_iccci.jpg",
+      description: "Served as Technical Session Chair at the IEEE International Conference on Computer Communication and Informatics (ICCCI), presiding over research presentations, grading technical rigor, and leading interactive paper discussions across Artificial Intelligence, Cloud Security, and Distributed Networks.",
+      highlights: [
+        "Session Chair for peer-reviewed technical paper presentations",
+        "Technical Co-Sponsorship: IEEE Region 10",
+        "Evaluated research methodology, reproducibility, and contribution value",
+        "Mentored presenting authors on publication quality and patent avenues"
+      ]
+    },
+    {
+      id: "service-guest-of-honor",
+      role: "Guest of Honor & Chief Dignitary",
+      event: "National Conference @ Thiruthangal Nadar College, Chennai",
+      year: "Guest of Honor",
+      organization: "Thiruthangal Nadar College, Chennai",
+      badge: "Guest of Honor",
+      badgeColor: "amber",
+      image: "/assets/guest_of_honor_thiruthangal_nadar_college.jpg",
+      description: "Invited as Guest of Honor at the National Conference, gracing the presidential dais alongside collegiate trustees, principal, and academic heads during the inaugural and presidential ceremonies.",
+      highlights: [
+        "Chief Guest / Guest of Honor on the inaugural presidential dais",
+        "Delivered keynote inaugural remarks inspiring researchers, faculty, and scholars",
+        "Presided over conference proceedings, souvenir releases, and scholarly sessions"
+      ]
+    },
+    {
+      id: "service-thiruthangal-seminar",
       role: "Keynote Speaker & Resource Person",
-      event: "ICSSR-MHRD Sponsored National Seminar on 'Machine Learning Applications in Crime Prediction', Thiruthangal Nadar College, Chennai",
-      year: "Keynote Address"
+      event: "ICSSR-MHRD Sponsored National Seminar on 'Machine Learning Applications in Crime Prediction'",
+      year: "Keynote Address",
+      organization: "Dept. of Software Applications, Thiruthangal Nadar College, Chennai",
+      badge: "National Keynote",
+      badgeColor: "blue",
+      image: "/assets/national_seminar_thiruthangal_nadar_college.jpg",
+      description: "Delivered an expert technical keynote on deep learning and predictive machine learning models in crime intelligence and forensic computing, sponsored by ICSSR, Ministry of Human Resource Development (MHRD).",
+      highlights: [
+        "Sponsored by Indian Council of Social Science Research (ICSSR), MHRD",
+        "Keynote topic: Machine Learning Applications in Crime Prediction",
+        "Conducted in-depth technical training for postgraduate students and faculty researchers"
+      ]
     },
     {
-      role: "Technical Committee Member",
-      event: "IEEE International Conference on Computer Communications and Informatics (ICCCI)",
-      year: "2020 & 2021"
-    },
-    {
+      id: "service-aicte-fdp",
       role: "FDP Organizer & Convener",
-      event: "AICTE-sponsored two-week Faculty Development Program (FDP) on Blockchain Technology & Applications",
-      year: "Academic Leadership"
+      event: "AICTE-Sponsored Two-Week Faculty Development Program (FDP) on Blockchain Technology & Applications",
+      year: "Academic Leadership",
+      organization: "AICTE & Kalasalingam Academy of Research and Education",
+      badge: "AICTE Convener",
+      badgeColor: "purple",
+      description: "Convener and coordinator for the AICTE-sponsored nationwide 2-week Faculty Development Program on Blockchain Technology, training 100+ academic professors and doctoral scholars.",
+      highlights: [
+        "Funded by AICTE, Government of India",
+        "Comprehensive pedagogy in cryptography, distributed ledgers, and zero-trust security",
+        "Hands-on smart contract testing and consensus protocol architectures"
+      ]
+    },
+    {
+      id: "service-national-evaluator",
+      role: "National Jury & Primary Evaluator",
+      event: "Smart India Hackathon & Toycathon National Innovations",
+      year: "National Jury",
+      organization: "Ministry of Education Innovation Cell (MIC) & AICTE",
+      badge: "National Evaluator",
+      badgeColor: "emerald",
+      description: "Selected by the Ministry of Education Innovation Cell and AICTE as primary evaluator and jury for national innovation hackathons evaluating prototypes from student engineering teams across India.",
+      highlights: [
+        "Primary evaluator for Smart India Hackathon & Toycathon",
+        "Assessed 50+ cutting-edge working hardware and software prototype submissions",
+        "Evaluated patentability, commercial feasibility, and technical implementation"
+      ]
     }
   ],
 

@@ -286,6 +286,34 @@ Dr. Chinnasamy is an active member of 3 premier global computer science societie
 3. **Association for Computing Machinery (ACM)** — Professional Member.`;
   }
 
+  // 12B. CONFERENCES, SESSION CHAIR & GUEST OF HONOR
+  if (
+    q.includes("conference") ||
+    q.includes("session chair") ||
+    q.includes("guest of honor") ||
+    q.includes("keynote") ||
+    q.includes("thiruthangal") ||
+    q.includes("thiruthankal") ||
+    q.includes("iccci") ||
+    q.includes("sri shakthi") ||
+    q.includes("academic service")
+  ) {
+    return `🌐 **Conference Leadership & Academic Service**:
+
+Dr. Chinnasamy actively serves premier international and national computing conferences:
+• 🎙️ **IEEE International Conference Session Chair (ICCCI)**:
+  - Technical Session Chair & Evaluator at the IEEE International Conference on Computer Communication and Informatics (ICCCI) organized with IEEE Region 10 at Sri Shakthi Institute of Engineering & Technology.
+  - Evaluated peer-reviewed paper tracks in Artificial Intelligence, Cloud Security, and Distributed Networks.
+• 🏅 **Guest of Honor @ National Conference, Thiruthangal Nadar College, Chennai**:
+  - Conferred the distinction of Guest of Honor, gracing the central presidential dais alongside college trustees and principal during the grand inauguration ceremony.
+• 📢 **National Seminar Keynote Speaker (ICSSR-MHRD Sponsored)**:
+  - Invited Keynote Speaker on *"Machine Learning Applications in Crime Prediction"* at Thiruthangal Nadar College, Chennai.
+• 🏛️ **AICTE National FDP Convener**:
+  - Organized and convened the two-week AICTE-sponsored Faculty Development Program on Blockchain Technology & Applications for 100+ educators nationwide.
+• ⚖️ **National Jury Evaluator**:
+  - Appointed primary evaluator for Smart India Hackathon (SIH 2022) & Toycathon by the Ministry of Education Innovation Cell (MIC) & AICTE.`;
+  }
+
   // 13. CONTACT DETAILS & HOW TO CONNECT
   if (
     q.includes("contact") ||
