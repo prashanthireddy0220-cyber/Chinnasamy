@@ -16,6 +16,7 @@ const NAV_LINKS = [
   { name: 'Journey', href: '#journey' },
   { name: 'Impact', href: '#impact' },
   { name: 'Publications', href: '#publications' },
+  { name: 'Citations', href: '#citations' },
   { name: 'Patents', href: '#patents' },
   { name: 'Supervision', href: '#supervision' },
   { name: 'Awards', href: '#awards' },

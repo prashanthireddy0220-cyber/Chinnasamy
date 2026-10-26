@@ -11,6 +11,7 @@ import { AcademicTimeline } from './components/AcademicTimeline';
 import { ResearchImpact } from './components/ResearchImpact';
 import { ResearchSupervision } from './components/ResearchSupervision';
 import { Publications } from './components/Publications';
+import { Citations } from './components/Citations';
 import { Patents } from './components/Patents';
 import { FundedResearch } from './components/FundedResearch';
 import { Awards } from './components/Awards';
@@ -93,6 +94,9 @@ export function App() {
 
           {/* Publications Command Center */}
           <Publications />
+
+          {/* Citations & Scholar Impact Dashboard */}
+          <Citations />
 
           {/* Patents & Innovations */}
           <Patents />

@@ -5,6 +5,11 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import { professorData } from '../src/data/professorData.js';
 import { generateAIResponse } from '../src/data/aiKnowledgeEngine.js';
+import {
+  getCachedCitationData,
+  syncCitationData,
+  startAutoSyncSchedule
+} from './citationSyncService.js';
 
 dotenv.config();
 
@@ -159,6 +164,38 @@ app.post('/api/ai/chat', (req: Request, res: Response) => {
   }
 });
 
+// Citations & Metrics API (automatically synced with OpenAlex / Google Scholar profile)
+app.get('/api/citations', (_req: Request, res: Response) => {
+  try {
+    const data = getCachedCitationData();
+    return res.status(200).json({
+      success: true,
+      ...data
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to fetch citations data.'
+    });
+  }
+});
+
+// Manual / Triggered Citation Synchronization
+app.post('/api/citations/sync', async (_req: Request, res: Response) => {
+  try {
+    const result = await syncCitationData();
+    return res.status(200).json(result);
+  } catch (err: any) {
+    return res.status(500).json({
+      success: false,
+      error: err?.message || 'Sync operation failed.'
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`⚡ [Server] Dr. Chinnasamy Portfolio API running on port ${PORT}`);
+  // Start automated daily citation synchronization schedule
+  startAutoSyncSchedule();
 });
+
