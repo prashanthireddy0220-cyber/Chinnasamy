@@ -19,8 +19,21 @@ import {
   Calendar,
   Building2,
   ShieldCheck,
-  Maximize2
+  Maximize2,
+  Layers,
+  MapPin,
+  Clock,
+  Camera
 } from 'lucide-react';
+
+export interface EventPhoto {
+  url: string;
+  title: string;
+  caption: string;
+  time?: string;
+  location?: string;
+  type?: string;
+}
 
 export interface GalleryItem {
   id: string;
@@ -32,13 +45,177 @@ export interface GalleryItem {
   badge: string;
   badgeColor: 'amber' | 'cyan' | 'emerald' | 'purple' | 'blue';
   image: string;
+  images?: EventPhoto[];
   credentialId?: string;
   description: string;
   details?: string[];
   isDocument?: boolean;
+  eventSeries?: string;
+  eventVenue?: string;
 }
 
+// 4 Photos belonging to the same Francis Xavier Engineering College Event
+const FXEC_WORKSHOP_PHOTOS: EventPhoto[] = [
+  {
+    url: '/assets/fxec_workshop_memento_presentation_2026.png',
+    title: 'Resource Person Felicitation & Memento Presentation',
+    caption: 'Dr. P. Chinnasamy receiving ceremonial memento plaque & honor on stage from Department of AI & DS leadership and dignitaries.',
+    time: 'Thursday, 12/02/2026 10:26 AM GMT+05:30',
+    location: 'APJ Auditorium, Francis Xavier Engineering College, Vannarpettai, Tirunelveli',
+    type: 'Honor & Felicitation'
+  },
+  {
+    url: '/assets/fxec_workshop_keynote_speech_2026.png',
+    title: 'Workshop Keynote Address on Research Paper Writing',
+    caption: 'Delivering keynote lecture on "Think – Write – Publish" to faculty members, research scholars, and students at APJ Auditorium.',
+    time: 'Thursday, 12/02/2026 11:11 AM GMT+05:30',
+    location: 'APJ Auditorium, Francis Xavier Engineering College, Tirunelveli',
+    type: 'Keynote Lecture'
+  },
+  {
+    url: '/assets/fxec_workshop_technical_session_2026.jpg',
+    title: 'Scholarly Publication & Methodology Technical Session',
+    caption: 'Conducting in-depth deliberation on "Doing Research and Performing an Experiment vs Writing a Good Research Paper".',
+    time: 'Thursday, 12/02/2026 11:11 AM GMT+05:30',
+    location: 'APJ Auditorium, Francis Xavier Engineering College, Tirunelveli',
+    type: 'Technical Deliberation'
+  },
+  {
+    url: '/assets/fxec_research_paper_workshop_poster_2026.jpg',
+    title: 'Official Workshop Poster: Think – Write – Publish',
+    caption: 'Official Event Poster & Brochure for the State-Level Research Paper Writing Workshop organized by Dept. of AI & DS.',
+    time: 'Thursday, February 12th, 2026 (9:00 AM – 4:00 PM)',
+    location: 'Francis Xavier Engineering College (Autonomous), Vannarpettai, Tirunelveli',
+    type: 'Official Event Brochure'
+  }
+];
+
 const GALLERY_ITEMS: GalleryItem[] = [
+  // 1. MASTER EVENT ALBUM (Contains all 4 photos together in the same event item)
+  {
+    id: 'fxec-research-workshop-2026-album',
+    title: 'Research Paper Writing Workshop: Think – Write – Publish',
+    organization: 'Francis Xavier Engineering College (Autonomous), Tirunelveli',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Feb 12, 2026',
+    badge: 'Same Event • 4 Photos',
+    badgeColor: 'cyan',
+    image: '/assets/fxec_workshop_memento_presentation_2026.png',
+    images: FXEC_WORKSHOP_PHOTOS,
+    credentialId: 'FXEC Keynote Resource Person',
+    description: 'Invited as Chief Resource Person and Keynote Speaker for the state-level workshop on "Research Paper Writing: Think - Write - Publish" organized by the Department of Artificial Intelligence & Data Science (AI & DS) at Francis Xavier Engineering College (Autonomous), Tirunelveli. Conducted comprehensive technical sessions on experimental methodology, manuscript composition, Scopus/SCI indexing, and peer-review navigation for faculties and research scholars.',
+    details: [
+      'Chief Resource Person: Dr. P. Chinnasamy (Associate Professor - KARE, World Top 2% Scientist)',
+      'Host: Department of Artificial Intelligence & Data Science (AI & DS), FXEC',
+      'Venue: APJ Auditorium, Francis Xavier Engineering College, Vannarpettai, Tirunelveli, Tamil Nadu',
+      'Date & Time: Thursday, February 12, 2026 (9:00 AM – 4:00 PM)',
+      'Convenor: Dr. A. Jainul Fathima (HoD / AI&DS) • Coordinator: Mrs. S. Anitha (AP / AI&DS)',
+      'GPS Verified: Lat 8.732093, Long 77.723530 • Barani Nagar, Tirunelveli',
+      'Complete 4-Photo Collection: Felicitation Memento, Keynote Lecture, Technical Session, and Official Poster'
+    ],
+    isDocument: false,
+    eventSeries: 'fxec-workshop-2026',
+    eventVenue: 'APJ Auditorium, Francis Xavier Engineering College, Tirunelveli'
+  },
+
+  // 2. MEMENTO PRESENTATION PHOTO (Award & Felicitation)
+  {
+    id: 'fxec-workshop-2026-memento',
+    title: 'Keynote Resource Person Felicitation & Memento Presentation',
+    organization: 'Francis Xavier Engineering College (Autonomous), Tirunelveli',
+    category: 'awards',
+    categoryLabel: 'Awards & Honors',
+    year: 'Feb 12, 2026',
+    badge: 'Memento & Honor',
+    badgeColor: 'amber',
+    image: '/assets/fxec_workshop_memento_presentation_2026.png',
+    images: FXEC_WORKSHOP_PHOTOS,
+    credentialId: 'FXEC Event Memento #2026',
+    description: 'Conferred ceremonial memento plaque and honored on dais by the Department of Artificial Intelligence and Data Science (AI & DS) leadership at Francis Xavier Engineering College for outstanding contribution as Keynote Speaker and Resource Person.',
+    details: [
+      'Conferred on stage at APJ Auditorium, Francis Xavier Engineering College',
+      'Presented by Department Head and Faculty Leadership',
+      'Event: Research Paper Writing Workshop (Think – Write – Publish)',
+      'GPS Tagged: Barani Nagar, Tirunelveli • 10:26 AM, 12/02/2026'
+    ],
+    isDocument: false,
+    eventSeries: 'fxec-workshop-2026'
+  },
+
+  // 3. KEYNOTE ADDRESS STAGE PHOTO
+  {
+    id: 'fxec-workshop-2026-keynote',
+    title: 'Keynote Address on Research Paper Writing @ APJ Auditorium',
+    organization: 'Francis Xavier Engineering College, Tirunelveli',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Feb 12, 2026',
+    badge: 'Keynote Address',
+    badgeColor: 'blue',
+    image: '/assets/fxec_workshop_keynote_speech_2026.png',
+    images: FXEC_WORKSHOP_PHOTOS,
+    credentialId: 'FXEC Keynote Lecture',
+    description: 'Delivering the keynote address on research conceptualization and scholarly publication to faculties, postgraduate scholars, and students at the APJ Auditorium, Francis Xavier Engineering College, Tirunelveli.',
+    details: [
+      'Keynote Topic: Think – Write – Publish Research Methodology',
+      'Audience: Engineering faculties, Ph.D. scholars, and graduate students',
+      'Venue: APJ Auditorium, Francis Xavier Engineering College, Tirunelveli',
+      'GPS Verified: Lat 8.732160, Long 77.723461 • 11:11 AM, 12/02/2026'
+    ],
+    isDocument: false,
+    eventSeries: 'fxec-workshop-2026'
+  },
+
+  // 4. TECHNICAL SESSION PHOTO
+  {
+    id: 'fxec-workshop-2026-session',
+    title: 'Technical Session on Scholarly Publishing & Research Rigor',
+    organization: 'Francis Xavier Engineering College, Tirunelveli',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Feb 12, 2026',
+    badge: 'Technical Deliberation',
+    badgeColor: 'purple',
+    image: '/assets/fxec_workshop_technical_session_2026.jpg',
+    images: FXEC_WORKSHOP_PHOTOS,
+    credentialId: 'FXEC Technical Masterclass',
+    description: 'Conducting in-depth technical masterclass on "Doing Research and Performing an Experiment vs Writing a Good Research Paper", breaking down IEEE/SCI peer-review mechanisms and scientific paper drafting.',
+    details: [
+      'Interactive Discussion on Manuscript Drafting & Scientific Novelty',
+      'Comparative Analysis: Experimental Validation vs Paper Structure',
+      'Targeting High-Impact Scopus & Web of Science Journals',
+      'GPS Verified: Lat 8.732093, Long 77.723530 • 11:11 AM, 12/02/2026'
+    ],
+    isDocument: false,
+    eventSeries: 'fxec-workshop-2026'
+  },
+
+  // 5. OFFICIAL POSTER & BROCHURE
+  {
+    id: 'fxec-workshop-2026-poster',
+    title: 'Official Workshop Poster: Think – Write – Publish',
+    organization: 'Francis Xavier Engineering College (Autonomous), Tirunelveli',
+    category: 'academic',
+    categoryLabel: 'Academic & Leadership',
+    year: 'Feb 12, 2026',
+    badge: 'Official Brochure',
+    badgeColor: 'emerald',
+    image: '/assets/fxec_research_paper_workshop_poster_2026.jpg',
+    images: FXEC_WORKSHOP_PHOTOS,
+    credentialId: 'FXEC AI&DS Workshop Poster',
+    description: 'Official promotional poster and event brochure for the State-Level Research Paper Writing Workshop organized by the Department of Artificial Intelligence and Data Science at Francis Xavier Engineering College.',
+    details: [
+      'Resource Person: Dr. P. Chinnasamy (World Top 2% Scientist)',
+      'Organizers: Mrs. S. Anitha (Coordinator) & Dr. A. Jainul Fathima (Convenor)',
+      'Venue: APJ Auditorium, Francis Xavier Engineering College, Vannarpettai, Tirunelveli',
+      'Schedule: Thursday, 12th February 2026 • 9.00 AM to 4.00 PM'
+    ],
+    isDocument: true,
+    eventSeries: 'fxec-workshop-2026'
+  },
+
+  // EXISTING GALLERY ITEMS
   {
     id: 'csi-cyber-2025',
     title: 'Cybersecurity Innovator of the Year Award',
@@ -192,7 +369,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     details: [
       'Field: Artificial Intelligence & Image Processing',
       'Published by Stanford University & Elsevier',
-      '169+ Indexed Research Publications'
+      '178+ Indexed Research Publications'
     ],
     isDocument: false
   },
@@ -338,7 +515,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
 
 const CATEGORY_TABS = [
   { id: 'all', label: 'All Items', icon: Sparkles },
-  { id: 'awards', label: 'Awards & Certificates', icon: Award },
+  { id: 'awards', label: 'Awards & Honors', icon: Award },
   { id: 'memberships', label: 'Society Credentials', icon: CreditCard },
   { id: 'academic', label: 'Academic & Leadership', icon: GraduationCap },
 ];
@@ -347,6 +524,7 @@ export const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeSubPhotoIndex, setActiveSubPhotoIndex] = useState<number>(0);
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
 
   // Filter items based on category and search query
@@ -361,39 +539,50 @@ export const Gallery: React.FC = () => {
         item.organization.toLowerCase().includes(q) ||
         item.badge.toLowerCase().includes(q) ||
         item.year.toLowerCase().includes(q) ||
+        (item.eventSeries && item.eventSeries.toLowerCase().includes(q)) ||
         (item.credentialId && item.credentialId.toLowerCase().includes(q));
       return matchesCategory && matchesSearch;
     });
   }, [activeCategory, searchQuery]);
 
   // Handle Lightbox Navigation
-  const handleOpenLightbox = (index: number) => {
+  const handleOpenLightbox = (index: number, subIndex: number = 0) => {
     setLightboxIndex(index);
+    setActiveSubPhotoIndex(subIndex);
     setIsZoomed(false);
   };
 
   const handleCloseLightbox = useCallback(() => {
     setLightboxIndex(null);
+    setActiveSubPhotoIndex(0);
     setIsZoomed(false);
   }, []);
 
   const handlePrev = useCallback(() => {
     if (lightboxIndex === null) return;
     setIsZoomed(false);
-    setLightboxIndex((prev) =>
-      prev !== null
-        ? (prev - 1 + filteredItems.length) % filteredItems.length
-        : null
-    );
-  }, [lightboxIndex, filteredItems.length]);
+    const item = filteredItems[lightboxIndex];
+    if (item.images && item.images.length > 1 && activeSubPhotoIndex > 0) {
+      setActiveSubPhotoIndex(prev => prev - 1);
+      return;
+    }
+    const newIdx = (lightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+    setLightboxIndex(newIdx);
+    setActiveSubPhotoIndex(0);
+  }, [lightboxIndex, filteredItems, activeSubPhotoIndex]);
 
   const handleNext = useCallback(() => {
     if (lightboxIndex === null) return;
     setIsZoomed(false);
-    setLightboxIndex((prev) =>
-      prev !== null ? (prev + 1) % filteredItems.length : null
-    );
-  }, [lightboxIndex, filteredItems.length]);
+    const item = filteredItems[lightboxIndex];
+    if (item.images && item.images.length > 1 && activeSubPhotoIndex < item.images.length - 1) {
+      setActiveSubPhotoIndex(prev => prev + 1);
+      return;
+    }
+    const newIdx = (lightboxIndex + 1) % filteredItems.length;
+    setLightboxIndex(newIdx);
+    setActiveSubPhotoIndex(0);
+  }, [lightboxIndex, filteredItems, activeSubPhotoIndex]);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -416,6 +605,20 @@ export const Gallery: React.FC = () => {
   // Active item in lightbox
   const currentItem =
     lightboxIndex !== null ? filteredItems[lightboxIndex] : null;
+
+  // Active photo inside current item
+  const activePhoto = useMemo(() => {
+    if (!currentItem) return null;
+    if (currentItem.images && currentItem.images.length > 0) {
+      const idx = Math.min(activeSubPhotoIndex, currentItem.images.length - 1);
+      return currentItem.images[idx];
+    }
+    return {
+      url: currentItem.image,
+      title: currentItem.title,
+      caption: currentItem.description
+    };
+  }, [currentItem, activeSubPhotoIndex]);
 
   const getBadgeStyle = (color: GalleryItem['badgeColor']) => {
     switch (color) {
@@ -457,9 +660,8 @@ export const Gallery: React.FC = () => {
           </h2>
 
           <p className="text-slate-600 dark:text-slate-400 font-light text-base max-w-2xl leading-relaxed">
-            High-resolution visual archive of national cybersecurity awards,
-            verified professional society credentials, international research
-            fellowships, and academic leadership milestones.
+            High-resolution visual archive of keynote workshops, national awards,
+            verified professional society credentials, and academic leadership milestones.
           </p>
         </div>
 
@@ -514,7 +716,7 @@ export const Gallery: React.FC = () => {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -530,14 +732,14 @@ export const Gallery: React.FC = () => {
               No gallery credentials match your search.
             </h3>
             <p className="text-xs font-mono text-slate-500">
-              Try searching for &quot;CSI&quot;, &quot;IEEE&quot;, &quot;Award&quot;, or &quot;2025&quot;.
+              Try searching for &quot;Francis Xavier&quot;, &quot;CSI&quot;, &quot;IEEE&quot;, &quot;Award&quot;, or &quot;2026&quot;.
             </p>
             <button
               onClick={() => {
                 setActiveCategory('all');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-mono text-xs font-bold transition-all"
+              className="px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-mono text-xs font-bold transition-all cursor-pointer"
             >
               Reset Filters
             </button>
@@ -548,6 +750,8 @@ export const Gallery: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             {filteredItems.map((item, idx) => {
+              const hasMultiPhotos = Boolean(item.images && item.images.length > 1);
+
               return (
                 <motion.div
                   layout
@@ -568,14 +772,14 @@ export const Gallery: React.FC = () => {
                     />
 
                     {/* Gradient Overlay on Hover */}
-                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 z-10">
                       <button
-                        onClick={() => handleOpenLightbox(idx)}
+                        onClick={() => handleOpenLightbox(idx, 0)}
                         className="px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-cyan-500/40 transition-transform active:scale-95 cursor-pointer"
                         title="Inspect Fullscreen"
                       >
                         <Maximize2 className="w-3.5 h-3.5" />
-                        <span>Inspect</span>
+                        <span>Inspect {hasMultiPhotos ? '(4 Photos)' : ''}</span>
                       </button>
 
                       <a
@@ -590,7 +794,7 @@ export const Gallery: React.FC = () => {
                     </div>
 
                     {/* Top Badges */}
-                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
                       <span
                         className={`px-2.5 py-1 rounded-full font-mono text-[10px] font-bold border backdrop-blur-md shadow-sm ${getBadgeStyle(
                           item.badgeColor
@@ -605,8 +809,34 @@ export const Gallery: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Credential ID pill if present */}
-                    {item.credentialId && (
+                    {/* Multi-Photo Carousel Strip on Card */}
+                    {hasMultiPhotos && item.images && (
+                      <div className="absolute bottom-3 inset-x-3 flex items-center justify-between z-10 pointer-events-auto">
+                        <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/40 font-mono text-[9px] font-bold text-cyan-300 flex items-center gap-1">
+                          <Layers className="w-3 h-3 text-cyan-400" />
+                          <span>Same Event ({item.images.length} Photos)</span>
+                        </span>
+
+                        <div className="flex items-center gap-1 bg-black/70 backdrop-blur-md px-1.5 py-1 rounded-lg border border-white/10">
+                          {item.images.map((img, subIdx) => (
+                            <button
+                              key={subIdx}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleOpenLightbox(idx, subIdx);
+                              }}
+                              className="w-4 h-4 rounded-full overflow-hidden border border-white/40 hover:border-cyan-400 transition-all cursor-pointer"
+                              title={`View photo ${subIdx + 1}: ${img.type || img.title}`}
+                            >
+                              <img src={img.url} alt="" className="w-full h-full object-cover" />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Credential ID pill if present and not multi-photos */}
+                    {!hasMultiPhotos && item.credentialId && (
                       <div className="absolute bottom-3 left-3 pointer-events-none">
                         <span className="px-2 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-md border border-cyan-500/30 font-mono text-[9px] font-semibold text-cyan-300 shadow-sm flex items-center gap-1">
                           <ShieldCheck className="w-2.5 h-2.5" />
@@ -640,10 +870,10 @@ export const Gallery: React.FC = () => {
                       </span>
 
                       <button
-                        onClick={() => handleOpenLightbox(idx)}
+                        onClick={() => handleOpenLightbox(idx, 0)}
                         className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-700 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 transition-colors cursor-pointer group/btn"
                       >
-                        <span>View Details</span>
+                        <span>{hasMultiPhotos ? 'View All 4 Photos' : 'View Details'}</span>
                         <Eye className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
                       </button>
                     </div>
@@ -655,9 +885,9 @@ export const Gallery: React.FC = () => {
         )}
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal with Event Album Switcher */}
       <AnimatePresence>
-        {currentItem && (
+        {currentItem && activePhoto && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -705,7 +935,7 @@ export const Gallery: React.FC = () => {
                   </button>
 
                   <a
-                    href={currentItem.image}
+                    href={activePhoto.url}
                     download
                     target="_blank"
                     rel="noopener noreferrer"
@@ -728,36 +958,85 @@ export const Gallery: React.FC = () => {
               {/* Modal Body: Two columns (Image + Details) on desktop */}
               <div className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-12 min-h-0">
                 {/* Image Stage */}
-                <div className="lg:col-span-7 bg-slate-950 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden min-h-[320px] sm:min-h-[420px]">
-                  <img
-                    src={currentItem.image}
-                    alt={currentItem.title}
-                    className={`max-w-full max-h-[60vh] object-contain transition-transform duration-300 ${
-                      isZoomed ? 'scale-150 cursor-zoom-out' : 'scale-100 cursor-zoom-in'
-                    }`}
-                    onClick={() => setIsZoomed(!isZoomed)}
-                  />
+                <div className="lg:col-span-7 bg-slate-950 flex flex-col justify-between p-3 sm:p-6 relative overflow-hidden min-h-[340px] sm:min-h-[460px]">
+                  
+                  {/* Central Main Image Display */}
+                  <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+                    <img
+                      key={activePhoto.url}
+                      src={activePhoto.url}
+                      alt={activePhoto.title || currentItem.title}
+                      className={`max-w-full max-h-[50vh] object-contain transition-transform duration-300 ${
+                        isZoomed ? 'scale-150 cursor-zoom-out' : 'scale-100 cursor-zoom-in'
+                      }`}
+                      onClick={() => setIsZoomed(!isZoomed)}
+                    />
 
-                  {/* Previous Button */}
-                  <button
-                    onClick={handlePrev}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 transition-all cursor-pointer shadow-lg"
-                    title="Previous (Left Arrow)"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
+                    {/* Previous Button */}
+                    <button
+                      onClick={handlePrev}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer shadow-lg z-20"
+                      title="Previous"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
 
-                  {/* Next Button */}
-                  <button
-                    onClick={handleNext}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 transition-all cursor-pointer shadow-lg"
-                    title="Next (Right Arrow)"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
+                    {/* Next Button */}
+                    <button
+                      onClick={handleNext}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer shadow-lg z-20"
+                      title="Next"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
 
-                  <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-black/70 font-mono text-[10px] text-slate-400 border border-white/10">
-                    {lightboxIndex! + 1} / {filteredItems.length}
+                  {/* EVENT ALBUM THUMBNAIL SELECTOR (If multi-photo event) */}
+                  {currentItem.images && currentItem.images.length > 1 && (
+                    <div className="mt-3 pt-3 border-t border-white/10 z-20">
+                      <div className="flex items-center justify-between text-white/70 text-[11px] font-mono mb-2">
+                        <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
+                          <Camera className="w-3.5 h-3.5" />
+                          <span>Same Event Photos ({activeSubPhotoIndex + 1} of {currentItem.images.length})</span>
+                        </span>
+                        <span>Click thumbnail to view</span>
+                      </div>
+
+                      <div className="grid grid-cols-4 gap-2">
+                        {currentItem.images.map((photo, pIdx) => {
+                          const isCurrent = pIdx === activeSubPhotoIndex;
+                          return (
+                            <button
+                              key={pIdx}
+                              onClick={() => {
+                                setActiveSubPhotoIndex(pIdx);
+                                setIsZoomed(false);
+                              }}
+                              className={`relative aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all cursor-pointer group text-left ${
+                                isCurrent
+                                  ? 'border-cyan-400 ring-2 ring-cyan-400/40 scale-102'
+                                  : 'border-white/20 hover:border-white/60 opacity-60 hover:opacity-100'
+                              }`}
+                            >
+                              <img src={photo.url} alt="" className="w-full h-full object-cover" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-1">
+                                <span className="font-mono text-[9px] text-white font-bold truncate">
+                                  #{pIdx + 1} {photo.type}
+                                </span>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Status Indicator Bar */}
+                  <div className="mt-2 flex items-center justify-between text-slate-400 font-mono text-[10px]">
+                    <span className="truncate max-w-[260px]">{activePhoto.caption || currentItem.title}</span>
+                    <span className="px-2 py-0.5 rounded bg-black/70 border border-white/10">
+                      Item {lightboxIndex! + 1} of {filteredItems.length}
+                    </span>
                   </div>
                 </div>
 
@@ -771,12 +1050,13 @@ export const Gallery: React.FC = () => {
                       </div>
 
                       <h3 className="text-xl sm:text-2xl font-extrabold font-sans text-slate-900 dark:text-white leading-tight">
-                        {currentItem.title}
+                        {activePhoto.title || currentItem.title}
                       </h3>
 
                       <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
-                        <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">
-                          Year: {currentItem.year}
+                        <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1">
+                          <Calendar className="w-3 h-3 text-cyan-500" />
+                          <span>{currentItem.year}</span>
                         </span>
                         {currentItem.credentialId && (
                           <span className="px-2 py-0.5 rounded-md bg-cyan-100 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 font-semibold border border-cyan-300 dark:border-cyan-500/40">
@@ -786,15 +1066,37 @@ export const Gallery: React.FC = () => {
                       </div>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed pt-2 border-t border-slate-200 dark:border-slate-800">
+                    {/* Active Photo Caption / Description */}
+                    <div className="p-3.5 rounded-2xl bg-cyan-50/60 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800/50 space-y-1.5">
+                      <div className="font-mono text-[11px] font-bold text-cyan-800 dark:text-cyan-300 uppercase tracking-wide">
+                        Photo Context:
+                      </div>
+                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                        {activePhoto.caption}
+                      </p>
+                      {activePhoto.location && (
+                        <div className="flex items-start gap-1.5 font-mono text-[10px] text-slate-500 dark:text-slate-400 pt-1 border-t border-cyan-200/60 dark:border-cyan-800/40">
+                          <MapPin className="w-3 h-3 text-cyan-500 shrink-0 mt-0.5" />
+                          <span>{activePhoto.location}</span>
+                        </div>
+                      )}
+                      {activePhoto.time && (
+                        <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                          <Clock className="w-3 h-3 text-cyan-500 shrink-0" />
+                          <span>Timestamp: {activePhoto.time}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed pt-1">
                       {currentItem.description}
                     </p>
 
                     {/* Bullet Highlights if available */}
                     {currentItem.details && (
-                      <div className="space-y-2 pt-2">
+                      <div className="space-y-2 pt-1">
                         <h5 className="font-mono text-[11px] font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wider">
-                          Key Highlights:
+                          Event & Session Highlights:
                         </h5>
                         <ul className="space-y-1.5">
                           {currentItem.details.map((detail, dIdx) => (
@@ -814,10 +1116,10 @@ export const Gallery: React.FC = () => {
                   {/* Actions in Sidebar */}
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
                     <a
-                      href={currentItem.image}
+                      href={activePhoto.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono text-xs font-bold text-center flex items-center justify-center gap-2 transition-colors shadow-md shadow-cyan-500/30"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono text-xs font-bold text-center flex items-center justify-center gap-2 transition-colors shadow-md shadow-cyan-500/30 cursor-pointer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>Open Full Size</span>
@@ -825,7 +1127,7 @@ export const Gallery: React.FC = () => {
 
                     <button
                       onClick={handleCloseLightbox}
-                      className="py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono text-xs font-bold transition-colors"
+                      className="py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono text-xs font-bold transition-colors cursor-pointer"
                     >
                       Close
                     </button>

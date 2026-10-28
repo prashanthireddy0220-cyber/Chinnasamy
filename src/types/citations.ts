@@ -21,6 +21,10 @@ export interface CitationMetrics {
   i10Index: number;
   twoYearMeanCitedness?: number;
   worksCount: number;
+  citationsSinceYear?: number;
+  hIndexSinceYear?: number;
+  i10IndexSinceYear?: number;
+  benchmarkYear?: number;
 }
 
 export interface ResearcherCitationProfile {

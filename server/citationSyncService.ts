@@ -42,6 +42,10 @@ export interface CitationData {
     i10Index: number;
     twoYearMeanCitedness?: number;
     worksCount: number;
+    citationsSinceYear?: number;
+    hIndexSinceYear?: number;
+    i10IndexSinceYear?: number;
+    benchmarkYear?: number;
   };
   yearWiseCitations: YearWiseCitation[];
   publications: CitationPublication[];
@@ -62,22 +66,24 @@ const FALLBACK_DATA: CitationData = {
     sourceNote: 'Citation statistics and publications are automatically synchronized via OpenAlex scholarly metrics API for Google Scholar profile (user=d1GhC-4AAAAJ) and ORCID (0000-0002-3202-4299).'
   },
   metrics: {
-    totalCitations: 2141,
-    hIndex: 25,
-    i10Index: 56,
+    totalCitations: 2778,
+    citationsSinceYear: 2763,
+    hIndex: 28,
+    hIndexSinceYear: 28,
+    i10Index: 63,
+    i10IndexSinceYear: 63,
+    benchmarkYear: 2021,
     twoYearMeanCitedness: 5.85,
-    worksCount: 155
+    worksCount: 178
   },
   yearWiseCitations: [
-    { year: 2018, citations: 86, works: 3 },
-    { year: 2019, citations: 110, works: 4 },
-    { year: 2020, citations: 166, works: 4 },
-    { year: 2021, citations: 718, works: 17 },
-    { year: 2022, citations: 250, works: 13 },
-    { year: 2023, citations: 359, works: 22 },
-    { year: 2024, citations: 404, works: 33 },
-    { year: 2025, citations: 157, works: 50 },
-    { year: 2026, citations: 12, works: 13 }
+    { year: 2020, citations: 7, works: 4 },
+    { year: 2021, citations: 59, works: 17 },
+    { year: 2022, citations: 242, works: 13 },
+    { year: 2023, citations: 384, works: 22 },
+    { year: 2024, citations: 607, works: 33 },
+    { year: 2025, citations: 862, works: 50 },
+    { year: 2026, citations: 586, works: 13 }
   ],
   publications: [
     {
@@ -163,11 +169,103 @@ export function getCachedCitationData(): CitationData {
   return FALLBACK_DATA;
 }
 
+async function tryFetchGoogleScholar(): Promise<Partial<CitationData> | null> {
+  try {
+    const res = await fetch('https://scholar.google.com/citations?user=d1GhC-4AAAAJ&hl=en&pagesize=100', {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9'
+      }
+    });
+
+    if (!res.ok) return null;
+    const html = await res.text();
+
+    const totalMatch = html.match(/<td class="gsc_rsb_std">(\d+)<\/td><td class="gsc_rsb_std">(\d+)<\/td>/g);
+    if (!totalMatch) return null;
+
+    const numPairs: { all: number; since: number }[] = [];
+    for (const m of totalMatch) {
+      const nums = [...m.matchAll(/<td class="gsc_rsb_std">(\d+)<\/td>/g)].map(x => parseInt(x[1], 10));
+      if (nums.length >= 2) {
+        numPairs.push({ all: nums[0], since: nums[1] });
+      }
+    }
+
+    if (numPairs.length < 3) return null;
+
+    const totalCitations = numPairs[0].all;
+    const citationsSinceYear = numPairs[0].since;
+    const hIndex = numPairs[1].all;
+    const hIndexSinceYear = numPairs[1].since;
+    const i10Index = numPairs[2].all;
+    const i10IndexSinceYear = numPairs[2].since;
+
+    const years = [...html.matchAll(/<span class="gsc_g_t"[^>]*>(\d+)<\/span>/g)].map(m => parseInt(m[1], 10));
+    const cits = [...html.matchAll(/<span class="gsc_g_al">(\d+)<\/span>/g)].map(m => parseInt(m[1], 10));
+
+    const yearWiseCitations: YearWiseCitation[] = [];
+    for (let i = 0; i < Math.min(years.length, cits.length); i++) {
+      yearWiseCitations.push({
+        year: years[i],
+        citations: cits[i]
+      });
+    }
+
+    return {
+      metrics: {
+        totalCitations,
+        citationsSinceYear,
+        hIndex,
+        hIndexSinceYear,
+        i10Index,
+        i10IndexSinceYear,
+        benchmarkYear: 2021,
+        twoYearMeanCitedness: 5.85,
+        worksCount: 178
+      },
+      yearWiseCitations: yearWiseCitations.length > 0 ? yearWiseCitations : undefined
+    };
+  } catch (err) {
+    console.warn('[CitationSync] Google Scholar direct fetch note:', err);
+    return null;
+  }
+}
+
 export async function syncCitationData(): Promise<{ success: boolean; data: CitationData; message: string }> {
   try {
-    console.log('[CitationSync] Starting live synchronization with OpenAlex API for Dr. P. Chinnasamy...');
+    console.log('[CitationSync] Starting live synchronization with Google Scholar & OpenAlex for Dr. P. Chinnasamy...');
+
+    // Try Google Scholar live scrape first
+    const scholarPartial = await tryFetchGoogleScholar();
+    if (scholarPartial && scholarPartial.metrics) {
+      const cached = getCachedCitationData();
+      const updatedData: CitationData = {
+        ...cached,
+        metrics: {
+          ...cached.metrics,
+          ...scholarPartial.metrics
+        },
+        yearWiseCitations: scholarPartial.yearWiseCitations || cached.yearWiseCitations,
+        lastSyncTime: new Date().toISOString(),
+        status: 'synced'
+      };
+
+      memoryCachedData = updatedData;
+      ensureDataDir();
+      fs.writeFileSync(DATA_FILE, JSON.stringify(updatedData, null, 2), 'utf-8');
+      saveCitationsToDb(updatedData).catch(err => console.warn('[CitationSync] DB save note:', err?.message));
+
+      console.log(`[CitationSync] Google Scholar sync succeeded! Total citations: ${updatedData.metrics.totalCitations}`);
+      return {
+        success: true,
+        data: updatedData,
+        message: 'Citations data synchronized successfully from Google Scholar!'
+      };
+    }
     
-    // Fetch author metadata
+    // Fetch author metadata from OpenAlex as fallback
     const authorRes = await fetch('https://api.openalex.org/authors/A5005688960', {
       headers: {
         'User-Agent': 'DrChinnasamyPortfolio/1.0 (mailto:chinnasamyponnusamy@gmail.com)'
